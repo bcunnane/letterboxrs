@@ -1,5 +1,6 @@
 import requests
 import sqlite3
+import pandas as pd
 from bs4 import BeautifulSoup
 
 
@@ -47,29 +48,36 @@ def scrape(url):
     return BeautifulSoup(html.content, 'html.parser')
 
 
-def scrape_ratings(users):
-    '''returns lists of tuples representing:
-    (1) movie ratings for each user
-    (2) rated movies'''
-    ratings = []
-    rated_movies = []
+def scrape_ratings(users, cur):
+    '''updates database with new movie ratings by users
+    returns list of newly added movies (id, title)'''
+    
+    existing_ratings = cur.execute('SELECT initials,id FROM ratings').fetchall()
+
+    added_movies = []
     for user in users:
-        initial = user[0]
+        initials = user[0]
         username = user[1]
+
+        # get id of most recent rating in db
+        last_rated = cur.execute('SELECT id FROM ratings ORDER BY date DESC LIMIT 1;').fetchone()
+        if not last_rated:
+            last_rated = -1
+        else:
+            last_rated = last_rated[0]
 
         # scrape first page
         url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large'
         soup = scrape(url)
 
-        # determine number of pages to web scrape
-        pages = [tag.text for tag in soup.find_all('li', {'class': 'paginate-page'})]
-        if not pages:
-            pages = [1]
-        if '…' in pages:
-            pages = list(range(1, int(pages[-1]) + 1))
+        # determine final page to web scrape
+        last_page = soup.find_all('li', {'class': 'paginate-page'}) or 1
+        if last_page != 1: last_page = int(last_page[-1].text)
 
         # get ratings data
-        for page in [1]:#pages:
+        page = 1
+        keep_going = True
+        while page <= last_page and keep_going:
             # update user and page progress
             print(f'Scraping: {username} page {page}.')
 
@@ -77,34 +85,48 @@ def scrape_ratings(users):
             if page != '1':
                 url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large/page/{page}/'
                 soup = scrape(url)
-            
+
             # get rating for all movies in page
             movies = soup.find_all('li', {'class': 'poster-container'})
             for movie in movies:
+                # get movie id and check if user already rated (delete if so)
                 id = int(movie.div['data-film-id'])
+                if (initials, id) in existing_ratings:
+                    cur.execute(f'DELETE FROM ratings WHERE initials="{initials}" and id={id};')
+                
+                # get movie data
                 title = movie.div['data-film-slug'].replace('-', ' ').title() #get div data-key
                 movie_data = movie.find('p', {'class': 'poster-viewingdata'})
                 date = movie_data.find('time')['datetime'][0:10]
                 rating = movie_data.text
                 rating = rating.count('★') + 0.5 * rating.count('½')
 
-                # add movie data to lists if rating exists
+                # add rating data to db if rating exists
                 if rating > 0:
-                    ratings.append((initial, id, date, rating))
-                    rated_movies.append((id, title))
-    return ratings, list(set(rated_movies))
+                    cur.execute(f'INSERT INTO ratings VALUES {(initials, id, date, rating)};')
+                    added_movies.append((id, title))
+                
+                # stop adding more movies if id was the last one present in database
+                if id == last_rated:
+                    print('last rated movie encountered')
+                    keep_going = False
+                    break
+            page += 1
+
+    return list(set(added_movies))
 
 
-def scrape_movies(rated_movies):
-    '''returns lists of tuples representing:
-    (1) movies
-    (2) actors
-    (3) genres'''
+def scrape_movies(added_movies, cur):
+    '''webscrapes movie, actor, and genre data for added_movies
+    adds data to tables in db if not already present'''
 
-    movies = []
-    actors = []
-    genres = []
-    for movie in rated_movies:
+    existing_movies = cur.execute('SELECT id,title FROM movies').fetchall()
+
+    for movie in added_movies:
+        # skip movie if it already exists db
+        if movie in existing_movies:
+            continue
+
         id = movie[0]
         title = movie[1]
 
@@ -125,14 +147,14 @@ def scrape_movies(rated_movies):
         runtime = int(runtime.replace('\t', '').replace('\n', '').split('\xa0')[0] )
 
         # add film data to movies list
-        movies.append((id, title, year, director, runtime))
+        cur.execute(f'INSERT INTO movies VALUES {(id, title, year, director, runtime)};')
 
         # get stars ie top 3 cast
         try:
             cast = soup.find('div', {'id': 'tab-cast'}).find_all('a')
             cast = [member.text for member in cast[:3]]
             for actor in cast:
-                actors.append((id, actor))
+                cur.execute(f'INSERT INTO actors VALUES {(id, actor)};')
         except:
             print(f'*** Error: no cast for {title} ***')
 
@@ -141,11 +163,9 @@ def scrape_movies(rated_movies):
             movie_genres = soup.find('div', {'id': 'tab-genres'}).find('div', {'class': 'text-sluglist capitalize'}).find_all('a')
             movie_genres = [genre.text for genre in movie_genres]
             for genre in movie_genres:
-                genres.append((id, genre))
+                cur.execute(f'INSERT INTO genres VALUES {(id, genre)};')
         except:
             print(f'*** Error: no genres for {title} ***')
-
-    return movies, actors, genres
 
 
 def main():
@@ -176,12 +196,11 @@ def main():
              ('TA', 'tarias', 'Tommie')]
     
     # web scrape data for tables
-    ratings, rated_movies = scrape_ratings([users[2]])
-    movies, actors, genres = scrape_movies(rated_movies)
+    added_movies = scrape_ratings([users[1]], cur)
+    scrape_movies(added_movies, cur)
 
-    # write results to db
-    for name, data in zip(('users', 'ratings', 'movies', 'actors', 'genres'), (users, ratings, movies, actors, genres)):
-        cur.execute(f'''INSERT INTO {name} VALUES {','.join([f"{x}" for x in data])}''')
+    qry = 'SELECT * FROM ratings;'
+    ratings = pd.read_sql(qry, conn)
 
     # commit changes and close database connection
     conn.commit()
