@@ -1,33 +1,11 @@
 import requests
+import sqlite3
 from bs4 import BeautifulSoup
-import psycopg2
-
-
-def db_connect():
-    '''connect to postgres database'''
-
-    # read database configuration parameters
-    f = open('db_config.txt', 'r')
-    config = f.read().split(',')
-    f.close()
-
-    # open connection to database
-    conn = psycopg2.connect(
-                host = config[0],
-                dbname = config[1],
-                user = config[2],
-                password = config[3],
-                port = config[4]
-    )
-
-    # open database cursor
-    cur = conn.cursor()
-
-    return (conn, cur)
 
 
 def initialize_tables(cur):
     '''create database tables if not already existing'''
+
     cur.execute('''CREATE TABLE IF NOT EXISTS users (
                     initials    char(2) PRIMARY KEY,
                     "user"      varchar(20), 
@@ -61,13 +39,6 @@ def initialize_tables(cur):
                     genre       varchar(40),
                     PRIMARY KEY (id, genre)
                 );''')
-    
-
-def db_close(conn, cur):
-    '''closes conection to postgres database'''
-    conn.commit()
-    cur.close()
-    conn.close()
     
 
 def scrape(url):
@@ -180,7 +151,7 @@ def scrape_movies(rated_movies):
 def main():
     '''
     Web scrapes letterboxd film ratings for specified users
-    Creates postgres tables with results
+    Creates tables with results
 
     TABLES
     users: (user, name, initial)
@@ -189,8 +160,9 @@ def main():
     actors: (filmid, actor)
     genres: (filmid, genre)
     '''
-    # open database connection
-    conn, cur = db_connect()
+    # open database connection and cursor
+    conn = sqlite3.connect('movie_data.db')
+    cur = conn.cursor()
 
     # initialize tables
     initialize_tables(cur)
@@ -211,8 +183,10 @@ def main():
     for name, data in zip(('users', 'ratings', 'movies', 'actors', 'genres'), (users, ratings, movies, actors, genres)):
         cur.execute(f'''INSERT INTO {name} VALUES {','.join([f"{x}" for x in data])}''')
 
-    # close database connection
-    db_close(conn, cur)
+    # commit changes and close database connection
+    conn.commit()
+    cur.close()
+    conn.close()
 
 
 if __name__ == '__main__':
