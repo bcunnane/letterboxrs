@@ -1,6 +1,5 @@
 import requests
 import sqlite3
-import pandas as pd
 from bs4 import BeautifulSoup
 
 
@@ -41,6 +40,11 @@ def initialize_tables(cur):
                     PRIMARY KEY (id, genre)
                 );''')
     
+    cur.execute('''CREATE TABLE IF NOT EXISTS noms (
+                    id          integer PRIMARY KEY,
+                    year        smallint
+                );''')
+    
 
 def scrape(url):
     '''returns web scraping aka beautifulsoup "soup" '''
@@ -51,20 +55,14 @@ def scrape(url):
 def scrape_ratings(users, cur):
     '''updates database with new movie ratings by users
     returns list of newly added movies (id, title)'''
-    
-    existing_ratings = cur.execute('SELECT initials,id FROM ratings').fetchall()
 
+    # clear ratings table values
+    cur.execute('DELETE FROM ratings;')
+    
     added_movies = []
     for user in users:
         initials = user[0]
         username = user[1]
-
-        # get id of most recent rating in db
-        last_rated = cur.execute('SELECT id FROM ratings ORDER BY date DESC LIMIT 1;').fetchone()
-        if not last_rated:
-            last_rated = -1
-        else:
-            last_rated = last_rated[0]
 
         # scrape first page
         url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large'
@@ -76,8 +74,7 @@ def scrape_ratings(users, cur):
 
         # get ratings data
         page = 1
-        keep_going = True
-        while page <= last_page and keep_going:
+        while page <= last_page:
             # update user and page progress
             print(f'Scraping: {username} page {page}.')
 
@@ -89,12 +86,9 @@ def scrape_ratings(users, cur):
             # get rating for all movies in page
             movies = soup.find_all('li', {'class': 'poster-container'})
             for movie in movies:
-                # get movie id and check if user already rated (delete if so)
-                id = int(movie.div['data-film-id'])
-                if (initials, id) in existing_ratings:
-                    cur.execute(f'DELETE FROM ratings WHERE initials="{initials}" and id={id};')
-                
+
                 # get movie data
+                id = int(movie.div['data-film-id'])
                 title = movie.div['data-film-slug'].replace('-', ' ').title() #get div data-key
                 movie_data = movie.find('p', {'class': 'poster-viewingdata'})
                 date = movie_data.find('time')['datetime'][0:10]
@@ -105,12 +99,7 @@ def scrape_ratings(users, cur):
                 if rating > 0:
                     cur.execute(f'INSERT INTO ratings VALUES {(initials, id, date, rating)};')
                     added_movies.append((id, title))
-                
-                # stop adding more movies if id was the last one present in database
-                if id == last_rated:
-                    print('last rated movie encountered')
-                    keep_going = False
-                    break
+
             page += 1
 
     return list(set(added_movies))
@@ -168,17 +157,36 @@ def scrape_movies(added_movies, cur):
             print(f'*** Error: no genres for {title} ***')
 
 
+def scrape_noms(cur):
+    '''updates database with oscar nominated movies'''
+    noms_lists = {2024: 'https://letterboxd.com/lenaeli/list/oscar-noms-2024/'}
+
+    # clear existing data from noms table
+    cur.execute('DELETE FROM noms;')
+
+    # add nominations to noms table
+    added_movies = []
+    for year,url in noms_lists.items():
+        soup = scrape(url)
+        noms = soup.find_all('li', {'class': 'poster-container'})
+        for nom in noms:
+            id = int(nom.div['data-film-id'])
+            cur.execute(f'INSERT INTO noms VALUES {(id, year)};')
+    return added_movies
+
+
 def main():
     '''
     Web scrapes letterboxd film ratings for specified users
     Creates tables with results
 
     TABLES
-    users: (user, name, initial)
+    users: (initials, username, name)
     ratings: (initial, filmid, rating)
-    movies: (filmid, title, year, director, runtime)    
-    actors: (filmid, actor)
-    genres: (filmid, genre)
+    movies: (id, title, year, director, runtime)    
+    actors: (id, actor)
+    genres: (id, genre)
+    noms: (id, year)
     '''
     # open database connection and cursor
     conn = sqlite3.connect('movie_data.db')
@@ -190,17 +198,15 @@ def main():
     # specify users to include
     users = [('BC', 'bcunnane', 'Brandon'),
              ('MF', 'mfrye', 'Missy'),
-             ('DN', 'nbditsd', 'Darien'),
              ('NB', 'NikkiBerry', 'Nikki'),
              ('CA', 'latenight_', 'Corey'),
-             ('TA', 'tarias', 'Tommie')]
+             ('TA', 'tarias', 'Tommie'),
+             ('DN', 'nbditsd', 'Darien')]
     
     # web scrape data for tables
-    added_movies = scrape_ratings([users[1]], cur)
+    added_movies = scrape_ratings(users, cur)
+    added_movies = added_movies + scrape_noms(cur)
     scrape_movies(added_movies, cur)
-
-    qry = 'SELECT * FROM ratings;'
-    ratings = pd.read_sql(qry, conn)
 
     # commit changes and close database connection
     conn.commit()
