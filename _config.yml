@@ -1,3 +1,6 @@
 title: Movie Data
 
-theme: minima
+remote_theme: jekyll/minima
+  skin: dark
+
+markdown: GFM
