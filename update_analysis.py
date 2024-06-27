@@ -88,7 +88,7 @@ def watched(ratings, noms):
 def main():
 
     # open database connection and cursor
-    conn = sqlite3.connect('movie_data.db')
+    conn = sqlite3.connect('letterboxrs.db')
     cur = conn.cursor()
 
     # pull all movie ratings data

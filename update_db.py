@@ -1,50 +1,40 @@
+import os
 import requests
 import sqlite3
 from bs4 import BeautifulSoup
 
+# constants
+WATCH_LIST_URL = 'https://letterboxd.com/yungstinkbug/list/oscar-predictions-2024/'
+START_DATE = '01-01-2023'
+USERS = [('BC', '_branzino'),
+         ('CA', 'latenight_'),
+         ('DN', 'nbditsd'),
+         ('MF', 'mfrye'),
+         ('NB', 'NikkiBerry'),
+         ('TA', 'tarias')]
+
 
 def initialize_tables(cur):
-    '''create database tables if not already existing'''
+    '''creates database tables if not already existing'''
 
     cur.execute('''CREATE TABLE IF NOT EXISTS users (
                     initials    char(2) PRIMARY KEY,
-                    "user"      varchar(20), 
-                    "name"      varchar(20)
+                    "user"      varchar(20)
                 );''')
 
     cur.execute('''CREATE TABLE IF NOT EXISTS ratings (
                     initials    char(2),
-                    id          integer, 
+                    filmid      integer, 
                     "date"      date,
                     rating      decimal,
-                    PRIMARY KEY (id, initials)
+                    PRIMARY KEY (filmid, initials)
                 );''')
 
     cur.execute('''CREATE TABLE IF NOT EXISTS movies (
-                    id          integer PRIMARY KEY,
-                    title       varchar(100), 
-                    year        smallint,
-                    director    varchar(40),
-                    runtime     smallint
+                    filmid      integer PRIMARY KEY,
+                    title       varchar(40)
                 );''')
 
-    cur.execute('''CREATE TABLE IF NOT EXISTS actors (
-                    id          integer,
-                    actor       varchar(40),
-                    PRIMARY KEY (id, actor)
-                );''')
-    
-    cur.execute('''CREATE TABLE IF NOT EXISTS genres (
-                    id          integer,
-                    genre       varchar(40),
-                    PRIMARY KEY (id, genre)
-                );''')
-    
-    cur.execute('''CREATE TABLE IF NOT EXISTS noms (
-                    id          integer PRIMARY KEY,
-                    year        smallint
-                );''')
-    
 
 def scrape(url):
     '''returns web scraping aka beautifulsoup "soup" '''
@@ -52,127 +42,57 @@ def scrape(url):
     return BeautifulSoup(html.content, 'html.parser')
 
 
-def scrape_ratings(users, cur):
-    '''updates database with new movie ratings by users
-    returns list of newly added movies (id, title)'''
+def scrape_ratings(initials, username, cur):
+    '''updates database with user movie ratings'''
 
-    # clear ratings table values
-    cur.execute('DELETE FROM ratings;')
-    
-    added_movies = []
-    for user in users:
-        initials = user[0]
-        username = user[1]
+    # scrape first page
+    url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large'
+    soup = scrape(url)
 
-        # scrape first page
-        url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large'
+    # determine final page to web scrape
+    last_page = soup.find_all('li', {'class': 'paginate-page'}) or 1
+    if last_page != 1: last_page = int(last_page[-1].text)
+
+    # get ratings data
+    page = 1
+    while page <= last_page:
+        # update user and page progress
+        print(f'Scraping: {username} page {page}')
+
+        # get rating for all movies in each page
+        movies = soup.find_all('li', {'class': 'poster-container'})
+        for movie in movies:
+
+            # get movie data
+            filmid = int(movie.div['data-film-id'])
+            movie_data = movie.find('p', {'class': 'poster-viewingdata'})
+            date = movie_data.find('time')['datetime'][0:10]
+            rating = movie_data.text
+            rating = rating.count('★') + 0.5 * rating.count('½')
+
+            # add rating data to db if rating exists
+            if rating > 0:
+                cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
+            
+            # check if still within eligibility period
+            if date < START_DATE:
+                 return None
+        
+        # increment page and scrape
+        page += 1
+        url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large/page/{page}/'
         soup = scrape(url)
 
-        # determine final page to web scrape
-        last_page = soup.find_all('li', {'class': 'paginate-page'}) or 1
-        if last_page != 1: last_page = int(last_page[-1].text)
 
-        # get ratings data
-        page = 1
-        while page <= last_page:
-            # update user and page progress
-            print(f'Scraping: {username} page {page}.')
+def scrape_movies(cur):
+    '''updates database with movies on watchlist'''
 
-            # scrape next page if after first page
-            if page != '1':
-                url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large/page/{page}/'
-                soup = scrape(url)
-
-            # get rating for all movies in page
-            movies = soup.find_all('li', {'class': 'poster-container'})
-            for movie in movies:
-
-                # get movie data
-                id = int(movie.div['data-film-id'])
-                title = movie.div['data-film-slug'].replace('-', ' ').title() #get div data-key
-                movie_data = movie.find('p', {'class': 'poster-viewingdata'})
-                date = movie_data.find('time')['datetime'][0:10]
-                rating = movie_data.text
-                rating = rating.count('★') + 0.5 * rating.count('½')
-
-                # add rating data to db if rating exists
-                if rating > 0:
-                    cur.execute(f'INSERT INTO ratings VALUES {(initials, id, date, rating)};')
-                    added_movies.append((id, title))
-
-            page += 1
-
-    return list(set(added_movies))
-
-
-def scrape_movies(added_movies, cur):
-    '''webscrapes movie, actor, and genre data for added_movies
-    adds data to tables in db if not already present'''
-
-    existing_movies = cur.execute('SELECT id,title FROM movies').fetchall()
-
-    for movie in added_movies:
-        # skip movie if it already exists db
-        if movie in existing_movies:
-            continue
-
-        id = movie[0]
-        title = movie[1]
-
-        # update progress
-        print(f'Scraping: {title}')
-
-        # scrape film webpage
-        url = f"https://letterboxd.com/film/{title.replace(' ', '-').lower()}/"
-        soup = scrape(url)
-
-        # get year and director
-        header_data = soup.find('section', {'id': 'featured-film-header'}).find_all('a')
-        year = header_data[0].text
-        director = header_data[1].text
-
-        # get run time
-        runtime = soup.find('p', {'class': 'text-link text-footer'}).text
-        runtime = int(runtime.replace('\t', '').replace('\n', '').split('\xa0')[0] )
-
-        # add film data to movies list
-        cur.execute(f'INSERT INTO movies VALUES {(id, title, year, director, runtime)};')
-
-        # get stars ie top 3 cast
-        try:
-            cast = soup.find('div', {'id': 'tab-cast'}).find_all('a')
-            cast = [member.text for member in cast[:3]]
-            for actor in cast:
-                cur.execute(f'INSERT INTO actors VALUES {(id, actor)};')
-        except:
-            print(f'*** Error: no cast for {title} ***')
-
-        # get genres
-        try:
-            movie_genres = soup.find('div', {'id': 'tab-genres'}).find('div', {'class': 'text-sluglist capitalize'}).find_all('a')
-            movie_genres = [genre.text for genre in movie_genres]
-            for genre in movie_genres:
-                cur.execute(f'INSERT INTO genres VALUES {(id, genre)};')
-        except:
-            print(f'*** Error: no genres for {title} ***')
-
-
-def scrape_noms(cur):
-    '''updates database with oscar nominated movies'''
-    noms_lists = {2024: 'https://letterboxd.com/lenaeli/list/oscar-noms-2024/'}
-
-    # clear existing data from noms table
-    cur.execute('DELETE FROM noms;')
-
-    # add nominations to noms table
-    added_movies = []
-    for year,url in noms_lists.items():
-        soup = scrape(url)
-        noms = soup.find_all('li', {'class': 'poster-container'})
-        for nom in noms:
-            id = int(nom.div['data-film-id'])
-            cur.execute(f'INSERT INTO noms VALUES {(id, year)};')
-    return added_movies
+    soup = scrape(WATCH_LIST_URL)
+    movies = soup.find_all('li', {'class': 'poster-container'})
+    for movie in movies:
+        filmid = int(movie.div['data-film-id'])
+        title = movie.find('img')['alt']
+        cur.execute(f'INSERT INTO movies VALUES {(filmid, title)};')
 
 
 def main():
@@ -181,32 +101,24 @@ def main():
     Creates tables with results
 
     TABLES
-    users: (initials, username, name)
-    ratings: (initial, filmid, rating)
-    movies: (id, title, year, director, runtime)    
-    actors: (id, actor)
-    genres: (id, genre)
-    noms: (id, year)
+    users: (initials, user)
+    ratings: (initials, filmid, date, rating)
+    movies: (filmid, title) 
     '''
-    # open database connection and cursor
-    conn = sqlite3.connect('movie_data.db')
+    # remove old database
+    if os.path.exists("letterboxrs.db"):
+        os.remove("letterboxrs.db")
+
+    # open new database connection and cursor
+    conn = sqlite3.connect('letterboxrs.db')
     cur = conn.cursor()
 
-    # initialize tables
+    # fill tables
     initialize_tables(cur)
-
-    # specify users to include
-    users = [('BC', 'bcunnane', 'Brandon'),
-             ('MF', 'mfrye', 'Missy'),
-             ('NB', 'NikkiBerry', 'Nikki'),
-             ('CA', 'latenight_', 'Corey'),
-             ('TA', 'tarias', 'Tommie'),
-             ('DN', 'nbditsd', 'Darien')]
-    
-    # web scrape data for tables
-    added_movies = scrape_ratings(users, cur)
-    added_movies = added_movies + scrape_noms(cur)
-    scrape_movies(added_movies, cur)
+    scrape_movies(cur)
+    for user in USERS:
+        cur.execute(f'INSERT INTO users VALUES {user};')
+        scrape_ratings(user[0], user[1], cur)
 
     # commit changes and close database connection
     conn.commit()

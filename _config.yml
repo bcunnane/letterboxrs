@@ -1,5 +1,5 @@
 title: Letterboxrs
-
-remote_theme: abhinavs/moonwalk
-
+description: Who's Watched What
+show_downloads: false
+theme: jekyll-theme-minimal
 markdown: GFM
