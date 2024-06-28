@@ -1,88 +1,115 @@
 import sqlite3
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+
+def get_leader(conn):
+    '''Collect users with most watched movies'''
+
+    qry = '''SELECT
+                r.initials AS 'User',
+                COUNT(*) AS 'Total',
+                COUNT(b.filmid) AS 'Best Pic'
+            FROM
+                movies m
+            JOIN
+                ratings r ON m.filmid=r.filmid
+            LEFT JOIN
+                bestpic b ON m.filmid=b.filmid
+            GROUP BY
+                r.initials
+            ORDER BY
+                COUNT(*) DESC;'''
+    leader = pd.read_sql(qry, conn)
+    return leader.to_markdown(index=False)
 
 
-def ave_ratings(conn):
+def get_ave_ratings(conn):
+    '''Collect best and worst average movie ratings'''
 
-    # pull average rating data from db
-    qry =   '''SELECT m.title, ROUND(AVG(r.rating),1) AS ave_rating
-            FROM ratings r
-            JOIN movies m ON m.id = r.id
-            GROUP BY title
-            HAVING count(*) > 2 AND m.runtime > 59'''
+    # film year to delete from slug
+    YEAR = '2023'
+
+    qry = '''SELECT
+                r.filmid AS Movie,
+                m.slug,
+                ROUND(AVG(r.rating),2) AS 'Ave Rating'
+            FROM
+                movies m
+            JOIN
+                ratings r ON m.filmid=r.filmid
+            GROUP BY
+                r.filmid
+            HAVING
+                COUNT(*) > 2;'''
     ave_ratings = pd.read_sql(qry, conn)
 
+
+    # convert filmid to poster image
+    ave_ratings['Movie'] = ave_ratings['Movie'].astype(str)
+    posters = []
+    for index,row in ave_ratings.iterrows():
+        
+        # remove YEAR from slug if present
+        slug = row['slug']
+        if slug.split('-')[-1] == YEAR:
+            slug = '-'.join(slug.split('-')[:-1])
+        
+        # get movie poster links 
+        posters.append(f'''<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['Movie'])}/{row['Movie']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width:70px;"/>''')
+    ave_ratings['Movie'] = posters
+    
+    # Remove slug from dataframe
+    del ave_ratings['slug']
+
     # sort to reveal best and worst movies
-    bad_movies = ave_ratings.sort_values(by=['ave_rating'])[:10]
-    good_movies = ave_ratings.sort_values(by=['ave_rating'], ascending=False)[:10]
+    bad_movies = ave_ratings.sort_values(by=['Ave Rating'])[:5]
+    good_movies = ave_ratings.sort_values(by=['Ave Rating'], ascending=False)[:5]
 
     # convert dfs to markdown
-    bad_movies = bad_movies.to_markdown(index=False, floatfmt=".1f")
-    good_movies = good_movies.to_markdown(index=False, floatfmt=".1f")
+    bad_movies = bad_movies.to_markdown(index=False, floatfmt=".2f")
+    good_movies = good_movies.to_markdown(index=False, floatfmt=".2f")
 
     return bad_movies, good_movies
 
 
-def harshest_critic(conn):
-    qry =   '''SELECT r.initials, ROUND(AVG(rating), 1) AS ave_rating
-            FROM ratings r
-            JOIN movies m ON r.id=m.id
-            GROUP BY r.initials
-            HAVING m.runtime > 59
-            ORDER BY ave_rating;'''
-    harsh_critic = pd.read_sql(qry, conn)
-    return harsh_critic.to_markdown(index=False, floatfmt=".1f")
+def get_harshest_critic(conn):
+    '''Collect users with lowest average ratings'''
+
+    qry = '''SELECT
+                r.initials AS 'User',
+                ROUND(AVG(rating), 1) AS 'Ave Rating'
+            FROM
+                ratings r
+            JOIN
+                movies m ON r.filmid=m.filmid
+            GROUP BY
+                r.initials
+            ORDER BY
+                'Ave Rating';'''
+    critics = pd.read_sql(qry, conn)
+    return critics.to_markdown(index=False, floatfmt=".1f")
 
 
-def velocity(conn):
-    start_date = '2024-04-01'
-    qry =   f'''SELECT r.initials, strftime('%W', r.date) AS week, count(*) AS "count"
-            FROM ratings r
-            JOIN movies m on r.id=m.id
-            GORUP BY r.initials, week
-            HAVING r.date > '{start_date}' and m.runtime > 59
-            ORDER BY r.initials;'''
-    velocity = pd.read_sql(qry, conn)
+def get_watched(conn):
+    '''Collect all user ratings'''
 
+    qry = '''SELECT
+                r.initials AS 'User',
+                m.title AS 'Movie',
+                r.rating AS 'Rating'
+            FROM
+                movies m
+            JOIN
+                ratings r ON m.filmid=r.filmid;'''
+    watched = pd.read_sql(qry, conn)
 
-def controversial(ratings):
+    # convert numerical columns to strings
+    watched['Movie'] = watched['Movie'].astype(str)
+    watched['Rating'] = watched['Rating'].astype(str)
 
-    # get standard deviations and counts for rated movies
-    stds = ratings.groupby('title').rating.std()
-    counts = ratings.groupby('title').rating.count()
-
-    # combine data into df and filter
-    contros = pd.DataFrame([stds,counts], index=['stds','counts']).transpose()
-    contros = contros[(contros.stds > 1.5) & (contros.counts > 2)]
-    contros.sort_values(by=['stds'], ascending=False, inplace=True)
-
-    # show votes for controversial movies
-    contro_ratings = ''
-    for title in contros.index:
-        votes = ratings[ratings['title'] == title].sort_values(by=['rating'], ascending=False)
-        contro_ratings += f'''{title}
-{votes[['initials', 'rating']].to_markdown(index=False, floatfmt=".1f")}
-
-'''
-    return contro_ratings[:-2]
-
-
-def watched(ratings, noms):
-
-    # initialized df: index=nominated_films, columns=initials
-    watched = pd.DataFrame(index=noms.title, columns=ratings.initials.unique())
-    watched[:] = ''
-
-    # filter ratings df to only include nominated movies
-    ratings = ratings[ratings.title.isin(watched.index)]
-
-    # loop through users and set what they've seen
-    for initial in watched.columns:
-        watched.loc[ratings[ratings.initials == initial].title, initial] = 'X'
-    
-    return watched.to_markdown(), (watched == 'X').sum().to_markdown()
+    # create pivot table
+    watched = watched.pivot(index='Movie', columns='User', values='Rating')
+    watched[watched.isnull()] = ''
+    return watched.to_markdown()
 
 
 def main():
@@ -90,51 +117,34 @@ def main():
     # open database connection and cursor
     conn = sqlite3.connect('letterboxrs.db')
     cur = conn.cursor()
-
-    # pull all movie ratings data
-    qry =   '''SELECT r.initials, m.title, r.rating
-            FROM ratings r JOIN movies m ON r.id=m.id
-            WHERE m.runtime > 59;'''
-    ratings = pd.read_sql(qry, conn)
-
-    # pull all nominations
-    qry =   '''SELECT m.title
-            FROM noms n JOIN movies m
-            ON n.id = m.id
-            WHERE n.year = 2024;'''
-    noms = pd.read_sql(qry, conn)
     
-    # perform analysis
-    bad_movies, good_movies = ave_ratings(conn)
-    contro_ratings = controversial(ratings)
-    critics = harshest_critic(conn)
-    seen, count = watched(ratings, noms)
-
+    # collect tables
+    leader = get_leader(conn)
+    bad_movies, good_movies = get_ave_ratings(conn)
+    critics = get_harshest_critic(conn)
+    watched = get_watched(conn)
 
     # close database connection
     cur.close()
     conn.close()
 
     # update README.md
-    output = f'''[Home](https://bcunnane.github.io/) | [Repository](https://github.com/bcunnane/movie_tracker)
+    output = f'''Aggregate Letterboxd movie ratings for 2024! Watchlist can be found [here](https://letterboxd.com/natigsalgado/list/variety-oscar-nomination-predictions-2024/)
 
-### Favorite Movies
+## Leaderboard :trophy:
+{leader}
+
+## Good Movies :heart:
 {good_movies}
 
-### Hated Movies
+## Bad Movies :broken_heart:
 {bad_movies}
 
-### Controversial Movies
-{contro_ratings}
-
-### Harshest Critic
+## Harshest Critic :thumbsdown:
 {critics}
 
-### Watched
-{seen}
-
-### Watched Count
-{count}'''
+## All Watched :movie_camera:
+{watched}'''
     
     f = open('README.md', 'w')
     f.write(output)

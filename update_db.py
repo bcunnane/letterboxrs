@@ -4,7 +4,8 @@ import sqlite3
 from bs4 import BeautifulSoup
 
 # constants
-WATCH_LIST_URL = 'https://letterboxd.com/yungstinkbug/list/oscar-predictions-2024/'
+WATCH_LIST_URL = 'https://letterboxd.com/natigsalgado/list/variety-oscar-nomination-predictions-2024/'
+BEST_PIC_URL = 'https://letterboxd.com/mostlyjo/list/best-picture-2024/'
 START_DATE = '01-01-2023'
 USERS = [('BC', '_branzino'),
          ('CA', 'latenight_'),
@@ -32,7 +33,12 @@ def initialize_tables(cur):
 
     cur.execute('''CREATE TABLE IF NOT EXISTS movies (
                     filmid      integer PRIMARY KEY,
+                    slug        varchar(40),
                     title       varchar(40)
+                );''')
+    
+    cur.execute('''CREATE TABLE IF NOT EXISTS bestpic (
+                    filmid      integer PRIMARY KEY
                 );''')
 
 
@@ -87,12 +93,21 @@ def scrape_ratings(initials, username, cur):
 def scrape_movies(cur):
     '''updates database with movies on watchlist'''
 
+    # scrape full watchlist
     soup = scrape(WATCH_LIST_URL)
     movies = soup.find_all('li', {'class': 'poster-container'})
     for movie in movies:
         filmid = int(movie.div['data-film-id'])
+        slug = movie.div['data-film-slug']
         title = movie.find('img')['alt']
-        cur.execute(f'INSERT INTO movies VALUES {(filmid, title)};')
+        cur.execute(f'INSERT INTO movies VALUES {(filmid, slug, title)};')
+    
+    # scrape best picture list
+    soup = scrape(BEST_PIC_URL)
+    movies = soup.find_all('li', {'class': 'poster-container'})
+    for movie in movies:
+        filmid = int(movie.div['data-film-id'])
+        cur.execute(f'INSERT INTO bestpic (filmid) VALUES ({filmid});')
 
 
 def main():
@@ -106,8 +121,8 @@ def main():
     movies: (filmid, title) 
     '''
     # remove old database
-    if os.path.exists("letterboxrs.db"):
-        os.remove("letterboxrs.db")
+    # if os.path.exists("letterboxrs.db"):
+    #     os.remove("letterboxrs.db")
 
     # open new database connection and cursor
     conn = sqlite3.connect('letterboxrs.db')
@@ -116,9 +131,9 @@ def main():
     # fill tables
     initialize_tables(cur)
     scrape_movies(cur)
-    for user in USERS:
-        cur.execute(f'INSERT INTO users VALUES {user};')
-        scrape_ratings(user[0], user[1], cur)
+    # for user in USERS:
+    #     cur.execute(f'INSERT INTO users VALUES {user};')
+    #     scrape_ratings(user[0], user[1], cur)
 
     # commit changes and close database connection
     conn.commit()
