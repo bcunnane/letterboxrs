@@ -146,7 +146,7 @@ def main():
 ## All Watched :movie_camera:
 {watched}'''
     
-    f = open('README.md', 'w')
+    f = open('README.md', 'w', encoding='utf-8')
     f.write(output)
     f.close()
 

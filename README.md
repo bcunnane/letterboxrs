@@ -62,7 +62,7 @@ Aggregate Letterboxd movie ratings for 2024! Watchlist can be found [here](https
 | Letter to a Pig                                    |      |      |      | 2.0  | 2.5  |      |
 | Maestro                                            | 1.0  | 3.0  |      |      |      | 3.0  |
 | May December                                       | 3.0  | 4.0  |      | 3.0  |      | 4.0  |
-| Mission: Impossible – Dead Reckoning Part One      |      | 4.0  |      |      |      | 4.5  |
+| Mission: Impossible â€“ Dead Reckoning Part One      |      | 4.0  |      |      |      | 4.5  |
 | NYAD                                               |      | 1.5  |      |      | 2.0  |      |
 | Napoleon                                           | 2.0  | 3.0  |      | 2.0  | 3.0  | 3.0  |
 | Nimona                                             |      | 3.0  |      |      | 3.5  |      |
@@ -71,7 +71,7 @@ Aggregate Letterboxd movie ratings for 2024! Watchlist can be found [here](https
 | Perfect Days                                       |      | 4.5  |      |      | 4.0  |      |
 | Poor Things                                        | 3.5  | 4.0  |      | 4.0  | 3.5  | 4.0  |
 | Priscilla                                          |      |      |      | 4.0  | 3.5  | 2.5  |
-| Rebel Moon – Part One: A Child of Fire             |      |      | 1.5  |      |      | 1.5  |
+| Rebel Moon â€“ Part One: A Child of Fire             |      |      | 1.5  |      |      | 1.5  |
 | Rustin                                             |      | 2.0  |      |      | 2.5  |      |
 | Saltburn                                           | 1.0  | 2.5  | 3.5  | 2.0  |      | 2.5  |
 | Society of the Snow                                |      |      |      |      | 4.0  |      |
@@ -87,7 +87,7 @@ Aggregate Letterboxd movie ratings for 2024! Watchlist can be found [here](https
 | The Killer                                         |      | 4.0  |      |      |      | 4.0  |
 | The Little Mermaid                                 |      |      |      | 3.0  |      |      |
 | The Taste of Things                                |      |      |      |      |      | 4.0  |
-| The Teachers’ Lounge                               |      | 4.5  |      |      | 4.5  |      |
+| The Teachersâ€™ Lounge                               |      | 4.5  |      |      | 4.5  |      |
 | The Zone of Interest                               | 4.0  | 4.5  |      | 4.0  | 4.5  | 4.0  |
 | To Kill a Tiger                                    |      | 4.0  |      |      | 4.0  |      |
 | Wonka                                              | 2.0  |      |      | 3.0  |      | 4.0  |
