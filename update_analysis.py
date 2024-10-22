@@ -5,19 +5,13 @@ def get_leader(conn):
     '''Collect users with most watched movies'''
 
     qry = '''SELECT
-                r.initials AS 'User',
-                COUNT(*) AS 'Total',
-                COUNT(b.filmid) AS 'Best Pic'
-            FROM
-                movies m
-            JOIN
-                ratings r ON m.filmid=r.filmid
-            LEFT JOIN
-                bestpic b ON m.filmid=b.filmid
-            GROUP BY
-                r.initials
-            ORDER BY
-                COUNT(*) DESC;'''
+                r.initials AS 'User'
+                , COUNT(*) AS 'Total'
+            FROM movies m
+            JOIN ratings r
+                ON m.filmid = r.filmid
+            GROUP BY r.initials
+            ORDER BY COUNT(*) DESC;'''
     leader = pd.read_sql(qry, conn)
     return leader.to_markdown(index=False)
 
@@ -26,20 +20,17 @@ def get_ave_ratings(conn):
     '''Collect best and worst average movie ratings'''
 
     # film year to delete from slug
-    YEAR = '2023'
+    YEAR = '2024'
 
     qry = '''SELECT
                 r.filmid AS Movie,
                 m.slug,
                 ROUND(AVG(r.rating),2) AS 'Ave Rating'
-            FROM
-                movies m
-            JOIN
-                ratings r ON m.filmid=r.filmid
-            GROUP BY
-                r.filmid
-            HAVING
-                COUNT(*) > 2;'''
+            FROM movies m
+            JOIN ratings r
+                ON m.filmid = r.filmid
+            GROUP BY r.filmid
+            HAVING COUNT(*) > 2;'''
     ave_ratings = pd.read_sql(qry, conn)
 
 
@@ -77,14 +68,11 @@ def get_harshest_critic(conn):
     qry = '''SELECT
                 r.initials AS 'User',
                 ROUND(AVG(rating), 1) AS 'Ave Rating'
-            FROM
-                ratings r
-            JOIN
-                movies m ON r.filmid=m.filmid
-            GROUP BY
-                r.initials
-            ORDER BY
-                'Ave Rating';'''
+            FROM ratings r
+            JOIN movies m
+                ON r.filmid=m.filmid
+            GROUP BY r.initials
+            ORDER BY AVG(rating);'''
     critics = pd.read_sql(qry, conn)
     return critics.to_markdown(index=False, floatfmt=".1f")
 
@@ -96,10 +84,9 @@ def get_watched(conn):
                 r.initials AS 'User',
                 m.title AS 'Movie',
                 r.rating AS 'Rating'
-            FROM
-                movies m
-            JOIN
-                ratings r ON m.filmid=r.filmid;'''
+            FROM movies m
+            JOIN ratings r  
+                ON m.filmid = r.filmid;'''
     watched = pd.read_sql(qry, conn)
 
     # convert numerical columns to strings
@@ -134,10 +121,10 @@ def main():
 ## Leaderboard :trophy:
 {leader}
 
-## Good Movies :heart:
+## Loved Movies :heart:
 {good_movies}
 
-## Bad Movies :broken_heart:
+## Unloved Movies :broken_heart:
 {bad_movies}
 
 ## Harshest Critic :thumbsdown:

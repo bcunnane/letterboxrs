@@ -4,15 +4,16 @@ import sqlite3
 from bs4 import BeautifulSoup
 
 # constants
-WATCH_LIST_URL = 'https://letterboxd.com/natigsalgado/list/variety-oscar-nomination-predictions-2024/'
+WATCH_LIST_URL = 'https://letterboxd.com/_branzino/list/movie-szn-2025/'
 BEST_PIC_URL = 'https://letterboxd.com/mostlyjo/list/best-picture-2024/'
-START_DATE = '01-01-2023'
+START_DATE = '01-01-2024'
 USERS = [('BC', '_branzino'),
          ('CA', 'latenight_'),
          ('DN', 'nbditsd'),
          ('MF', 'mfrye'),
          ('NB', 'NikkiBerry'),
-         ('TA', 'tarias')]
+         ('TA', 'tarias'),
+         ('RZ', 'BOBBY_ZEE')]
 
 
 def initialize_tables(cur):
@@ -103,11 +104,11 @@ def scrape_movies(cur):
         cur.execute(f'INSERT INTO movies VALUES {(filmid, slug, title)};')
     
     # scrape best picture list
-    soup = scrape(BEST_PIC_URL)
-    movies = soup.find_all('li', {'class': 'poster-container'})
-    for movie in movies:
-        filmid = int(movie.div['data-film-id'])
-        cur.execute(f'INSERT INTO bestpic (filmid) VALUES ({filmid});')
+    # soup = scrape(BEST_PIC_URL)
+    # movies = soup.find_all('li', {'class': 'poster-container'})
+    # for movie in movies:
+    #     filmid = int(movie.div['data-film-id'])
+    #     cur.execute(f'INSERT INTO bestpic (filmid) VALUES ({filmid});')
 
 
 def main():
@@ -121,8 +122,8 @@ def main():
     movies: (filmid, title) 
     '''
     # remove old database
-    # if os.path.exists("letterboxrs.db"):
-    #     os.remove("letterboxrs.db")
+    if os.path.exists("letterboxrs.db"):
+        os.remove("letterboxrs.db")
 
     # open new database connection and cursor
     conn = sqlite3.connect('letterboxrs.db')
@@ -131,9 +132,9 @@ def main():
     # fill tables
     initialize_tables(cur)
     scrape_movies(cur)
-    # for user in USERS:
-    #     cur.execute(f'INSERT INTO users VALUES {user};')
-    #     scrape_ratings(user[0], user[1], cur)
+    for user in USERS:
+        cur.execute(f'INSERT INTO users VALUES {user};')
+        scrape_ratings(user[0], user[1], cur)
 
     # commit changes and close database connection
     conn.commit()
