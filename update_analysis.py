@@ -20,7 +20,7 @@ def get_ave_ratings(conn):
     '''Collect best and worst average movie ratings'''
 
     # film year to delete from slug
-    YEAR = '2024'
+    YEARS= ('2023', '2024')
 
     qry = '''SELECT
                 r.filmid AS Movie,
@@ -41,7 +41,7 @@ def get_ave_ratings(conn):
         
         # remove YEAR from slug if present
         slug = row['slug']
-        if slug.split('-')[-1] == YEAR:
+        if slug.split('-')[-1] in YEARS:
             slug = '-'.join(slug.split('-')[:-1])
         
         # get movie poster links 
@@ -52,8 +52,9 @@ def get_ave_ratings(conn):
     del ave_ratings['slug']
 
     # sort to reveal best and worst movies
-    bad_movies = ave_ratings.sort_values(by=['Ave Rating'])[:5]
-    good_movies = ave_ratings.sort_values(by=['Ave Rating'], ascending=False)[:5]
+    cut_pt = 3.5
+    bad_movies = ave_ratings[ave_ratings['Ave Rating'] < cut_pt].sort_values(by=['Ave Rating'])[:5]
+    good_movies = ave_ratings[ave_ratings['Ave Rating'] >= cut_pt].sort_values(by=['Ave Rating'], ascending=False)[:5]
 
     # convert dfs to markdown
     bad_movies = bad_movies.to_markdown(index=False, floatfmt=".2f")
@@ -116,7 +117,7 @@ def main():
     conn.close()
 
     # update README.md
-    output = f'''Aggregate Letterboxd movie ratings for 2024! Watchlist can be found [here](https://letterboxd.com/natigsalgado/list/variety-oscar-nomination-predictions-2024/)
+    output = f'''Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
 {leader}

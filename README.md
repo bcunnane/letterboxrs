@@ -1,4 +1,4 @@
-Aggregate Letterboxd movie ratings for 2024! Watchlist can be found [here](https://letterboxd.com/natigsalgado/list/variety-oscar-nomination-predictions-2024/)
+Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
 | User   |   Total |
@@ -16,16 +16,11 @@ Aggregate Letterboxd movie ratings for 2024! Watchlist can be found [here](https
 | <img src="https://a.ltrbxd.com/resized/film-poster/7/0/5/2/2/1/705221-furiosa-a-mad-max-saga-0-1000-0-1500-crop.jpg" alt="furiosa-a-mad-max-saga" style="height: 105px; width:70px;"/> |         4.13 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/8/3/4/6/5/6/834656-civil-war-0-1000-0-1500-crop.jpg" alt="civil-war-2024" style="height: 105px; width:70px;"/>                      |         4.00 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-1000-0-1500-crop.jpg" alt="challengers" style="height: 105px; width:70px;"/>                       |         4.00 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/0/4/6/877046-hit-man-2023-0-1000-0-1500-crop.jpg" alt="hit-man-2023" style="height: 105px; width:70px;"/>                     |         3.13 |
 
 ## Unloved Movies :broken_heart:
-| Movie                                                                                                                                                                                  |   Ave Rating |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------:|
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/0/4/6/877046-hit-man-2023-0-1000-0-1500-crop.jpg" alt="hit-man-2023" style="height: 105px; width:70px;"/>                     |         3.13 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-1000-0-1500-crop.jpg" alt="challengers" style="height: 105px; width:70px;"/>                       |         4.00 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/3/4/6/5/6/834656-civil-war-0-1000-0-1500-crop.jpg" alt="civil-war-2024" style="height: 105px; width:70px;"/>                      |         4.00 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/7/0/5/2/2/1/705221-furiosa-a-mad-max-saga-0-1000-0-1500-crop.jpg" alt="furiosa-a-mad-max-saga" style="height: 105px; width:70px;"/> |         4.13 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-1000-0-1500-crop.jpg" alt="dune-part-two" style="height: 105px; width:70px;"/>                   |         4.88 |
+| Movie                                                                                                                                                         |   Ave Rating |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------:|
+| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/0/4/6/877046-hit-man-0-1000-0-1500-crop.jpg" alt="hit-man-2023" style="height: 105px; width:70px;"/> |         3.13 |
 
 ## Harshest Critic :thumbsdown:
 | User   |   Ave Rating |
