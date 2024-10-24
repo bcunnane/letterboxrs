@@ -98,7 +98,10 @@ def get_watched(conn):
     # create pivot table
     watched = watched.pivot(index='Movie', columns='User', values='Rating')
     watched[watched.isnull()] = ''
-    return watched.to_markdown()
+    
+    # split table into groups of n movies
+    n = 8
+    return [watched.iloc[i:i+n].to_markdown() for i in range(0, watched.shape[0], n)]
 
 
 def main():
@@ -135,7 +138,7 @@ def main():
 ## All Watched :movie_camera:
 <div  style="overflow-x: scroll;">
 
-{watched}
+{'\n\n</div>\n\n<div  style="overflow-x: scroll;">\n\n'.join(watched)}
 
 </div>'''
     

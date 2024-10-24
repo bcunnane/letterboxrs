@@ -48,12 +48,19 @@ Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https
 | Hit Man                 | 3.0  | 3.5  | 3.0  | 3.0  | 3.5  |      | 3.0  |
 | Inside Out 2            |      |      | 3.0  |      |      |      | 2.5  |
 | Kinds of Kindness       |      |      |      |      |      | 3.0  |      |
-| Megalopolis             |      |      | 1.0  |      |      |      | 4.0  |
-| Sing Sing               |      |      | 4.5  |      |      | 4.0  |      |
-| The Outrun              |      |      |      |      |      | 4.0  |      |
-| The Substance           |      |      |      |      |      | 3.0  |      |
-| The Wild Robot          |      |      | 3.5  |      |      |      |      |
-| Thelma                  |      |      | 5.0  |      |      |      |      |
-| We Live in Time         | 3.0  |      |      | 3.5  |      |      |      |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie           | BC   | CA   | KH   | MF   | NB   | RZ   | TA   |
+|:----------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| Megalopolis     |      |      | 1.0  |      |      |      | 4.0  |
+| Sing Sing       |      |      | 4.5  |      |      | 4.0  |      |
+| The Outrun      |      |      |      |      |      | 4.0  |      |
+| The Substance   |      |      |      |      |      | 3.0  |      |
+| The Wild Robot  |      |      | 3.5  |      |      |      |      |
+| Thelma          |      |      | 5.0  |      |      |      |      |
+| We Live in Time | 3.0  |      |      | 3.5  |      |      |      |
 
 </div>
