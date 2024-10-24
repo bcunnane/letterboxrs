@@ -37,6 +37,7 @@ Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https
 
 ## All Watched :movie_camera:
 <div  style="overflow-x: scroll;">
+
 | Movie                   | BC   | CA   | KH   | MF   | NB   | RZ   | TA   |
 |:------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
 | Challengers             | 4.0  | 4.5  | 4.0  | 4.0  | 4.0  | 4.0  | 4.0  |
@@ -54,4 +55,5 @@ Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https
 | The Wild Robot          |      |      | 3.5  |      |      |      |      |
 | Thelma                  |      |      | 5.0  |      |      |      |      |
 | We Live in Time         | 3.0  |      |      | 3.5  |      |      |      |
+
 </div>

@@ -134,7 +134,9 @@ def main():
 
 ## All Watched :movie_camera:
 <div  style="overflow-x: scroll;">
+
 {watched}
+
 </div>'''
     
     f = open('README.md', 'w', encoding='utf-8')
