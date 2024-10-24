@@ -5,7 +5,7 @@ def get_leader(conn):
     '''Collect users with most watched movies'''
 
     qry = '''SELECT
-                r.initials AS 'User'
+                r.initials AS 'Name'
                 , COUNT(*) AS 'Total'
             FROM movies m
             JOIN ratings r
@@ -23,9 +23,9 @@ def get_ave_ratings(conn):
     YEARS= ('2023', '2024')
 
     qry = '''SELECT
-                r.filmid AS Movie,
-                m.slug,
-                ROUND(AVG(r.rating),2) AS 'Ave Rating'
+                r.filmid AS Movie
+                , m.slug
+                , ROUND(AVG(r.rating),2) AS 'Ave Rating'
             FROM movies m
             JOIN ratings r
                 ON m.filmid = r.filmid
@@ -67,11 +67,12 @@ def get_harshest_critic(conn):
     '''Collect users with lowest average ratings'''
 
     qry = '''SELECT
-                r.initials AS 'User',
-                ROUND(AVG(rating), 1) AS 'Ave Rating'
+                r.initials AS 'User'
+                , ROUND(AVG(r.rating), 1) AS 'Ave'
+                , MIN(r.rating) AS 'Lowest'
             FROM ratings r
             JOIN movies m
-                ON r.filmid=m.filmid
+                ON r.filmid = m.filmid
             GROUP BY r.initials
             ORDER BY AVG(rating);'''
     critics = pd.read_sql(qry, conn)
@@ -82,9 +83,9 @@ def get_watched(conn):
     '''Collect all user ratings'''
 
     qry = '''SELECT
-                r.initials AS 'User',
-                m.title AS 'Movie',
-                r.rating AS 'Rating'
+                r.initials AS 'User'
+                , m.title AS 'Movie'
+                , r.rating AS 'Rating'
             FROM movies m
             JOIN ratings r  
                 ON m.filmid = r.filmid;'''
@@ -132,7 +133,9 @@ def main():
 {critics}
 
 ## All Watched :movie_camera:
-{watched}'''
+<div  style="overflow-x: scroll;">
+{watched}
+</div>'''
     
     f = open('README.md', 'w', encoding='utf-8')
     f.write(output)

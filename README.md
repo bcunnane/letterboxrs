@@ -1,7 +1,7 @@
 Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
-| User   |   Total |
+| Name   |   Total |
 |:-------|--------:|
 | KH     |      10 |
 | TA     |       7 |
@@ -25,17 +25,18 @@ Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https
 |---------|--------------|
 
 ## Harshest Critic :thumbsdown:
-| User   |   Ave Rating |
-|:-------|-------------:|
-| KH     |          3.5 |
-| RZ     |          3.6 |
-| TA     |          3.8 |
-| BC     |          3.8 |
-| MF     |          3.9 |
-| NB     |          4.2 |
-| CA     |          4.3 |
+| User   |   Ave |   Lowest |
+|:-------|------:|---------:|
+| KH     |   3.5 |      1.0 |
+| RZ     |   3.6 |      3.0 |
+| TA     |   3.8 |      2.5 |
+| BC     |   3.8 |      3.0 |
+| MF     |   3.9 |      3.0 |
+| NB     |   4.2 |      3.5 |
+| CA     |   4.3 |      3.5 |
 
 ## All Watched :movie_camera:
+<div  style="overflow-x: scroll;">
 | Movie                   | BC   | CA   | KH   | MF   | NB   | RZ   | TA   |
 |:------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
 | Challengers             | 4.0  | 4.5  | 4.0  | 4.0  | 4.0  | 4.0  | 4.0  |
@@ -53,3 +54,4 @@ Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https
 | The Wild Robot          |      |      | 3.5  |      |      |      |      |
 | Thelma                  |      |      | 5.0  |      |      |      |      |
 | We Live in Time         | 3.0  |      |      | 3.5  |      |      |      |
+</div>
