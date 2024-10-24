@@ -52,7 +52,7 @@ def get_ave_ratings(conn):
     del ave_ratings['slug']
 
     # sort to reveal best and worst movies
-    cut_pt = 3.5
+    cut_pt = 3
     bad_movies = ave_ratings[ave_ratings['Ave Rating'] < cut_pt].sort_values(by=['Ave Rating'])[:5]
     good_movies = ave_ratings[ave_ratings['Ave Rating'] >= cut_pt].sort_values(by=['Ave Rating'], ascending=False)[:5]
 

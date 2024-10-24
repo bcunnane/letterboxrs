@@ -8,8 +8,9 @@ WATCH_LIST_URL = 'https://letterboxd.com/_branzino/list/movie-szn-2025/'
 BEST_PIC_URL = 'https://letterboxd.com/mostlyjo/list/best-picture-2024/'
 START_DATE = '01-01-2024'
 USERS = [('BC', '_branzino'),
-         ('CA', 'latenight_'),
+         ('CA', 'honeydijon2'),
          ('DN', 'nbditsd'),
+         ('KH', 'Kate'),
          ('MF', 'mfrye'),
          ('NB', 'NikkiBerry'),
          ('TA', 'tarias'),
