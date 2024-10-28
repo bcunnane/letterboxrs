@@ -12,9 +12,10 @@ USERS = [('BC', '_branzino'),
          ('DN', 'nbditsd'),
          ('KH', 'Kate'),
          ('MF', 'mfrye'),
+         ('MT', 'michelletreiber'),
          ('NB', 'NikkiBerry'),
-         ('TA', 'tarias'),
-         ('RZ', 'BOBBY_ZEE')]
+         ('RZ', 'BOBBY_ZEE'),
+         ('TA', 'tarias')]
 
 
 def initialize_tables(cur):
