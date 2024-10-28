@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 import pandas as pd
 
 def get_leader(conn):
@@ -20,7 +21,7 @@ def get_ave_ratings(conn):
     '''Collect best and worst average movie ratings'''
 
     # film year to delete from slug
-    YEARS= ('2023', '2024')
+    YEARS= ('2023', '2024', '2025')
 
     qry = '''SELECT
                 r.filmid AS Movie
@@ -67,7 +68,7 @@ def get_harshest_critic(conn):
     '''Collect users with lowest average ratings'''
 
     qry = '''SELECT
-                r.initials AS 'User'
+                r.initials AS 'Name'
                 , ROUND(AVG(r.rating), 1) AS 'Ave'
                 , MIN(r.rating) AS 'Lowest'
             FROM ratings r
@@ -83,7 +84,7 @@ def get_watched(conn):
     '''Collect all user ratings'''
 
     qry = '''SELECT
-                r.initials AS 'User'
+                r.initials AS 'Name'
                 , m.title AS 'Movie'
                 , r.rating AS 'Rating'
             FROM movies m
@@ -96,7 +97,7 @@ def get_watched(conn):
     watched['Rating'] = watched['Rating'].astype(str)
 
     # create pivot table
-    watched = watched.pivot(index='Movie', columns='User', values='Rating')
+    watched = watched.pivot(index='Movie', columns='Name', values='Rating')
     watched[watched.isnull()] = ''
     
     # split table into groups of n movies
@@ -121,7 +122,9 @@ def main():
     conn.close()
 
     # update README.md
-    output = f'''Aggregate Letterboxd movie ratings for 2025! Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
+    output = f'''Aggregate Letterboxd movie ratings for 2025!
+Last updated at {datetime.datetime.now().strftime('%a %b %d %I:%M %p')}
+Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
 {leader}
