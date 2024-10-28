@@ -122,8 +122,8 @@ def main():
     conn.close()
 
     # update README.md
-    output = f'''Aggregate Letterboxd movie ratings for 2025!
-Last updated at {datetime.datetime.now().strftime('%a %b %d %I:%M %p')}
+    output = f'''Aggregate Letterboxd movie ratings for 2025! <br />
+Last updated at {datetime.datetime.now().strftime('%a %b %d %I:%M %p')} <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
