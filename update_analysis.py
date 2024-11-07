@@ -55,7 +55,7 @@ def get_ave_ratings(conn):
     # sort to reveal best and worst movies
     cut_pt = 3
     bad_movies = ave_ratings[ave_ratings['Ave Rating'] < cut_pt].sort_values(by=['Ave Rating'])[:5]
-    good_movies = ave_ratings[ave_ratings['Ave Rating'] >= cut_pt].sort_values(by=['Ave Rating'], ascending=False)[:5]
+    good_movies = ave_ratings[ave_ratings['Ave Rating'] >= cut_pt].sort_values(by=['Ave Rating'], ascending=False)[:7]
 
     # convert dfs to markdown
     bad_movies = bad_movies.to_markdown(index=False, floatfmt=".2f")
@@ -123,7 +123,7 @@ def main():
 
     # update README.md
     output = f'''Aggregate Letterboxd movie ratings for 2025! <br />
-Last updated at {datetime.datetime.now().strftime('%a %b %d %I:%M %p')} <br />
+Last updated on {datetime.datetime.now().strftime('%a %b %d at %I:%M %p')} <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
