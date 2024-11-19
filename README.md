@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2025! <br />
-Last updated on Mon Nov 11 at 09:49 AM <br />
+Last updated on Tue Nov 19 at 04:22 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
