@@ -10,7 +10,7 @@ START_DATE = '01-01-2024'
 USERS = [('BC', '_branzino'),
          ('CA', 'honeydijon2'),
          ('DN', 'nbditsd'),
-         ('KH', 'Kate'),
+         ('KH', 'shewasak8rgrl'),
          ('MF', 'mfrye'),
          ('MT', 'michelletreiber'),
          ('NB', 'NikkiBerry'),
