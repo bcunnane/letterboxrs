@@ -17,28 +17,18 @@ def get_leader(conn):
     return leader.to_markdown(index=False)
 
 
-def get_ave_ratings(conn):
-    '''Collect best and worst average movie ratings'''
+def filmids_to_posters(df):
+    """convert film ids to movie posters
+    expects dataframe with columns filmid and slug"""
+    
+    df['filmid'] = df['filmid'].astype(str)
 
-    # film year to delete from slug
-    YEARS= ('2023', '2024', '2025')
-
-    qry = '''SELECT
-                r.filmid AS Movie
-                , m.slug
-                , ROUND(AVG(r.rating),2) AS 'Ave Rating'
-            FROM movies m
-            JOIN ratings r
-                ON m.filmid = r.filmid
-            GROUP BY r.filmid
-            HAVING COUNT(*) > 2;'''
-    ave_ratings = pd.read_sql(qry, conn)
-
+    # film years to delete from slug
+    YEARS = ['20' + str(x) for x in range(20, 30)]
 
     # convert filmid to poster image
-    ave_ratings['Movie'] = ave_ratings['Movie'].astype(str)
     posters = []
-    for index,row in ave_ratings.iterrows():
+    for index,row in df.iterrows():
         
         # remove YEAR from slug if present
         slug = row['slug']
@@ -46,22 +36,43 @@ def get_ave_ratings(conn):
             slug = '-'.join(slug.split('-')[:-1])
         
         # get movie poster links 
-        posters.append(f'''<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['Movie'])}/{row['Movie']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width:70px;"/>''')
-    ave_ratings['Movie'] = posters
+        posters.append(f'''<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['filmid'])}/{row['filmid']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width:70px;"/>''')
+    
+    df['filmid'] = posters
+    df.rename(columns={"filmid": "Movie"}, inplace=True)
+    return df
+
+
+
+def get_ave_ratings(conn, t, limit=5):
+    '''Collect best and worst average movie ratings
+    t: scoring type. either "best" or "worst" ratings'''
+    CUT_PT = 3
+
+    ineq = {'best':'>=', 'worst':'<'}
+    ordering = {'best':'DESC', 'worst':'ASC'}
+
+    qry = f'''SELECT
+                r.filmid
+                , m.slug
+                , ROUND(AVG(r.rating),2) AS 'Ave Rating'
+                , COUNT(*) AS 'Views'
+            FROM movies m
+            JOIN ratings r
+                ON m.filmid = r.filmid
+            GROUP BY r.filmid
+            HAVING COUNT(*) > 2
+                AND AVG(r.rating) {ineq[t]} {CUT_PT}
+            ORDER BY AVG(r.rating) {ordering[t]}, Views DESC'''
+    ave_ratings = pd.read_sql(qry, conn)
+
+    # convert filmids to movie posters
+    ave_ratings = filmids_to_posters(ave_ratings)
     
     # Remove slug from dataframe
     del ave_ratings['slug']
 
-    # sort to reveal best and worst movies
-    cut_pt = 3
-    bad_movies = ave_ratings[ave_ratings['Ave Rating'] < cut_pt].sort_values(by=['Ave Rating'])[:5]
-    good_movies = ave_ratings[ave_ratings['Ave Rating'] >= cut_pt].sort_values(by=['Ave Rating'], ascending=False)[:7]
-
-    # convert dfs to markdown
-    bad_movies = bad_movies.to_markdown(index=False, floatfmt=".2f")
-    good_movies = good_movies.to_markdown(index=False, floatfmt=".2f")
-
-    return bad_movies, good_movies
+    return ave_ratings[:limit].to_markdown(index=False, floatfmt=".2f")
 
 
 def get_harshest_critic(conn):
@@ -102,7 +113,7 @@ def get_watched(conn):
     
     # split table into groups of n movies
     n = 8
-    return [watched.iloc[i:i+n].to_markdown() for i in range(0, watched.shape[0], n)]
+    return [watched.iloc[i:i+n].to_markdown(floatfmt=".1f") for i in range(0, watched.shape[0], n)]
 
 
 def main():
@@ -113,7 +124,8 @@ def main():
     
     # collect tables
     leader = get_leader(conn)
-    bad_movies, good_movies = get_ave_ratings(conn)
+    best_movies = get_ave_ratings(conn, 'best', limit=7)
+    worst_movies  = get_ave_ratings(conn, 'worst', limit=5)
     critics = get_harshest_critic(conn)
     watched = get_watched(conn)
 
@@ -130,10 +142,10 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 {leader}
 
 ## Loved Movies :heart:
-{good_movies}
+{best_movies}
 
 ## Unloved Movies :broken_heart:
-{bad_movies}
+{worst_movies}
 
 ## Harshest Critic :thumbsdown:
 {critics}
