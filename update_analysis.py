@@ -60,6 +60,7 @@ def get_ave_ratings(conn, t, limit=5):
             FROM movies m
             JOIN ratings r
                 ON m.filmid = r.filmid
+            WHERE r.rating > 0
             GROUP BY r.filmid
             HAVING COUNT(*) > 2
                 AND AVG(r.rating) {ineq[t]} {CUT_PT}
@@ -85,6 +86,7 @@ def get_harshest_critic(conn):
             FROM ratings r
             JOIN movies m
                 ON r.filmid = m.filmid
+            WHERE r.rating > 0
             GROUP BY r.initials
             ORDER BY AVG(rating);'''
     critics = pd.read_sql(qry, conn)
@@ -106,6 +108,9 @@ def get_watched(conn):
     # convert numerical columns to strings
     watched['Movie'] = watched['Movie'].astype(str)
     watched['Rating'] = watched['Rating'].astype(str)
+
+    # remove 0 ratings aka "watched" moves
+    watched.loc[watched['Rating'] == '0.0', 'Rating'] = 'X'
 
     # create pivot table
     watched = watched.pivot(index='Movie', columns='Name', values='Rating')

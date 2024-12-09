@@ -78,10 +78,7 @@ def scrape_ratings(initials, username, cur):
             date = movie_data.find('time')['datetime'][0:10]
             rating = movie_data.text
             rating = rating.count('★') + 0.5 * rating.count('½')
-
-            # add rating data to db if rating exists
-            if rating > 0:
-                cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
+            cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
             
             # check if still within eligibility period
             if date < START_DATE:
