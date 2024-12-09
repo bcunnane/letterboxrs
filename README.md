@@ -1,19 +1,19 @@
 Aggregate Letterboxd movie ratings for 2025! <br />
-Last updated on Mon Dec 09 at 03:42 PM <br />
+Last updated on Mon Dec 09 at 04:55 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
-| Name   |   Total |
-|:-------|--------:|
-| KH     |      18 |
-| MF     |      15 |
-| BC     |      15 |
-| TA     |      14 |
-| RZ     |      12 |
-| NB     |      10 |
-| CA     |      10 |
-| MT     |       2 |
-| DN     |       1 |
+| Name   |   Total |   Globes |   Indies |
+|:-------|--------:|---------:|---------:|
+| KH     |      18 |        6 |        2 |
+| BC     |      15 |        8 |        2 |
+| MF     |      15 |        7 |        1 |
+| TA     |      14 |        7 |        2 |
+| RZ     |      12 |        6 |        3 |
+| CA     |      10 |        6 |        2 |
+| NB     |      10 |        6 |        2 |
+| MT     |       2 |        2 |        1 |
+| DN     |       1 |        1 |        1 |
 
 ## Loved Movies :heart:
 | Movie                                                                                                                                                                                  |   Ave Rating |   Views |

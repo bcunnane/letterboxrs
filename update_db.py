@@ -5,8 +5,11 @@ from bs4 import BeautifulSoup
 
 # constants
 WATCH_LIST_URL = 'https://letterboxd.com/_branzino/list/movie-szn-2025/'
-BEST_PIC_URL = 'https://letterboxd.com/mostlyjo/list/best-picture-2024/'
 START_DATE = '01-01-2024'
+AWARD_URL = {'oscars':'',
+             'globes':'https://letterboxd.com/000_leo/list/golden-globes-2025',
+             'indies':'https://letterboxd.com/outtothemovies/list/indie-spirit-awards-2025/'}
+AWARD_NUM = {'oscars':10, 'globes':12, 'indies':5}
 USERS = [('BC', '_branzino'),
          ('CA', 'honeydijon2'),
          ('DN', 'nbditsd'),
@@ -40,8 +43,10 @@ def initialize_tables(cur):
                     title       varchar(40)
                 );''')
     
-    cur.execute('''CREATE TABLE IF NOT EXISTS bestpic (
-                    filmid      integer PRIMARY KEY
+    cur.execute('''CREATE TABLE IF NOT EXISTS awards (
+                    filmid      integer,
+                    award       varchar(20),
+                    PRIMARY KEY (filmid, award)
                 );''')
 
 
@@ -102,13 +107,17 @@ def scrape_movies(cur):
         title = movie.find('img')['alt']
         cur.execute(f'INSERT INTO movies VALUES {(filmid, slug, title)};')
     
-    # scrape best picture list
-    # soup = scrape(BEST_PIC_URL)
-    # movies = soup.find_all('li', {'class': 'poster-container'})
-    # for movie in movies:
-    #     filmid = int(movie.div['data-film-id'])
-    #     cur.execute(f'INSERT INTO bestpic (filmid) VALUES ({filmid});')
+def scrape_awards(cur, award):
+    '''updates database with oscars, golden globes, and indie spirit awards best pictures'''
 
+    if AWARD_URL[award]:
+        soup = scrape(AWARD_URL[award])
+        movies = soup.find_all('li', {'class': 'poster-container'})
+        for i in range(AWARD_NUM[award]):
+            movie = movies[i]
+            filmid = int(movie.div['data-film-id'])
+            cur.execute(f'INSERT INTO awards VALUES {(filmid, award)};')
+    
 
 def main():
     '''
@@ -119,6 +128,7 @@ def main():
     users: (initials, user)
     ratings: (initials, filmid, date, rating)
     movies: (filmid, title) 
+    awards: (filmid, award)
     '''
     # remove old database
     if os.path.exists("letterboxrs.db"):
@@ -127,13 +137,17 @@ def main():
     # open new database connection and cursor
     conn = sqlite3.connect('letterboxrs.db')
     cur = conn.cursor()
-
-    # fill tables
     initialize_tables(cur)
-    scrape_movies(cur)
+
+    # get user data
     for user in USERS:
         cur.execute(f'INSERT INTO users VALUES {user};')
         scrape_ratings(user[0], user[1], cur)
+    
+    # get movie data
+    scrape_movies(cur)
+    for award in ['oscars', 'globes', 'indies']:
+        scrape_awards(cur, award)
 
     # commit changes and close database connection
     conn.commit()
