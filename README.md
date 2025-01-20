@@ -1,17 +1,17 @@
 Aggregate Letterboxd movie ratings for 2025! <br />
-Last updated on Mon Jan 06 at 09:57 AM <br />
+Last updated on Mon Jan 20 at 01:32 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
 | Name   |   Total |   Globes |   Indies |
 |:-------|--------:|---------:|---------:|
-| BC     |      27 |        9 |        2 |
-| MF     |      25 |        8 |        1 |
-| CA     |      20 |        8 |        2 |
-| NB     |      20 |        8 |        2 |
-| KH     |      20 |        6 |        2 |
+| BC     |      31 |       10 |        4 |
+| MF     |      30 |        9 |        3 |
+| KH     |      24 |        8 |        2 |
+| CA     |      22 |        9 |        2 |
+| NB     |      22 |        9 |        2 |
 | TA     |      17 |        7 |        2 |
-| RZ     |      12 |        6 |        3 |
+| RZ     |      13 |        6 |        3 |
 | DN     |       4 |        1 |        1 |
 | MT     |       3 |        2 |        1 |
 
@@ -29,53 +29,53 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 ## Unloved Movies :broken_heart:
 | Movie                                                                                                                                                                          |   Ave Rating |   Views |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------:|--------:|
+| <img src="https://a.ltrbxd.com/resized/film-poster/8/0/0/8/5/8/800858-joker-folie-a-deux-0-1000-0-1500-crop.jpg" alt="joker-folie-a-deux" style="height: 105px; width:70px;"/> |         1.83 |       3 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/5/5/1/8/4/955184-queer-0-1000-0-1500-crop.jpg" alt="queer-2024" style="height: 105px; width:70px;"/>                      |         1.83 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/6/0/8/877608-emilia-perez-0-1000-0-1500-crop.jpg" alt="emilia-perez" style="height: 105px; width:70px;"/>             |         2.25 |       4 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/9/2/1/5/7/8/921578-inside-out-2-0-1000-0-1500-crop.jpg" alt="inside-out-2-2024" style="height: 105px; width:70px;"/>        |         2.50 |       6 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/6/0/8/877608-emilia-perez-0-1000-0-1500-crop.jpg" alt="emilia-perez" style="height: 105px; width:70px;"/>             |         2.20 |       5 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/9/2/1/5/7/8/921578-inside-out-2-0-1000-0-1500-crop.jpg" alt="inside-out-2-2024" style="height: 105px; width:70px;"/>        |         2.42 |       6 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/8/0/6/9/0/7/806907-blitz-0-1000-0-1500-crop.jpg" alt="blitz-2024" style="height: 105px; width:70px;"/>                      |         2.75 |       4 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/0/1/0/6/8/3/1010683-saturday-night-0-1000-0-1500-crop.jpg" alt="saturday-night-2024" style="height: 105px; width:70px;"/> |         2.83 |       3 |
 
 ## Harshest Critic :thumbsdown:
 | Name   |   Ave |   Lowest |
 |:-------|------:|---------:|
 | BC     |   3.5 |      1.5 |
-| CA     |   3.6 |      1.5 |
 | KH     |   3.6 |      2.5 |
+| CA     |   3.6 |      1.5 |
 | DN     |   3.6 |      3.5 |
+| MF     |   3.6 |      1.5 |
 | RZ     |   3.7 |      2.5 |
 | TA     |   3.7 |      2.0 |
-| MF     |   3.7 |      1.5 |
 | NB     |   3.8 |      1.5 |
 | MT     |   4.3 |      3.5 |
 
 ## All Watched :movie_camera:
 <div  style="overflow-x: scroll;">
 
-| Movie              |   BC | CA   | DN   | KH   |   MF | MT   | NB   | RZ   | TA   |
-|:-------------------|-----:|:-----|:-----|:-----|-----:|:-----|:-----|:-----|:-----|
-| A Complete Unknown |  3.0 |      |      | 3.5  |  3.5 |      |      |      |      |
-| A Real Pain        |  3.5 | 3.5  |      | 4.0  |  4.0 |      | 4.0  | 4.5  | 3.5  |
-| Anora              |  4.5 | 4.5  |      | 4.5  |  4.5 | 3.5  | 4.5  | 4.5  | 4.5  |
-| Blitz              |  2.0 |      |      | 2.5  |  2.5 |      |      | 4.0  |      |
-| Challengers        |  4.0 | 4.5  |      | 4.0  |  4.0 |      | 4.0  | 4.0  | 4.0  |
-| Civil War          |  3.0 | 4.0  |      |      |  4.0 |      | 4.0  |      | 4.0  |
-| Conclave           |  3.5 | 4.0  |      |      |  3.5 |      | 4.0  | 4.0  | 4.0  |
-| Daughters          |  4.5 |      |      |      |  4.5 |      |      |      |      |
+| Movie              | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
+|:-------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| A Complete Unknown | 3.0  |      |      | 3.5  | 3.5  |      |      |      |      |
+| A Different Man    |      |      |      | 3.5  |      |      |      |      |      |
+| A Real Pain        | 3.5  | 3.5  |      | 4.0  | 4.0  |      | 4.0  | 4.5  | 3.5  |
+| Anora              | 4.5  | 4.5  |      | 4.5  | 4.5  | 3.5  | 4.5  | 4.5  | 4.5  |
+| Babygirl           |      | 3.5  |      |      |      |      | 3.5  |      |      |
+| Blitz              | 2.0  |      |      | 2.5  | 2.5  |      |      | 4.0  |      |
+| Challengers        | 4.0  | 4.5  |      | 4.0  | 4.0  |      | 4.0  | 4.0  | 4.0  |
+| Civil War          | 3.0  | 4.0  |      |      | 4.0  |      | 4.0  |      | 4.0  |
 
 </div>
 
 <div  style="overflow-x: scroll;">
 
-| Movie                   | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
-|:------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| Dune: Part Two          | 5.0  | 5.0  |      | 4.5  | 5.0  | 4.5  | 5.0  |      | 5.0  |
-| Dìdi (弟弟)               | 4.0  |      |      |      | 4.0  |      |      |      |      |
-| Emilia Pérez            | 2.5  | 1.5  |      |      | 2.5  |      | 2.5  |      |      |
-| Furiosa: A Mad Max Saga | 4.0  | 4.0  |      | 3.5  | 4.0  |      | 4.5  |      | 4.0  |
-| Gladiator II            | 3.0  | 3.0  | 3.5  | 3.5  | 3.5  |      | 3.5  | 2.5  | 3.0  |
-| His Three Daughters     |      |      |      | X    |      |      |      |      |      |
-| Hit Man                 | 3.0  | 3.0  |      | 3.0  | 3.0  |      | 3.5  |      | 3.0  |
-| Inside Out 2            | 3.5  | 1.5  |      | 3.0  | 3.0  |      | 1.5  |      | 2.5  |
+| Movie                   |   BC | CA   | DN   | KH   |   MF | MT   | NB   | RZ   | TA   |
+|:------------------------|-----:|:-----|:-----|:-----|-----:|:-----|:-----|:-----|:-----|
+| Conclave                |  3.5 | 4.0  |      |      |  3.5 |      | 4.0  | 4.0  | 4.0  |
+| Daughters               |  4.5 |      |      |      |  4.5 |      |      |      |      |
+| Dune: Part Two          |  5.0 | 5.0  |      | 4.5  |  5.0 | 4.5  | 5.0  |      | 5.0  |
+| Dìdi (弟弟)               |  4.0 |      |      |      |  4.0 |      |      |      |      |
+| Emilia Pérez            |  2.0 | 1.5  |      | 2.5  |  2.5 |      | 2.5  |      |      |
+| Flow                    |  3.5 | 4.0  |      |      |  3.5 |      | 4.5  |      |      |
+| Furiosa: A Mad Max Saga |  4.0 | 4.0  |      | 3.5  |  4.0 |      | 4.5  |      | 4.0  |
+| Gladiator II            |  3.0 | 3.0  | 3.5  | 3.5  |  3.5 |      | 3.5  | 2.5  | 3.0  |
 
 </div>
 
@@ -83,14 +83,14 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 | Movie               | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
 |:--------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| Joker: Folie à Deux | 1.5  |      |      |      |      |      |      |      | 2.0  |
+| His Three Daughters |      |      |      | X    |      |      |      |      |      |
+| Hit Man             | 3.0  | 3.0  |      | 3.0  | 3.0  |      | 3.5  |      | 3.0  |
+| I Saw the TV Glow   | 3.0  |      |      |      | 3.0  |      |      |      |      |
+| Inside Out 2        | 3.0  | 1.5  |      | 3.0  | 3.0  |      | 1.5  |      | 2.5  |
+| Joker: Folie à Deux | 1.5  |      |      |      | 2.0  |      |      |      | 2.0  |
 | Juror #2            |      | 3.0  | 3.5  | 3.0  |      |      | 3.0  |      | 3.5  |
 | Kinds of Kindness   |      |      |      | 3.0  |      |      |      | 3.0  |      |
-| Megalopolis         |      |      |      |      |      |      |      |      | 4.0  |
-| Memoir of a Snail   | 4.0  |      |      |      | 4.0  |      |      |      |      |
-| Nosferatu           |      | 4.0  |      |      |      |      | 4.0  |      | 4.0  |
-| Queer               | 1.5  |      |      |      | 1.5  |      |      | 2.5  |      |
-| Saturday Night      |      | 2.0  |      | 4.0  |      |      | 2.5  |      |      |
+| Kneecap             |      |      |      | 4.0  |      |      |      | 4.5  |      |
 
 </div>
 
@@ -98,7 +98,21 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 | Movie             | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
 |:------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| Megalopolis       |      |      |      |      |      |      |      |      | 4.0  |
+| Memoir of a Snail | 4.0  |      |      |      | 4.0  |      |      |      |      |
+| Nickel Boys       | 3.5  |      |      |      | 3.5  |      |      |      |      |
+| Nightbitch        |      |      |      | X    |      |      |      |      |      |
+| Nosferatu         | 4.0  | 4.0  |      |      | 4.0  |      | 4.0  |      | 4.0  |
+| Queer             | 1.5  |      |      |      | 1.5  |      |      | 2.5  |      |
+| Saturday Night    |      | 2.0  |      | 4.0  |      |      | 2.5  |      |      |
 | Sing Sing         |      |      |      |      |      |      |      | 4.0  |      |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie             | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
+|:------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
 | The Apprentice    | 3.5  |      | 3.5  |      | 3.5  |      |      |      |      |
 | The Brutalist     | 4.5  | 4.5  |      |      | 4.5  |      | 4.5  |      | 4.5  |
 | The Last Showgirl |      |      |      | 3.5  |      |      |      |      |      |
@@ -106,6 +120,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 | The Outrun        | 3.5  |      |      |      | 4.0  |      |      | 4.0  |      |
 | The Substance     | 4.0  | 4.5  | 4.0  | 3.5  |      |      | 4.5  | 3.0  | 4.0  |
 | The Wild Robot    | 4.0  | 4.0  |      |      | 4.5  |      | 4.5  |      |      |
+| Thelma            | 3.5  |      |      | 3.0  | 4.0  |      |      |      |      |
 
 </div>
 
@@ -113,7 +128,6 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 | Movie                                 | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
 |:--------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| Thelma                                | 3.5  |      |      | 3.0  | 4.0  |      |      |      |      |
 | Wallace & Gromit: Vengeance Most Fowl | 3.5  | 3.5  |      |      | 3.5  |      | 3.5  |      |      |
 | We Live in Time                       | 3.0  |      |      | 4.0  | 3.5  |      |      |      |      |
 | Wicked                                | 5.0  | 4.0  |      | 4.5  | 5.0  | 5.0  | 4.5  | 4.0  | 4.0  |
