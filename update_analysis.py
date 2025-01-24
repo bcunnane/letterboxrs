@@ -8,8 +8,7 @@ def get_leader(conn):
     qry = '''SELECT
                 r.initials AS 'Name'
                 , COUNT(*) AS 'Total'
-                --, COUNT(O.filmid) AS 'Oscars'
-                , COUNT(g.filmid) AS 'Globes'
+                , COUNT(O.filmid) AS 'Oscars'
                 , COUNT(i.filmid) AS 'Indies'
             FROM movies m
             INNER JOIN ratings r
@@ -17,16 +16,12 @@ def get_leader(conn):
             LEFT OUTER join awards o
                 on m.filmid = o.filmid
                 and o.award = 'oscars'
-            LEFT OUTER join awards g
-                on m.filmid = g.filmid
-                and g.award = 'globes'
             LEFT OUTER join awards i
                 on m.filmid = i.filmid
                 and i.award = 'indies' 
             GROUP BY r.initials
             ORDER BY Total DESC
-                --, Oscars DESC
-                , Globes DESC
+                , Oscars DESC
                 , Indies DESC;'''
     leader = pd.read_sql(qry, conn)
     return leader.to_markdown(index=False)
@@ -143,7 +138,7 @@ def main():
     
     # collect tables
     leader = get_leader(conn)
-    best_movies = get_ave_ratings(conn, 'best', limit=7)
+    best_movies = get_ave_ratings(conn, 'best', limit=10)
     worst_movies  = get_ave_ratings(conn, 'worst', limit=5)
     critics = get_harshest_critic(conn)
     watched = get_watched(conn)

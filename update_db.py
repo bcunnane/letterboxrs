@@ -6,10 +6,9 @@ from bs4 import BeautifulSoup
 # constants
 WATCH_LIST_URL = 'https://letterboxd.com/_branzino/list/movie-szn-2025/'
 START_DATE = '01-01-2024'
-AWARD_URL = {'oscars':'',
-             'globes':'https://letterboxd.com/000_leo/list/golden-globes-2025',
+AWARD_URL = {'oscars':'https://letterboxd.com/000_leo/list/oscars-2025-1/',
              'indies':'https://letterboxd.com/outtothemovies/list/indie-spirit-awards-2025/'}
-AWARD_NUM = {'oscars':10, 'globes':12, 'indies':5}
+AWARD_NUM = {'oscars':10, 'indies':5}
 USERS = [('BC', '_branzino'),
          ('CA', 'honeydijon2'),
          ('DN', 'nbditsd'),
@@ -108,7 +107,7 @@ def scrape_movies(cur):
         cur.execute(f'INSERT INTO movies VALUES {(filmid, slug, title)};')
     
 def scrape_awards(cur, award):
-    '''updates database with oscars, golden globes, and indie spirit awards best pictures'''
+    '''updates database with oscars and indie spirit awards best pictures'''
 
     if AWARD_URL[award]:
         soup = scrape(AWARD_URL[award])
@@ -146,7 +145,7 @@ def main():
     
     # get movie data
     scrape_movies(cur)
-    for award in ['oscars', 'globes', 'indies']:
+    for award in ['oscars', 'indies']:
         scrape_awards(cur, award)
 
     # commit changes and close database connection
