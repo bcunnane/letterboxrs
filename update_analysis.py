@@ -42,7 +42,7 @@ def filmids_to_posters(df):
         
         # remove YEAR from slug if present
         slug = row['slug']
-        if slug.split('-')[-1] in YEARS:
+        if slug.split('-')[-1] in YEARS and slug != 'im-still-here-2024':
             slug = '-'.join(slug.split('-')[:-1])
         
         # get movie poster links 

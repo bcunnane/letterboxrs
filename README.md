@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2025! <br />
-Last updated on Mon Jan 27 at 04:17 PM <br />
+Last updated on Mon Jan 27 at 04:26 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
@@ -22,7 +22,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 | <img src="https://a.ltrbxd.com/resized/film-poster/3/3/7/0/3/6/337036-wicked-0-1000-0-1500-crop.jpg" alt="wicked-2024" style="height: 105px; width:70px;"/>                            |         4.50 |       8 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/4/7/8/4/2/8/478428-the-brutalist-0-1000-0-1500-crop.jpg" alt="the-brutalist" style="height: 105px; width:70px;"/>                   |         4.50 |       5 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/5/9/5/4/0/959540-anora-0-1000-0-1500-crop.jpg" alt="anora" style="height: 105px; width:70px;"/>                                   |         4.38 |       8 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/9/0/1/6/7/1/901671-im-still-here-0-1000-0-1500-crop.jpg" alt="im-still-here-2024" style="height: 105px; width:70px;"/>              |         4.17 |       3 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/9/0/1/6/7/1/901671-im-still-here-2024-0-1000-0-1500-crop.jpg" alt="im-still-here-2024" style="height: 105px; width:70px;"/>         |         4.17 |       3 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/6/6/9/1/9/1066919-kneecap-0-1000-0-1500-crop.jpg" alt="kneecap" style="height: 105px; width:70px;"/>                            |         4.13 |       4 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-1000-0-1500-crop.jpg" alt="challengers" style="height: 105px; width:70px;"/>                       |         4.07 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/3/5/9/5/0/5/359505-nosferatu-0-1000-0-1500-crop.jpg" alt="nosferatu-2024" style="height: 105px; width:70px;"/>                      |         4.00 |       6 |
