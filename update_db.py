@@ -4,11 +4,10 @@ import sqlite3
 from bs4 import BeautifulSoup
 
 # constants
-WATCH_LIST_URL = 'https://letterboxd.com/_branzino/list/movie-szn-2025/'
+URLS = {'movies': 'https://letterboxd.com/_branzino/list/movie-szn-2025/',
+        'oscars':'https://letterboxd.com/yurimorgan/list/oscars-2025/'}
 START_DATE = '01-01-2024'
-AWARD_URL = {'oscars':'https://letterboxd.com/000_leo/list/oscars-2025-1/',
-             'indies':'https://letterboxd.com/outtothemovies/list/indie-spirit-awards-2025/'}
-AWARD_NUM = {'oscars':10, 'indies':5}
+AWARD_NUM = {'oscars':10}
 USERS = [('BC', '_branzino'),
          ('CA', 'honeydijon2'),
          ('DN', 'nbditsd'),
@@ -39,13 +38,15 @@ def initialize_tables(cur):
     cur.execute('''CREATE TABLE IF NOT EXISTS movies (
                     filmid      integer PRIMARY KEY,
                     slug        varchar(40),
-                    title       varchar(40)
+                    title       varchar(40),
+                    record      integer
                 );''')
     
-    cur.execute('''CREATE TABLE IF NOT EXISTS awards (
-                    filmid      integer,
-                    award       varchar(20),
-                    PRIMARY KEY (filmid, award)
+    cur.execute('''CREATE TABLE IF NOT EXISTS oscars (
+                    filmid      integer PRIMARY KEY,
+                    slug        varchar(40),
+                    title       varchar(40),
+                    record      integer
                 );''')
 
 
@@ -94,28 +95,19 @@ def scrape_ratings(initials, username, cur):
         soup = scrape(url)
 
 
-def scrape_movies(cur):
+def scrape_movies(cur, db):
     '''updates database with movies on watchlist'''
 
     # scrape full watchlist
-    soup = scrape(WATCH_LIST_URL)
+    record = 1
+    soup = scrape(URLS[db])
     movies = soup.find_all('li', {'class': 'poster-container'})
     for movie in movies:
         filmid = int(movie.div['data-film-id'])
         slug = movie.div['data-film-slug']
         title = movie.find('img')['alt']
-        cur.execute(f'INSERT INTO movies VALUES {(filmid, slug, title)};')
-    
-def scrape_awards(cur, award):
-    '''updates database with oscars and indie spirit awards best pictures'''
-
-    if AWARD_URL[award]:
-        soup = scrape(AWARD_URL[award])
-        movies = soup.find_all('li', {'class': 'poster-container'})
-        for i in range(AWARD_NUM[award]):
-            movie = movies[i]
-            filmid = int(movie.div['data-film-id'])
-            cur.execute(f'INSERT INTO awards VALUES {(filmid, award)};')
+        cur.execute(f'INSERT INTO {db} VALUES {(filmid, slug, title, record)};')
+        record += 1
     
 
 def main():
@@ -144,9 +136,8 @@ def main():
         scrape_ratings(user[0], user[1], cur)
     
     # get movie data
-    scrape_movies(cur)
-    for award in ['oscars', 'indies']:
-        scrape_awards(cur, award)
+    scrape_movies(cur, 'movies')
+    scrape_movies(cur, 'oscars')
 
     # commit changes and close database connection
     conn.commit()

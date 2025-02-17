@@ -5,24 +5,26 @@ import pandas as pd
 def get_leader(conn):
     '''Collect users with most watched movies'''
 
-    qry = '''SELECT
+    qry = '''SELECT 
                 r.initials AS 'Name'
                 , COUNT(*) AS 'Total'
-                , COUNT(O.filmid) AS 'Oscars'
-                , COUNT(i.filmid) AS 'Indies'
-            FROM movies m
-            INNER JOIN ratings r
-                ON m.filmid = r.filmid
-            LEFT OUTER join awards o
-                on m.filmid = o.filmid
-                and o.award = 'oscars'
-            LEFT OUTER join awards i
-                on m.filmid = i.filmid
-                and i.award = 'indies' 
+                , COUNT(bp.filmid) AS 'Best Pics'
+                , CAST(100.0 * COUNT(o.filmid) / (SELECT COUNT(*) FROM oscars) AS INT) AS 'Oscars %'
+            FROM ratings r
+            INNER JOIN movies m
+                ON r.filmid = m.filmid
+            LEFT JOIN (
+                SELECT *
+                FROM oscars
+                WHERE record <= 10
+            ) bp
+                ON bp.filmid = m.filmid
+            LEFT JOIN oscars o
+                on r.filmid = o.filmid
             GROUP BY r.initials
             ORDER BY Total DESC
-                , Oscars DESC
-                , Indies DESC;'''
+                , 'Best Pics' DESC
+                , 'Oscars %' DESC;'''
     leader = pd.read_sql(qry, conn)
     return leader.to_markdown(index=False)
 

@@ -1,19 +1,19 @@
 Aggregate Letterboxd movie ratings for 2025! <br />
-Last updated on Sun Feb 16 at 04:26 PM <br />
+Last updated on Mon Feb 17 at 12:04 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
-| Name   |   Total |   Oscars |   Indies |
-|:-------|--------:|---------:|---------:|
-| MF     |      40 |       10 |        5 |
-| BC     |      36 |       10 |        5 |
-| KH     |      30 |        6 |        3 |
-| TA     |      27 |       10 |        4 |
-| CA     |      25 |        7 |        3 |
-| NB     |      25 |        7 |        3 |
-| RZ     |      13 |        4 |        3 |
-| DN     |       4 |        1 |        1 |
-| MT     |       3 |        3 |        1 |
+| Name   |   Total |   Best Pics |   Oscars % |
+|:-------|--------:|------------:|-----------:|
+| MF     |      41 |          10 |         79 |
+| BC     |      36 |          10 |         64 |
+| KH     |      30 |           6 |         41 |
+| TA     |      28 |          10 |         58 |
+| CA     |      25 |           7 |         50 |
+| NB     |      25 |           7 |         50 |
+| RZ     |      13 |           4 |         20 |
+| DN     |       5 |           1 |          8 |
+| MT     |       3 |           3 |          8 |
 
 ## Loved Movies :heart:
 | Movie                                                                                                                                                                          |   Ave Rating |   Views |
@@ -26,7 +26,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/0/1/6/7/1/901671-im-still-here-2024-0-1000-0-1500-crop.jpg" alt="im-still-here-2024" style="height: 105px; width:70px;"/> |         4.17 |       3 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/6/6/9/1/9/1066919-kneecap-0-1000-0-1500-crop.jpg" alt="kneecap" style="height: 105px; width:70px;"/>                    |         4.13 |       4 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/7/1/1/9/6/1071196-the-wild-robot-0-1000-0-1500-crop.jpg" alt="the-wild-robot" style="height: 105px; width:70px;"/>      |         4.10 |       5 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-1000-0-1500-crop.jpg" alt="challengers" style="height: 105px; width:70px;"/>               |         4.07 |       7 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/8/4/2/3/0/1/842301-challengers-0-1000-0-1500-crop.jpg" alt="challengers" style="height: 105px; width:70px;"/>               |         4.06 |       8 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/3/5/9/5/0/5/359505-nosferatu-0-1000-0-1500-crop.jpg" alt="nosferatu-2024" style="height: 105px; width:70px;"/>              |         4.00 |       6 |
 
 ## Unloved Movies :broken_heart:
@@ -44,10 +44,10 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 | BC     |   3.5 |      1.5 |
 | CA     |   3.6 |      1.5 |
 | KH     |   3.6 |      2.5 |
-| DN     |   3.6 |      3.5 |
 | MF     |   3.7 |      1.5 |
 | TA     |   3.7 |      2.0 |
 | RZ     |   3.7 |      2.5 |
+| DN     |   3.7 |      3.5 |
 | NB     |   3.8 |      1.5 |
 | MT     |   4.3 |      3.5 |
 
@@ -71,14 +71,14 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 | Movie          |   BC | CA   | DN   | KH   |   MF | MT   | NB   | RZ   | TA   |
 |:---------------|-----:|:-----|:-----|:-----|-----:|:-----|:-----|:-----|:-----|
-| Challengers    |  4.0 | 4.5  |      | 4.0  |  4.0 |      | 4.0  | 4.0  | 4.0  |
+| Challengers    |  4.0 | 4.5  | 4.0  | 4.0  |  4.0 |      | 4.0  | 4.0  | 4.0  |
 | Civil War      |  3.0 | 4.0  |      |      |  4.0 |      | 4.0  |      | 4.0  |
 | Conclave       |  3.5 | 4.0  |      |      |  3.5 |      | 4.0  | 4.0  | 4.0  |
 | Daughters      |  4.5 |      |      |      |  4.5 |      |      |      |      |
 | Dune: Part Two |  5.0 | 5.0  |      | 4.5  |  5.0 | 4.5  | 5.0  |      | 5.0  |
 | Dìdi (弟弟)      |  4.0 |      |      | X    |  4.0 |      |      |      |      |
 | Emilia Pérez   |  2.0 | 1.5  |      | 2.5  |  2.5 |      | 2.5  |      | 2.0  |
-| Flow           |  3.5 | 4.0  |      |      |  3.5 |      | 4.5  |      |      |
+| Flow           |  3.5 | 4.0  |      |      |  3.5 |      | 4.5  |      | 3.5  |
 
 </div>
 
@@ -114,16 +114,16 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 <div  style="overflow-x: scroll;">
 
-| Movie          | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
-|:---------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| Nightbitch     |      |      |      | X    |      |      |      |      |      |
-| Nosferatu      | 4.0  | 4.0  |      | 4.0  | 4.0  |      | 4.0  |      | 4.0  |
-| Queer          | 1.5  |      |      |      | 1.5  |      |      | 2.5  |      |
-| Saturday Night |      | 2.0  |      | 4.0  |      |      | 2.5  |      |      |
-| September 5    |      |      |      | X    |      |      |      |      |      |
-| Sing Sing      | 4.5  | 4.0  |      | 4.5  | 5.0  |      | 4.0  | 4.0  |      |
-| Sugarcane      | 3.5  |      |      |      | 4.0  |      |      |      |      |
-| The Apprentice | 3.5  |      | 3.5  |      | 3.5  |      |      |      |      |
+| Movie                       | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
+|:----------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| Nightbitch                  |      |      |      | X    |      |      |      |      |      |
+| Nosferatu                   | 4.0  | 4.0  |      | 4.0  | 4.0  |      | 4.0  |      | 4.0  |
+| Queer                       | 1.5  |      |      |      | 1.5  |      |      | 2.5  |      |
+| Saturday Night              |      | 2.0  |      | 4.0  |      |      | 2.5  |      |      |
+| September 5                 |      |      |      | X    |      |      |      |      |      |
+| Sing Sing                   | 4.5  | 4.0  |      | 4.5  | 5.0  |      | 4.0  | 4.0  |      |
+| Soundtrack to a Coup d'Etat |      |      |      |      | 4.0  |      |      |      |      |
+| Sugarcane                   | 3.5  |      |      |      | 4.0  |      |      |      |      |
 
 </div>
 
@@ -131,6 +131,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 | Movie                | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
 |:---------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| The Apprentice       | 3.5  |      | 3.5  |      | 3.5  |      |      |      |      |
 | The Brutalist        | 4.5  | 4.5  |      |      | 4.5  |      | 4.5  |      | 4.5  |
 | The Last Showgirl    |      |      |      | 3.5  |      |      |      |      |      |
 | The Order            |      | 4.0  |      |      |      |      | 4.0  |      |      |
@@ -138,7 +139,6 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 | The Six Triple Eight |      |      |      |      | 3.0  |      |      |      |      |
 | The Substance        | 4.0  | 4.5  | 4.0  | 3.5  | 3.5  |      | 4.5  | 3.0  | 4.0  |
 | The Wild Robot       | 4.5  | 4.0  |      |      | 4.5  |      | 4.5  |      | 3.0  |
-| Thelma               | 3.5  |      |      | 3.0  | 4.0  |      |      |      |      |
 
 </div>
 
@@ -146,6 +146,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 | Movie                                 | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
 |:--------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| Thelma                                | 3.5  |      |      | 3.0  | 4.0  |      |      |      |      |
 | Wallace & Gromit: Vengeance Most Fowl | 3.5  | 3.5  |      |      | 3.5  |      | 3.5  |      |      |
 | We Live in Time                       | 3.0  |      |      | 4.0  | 3.5  |      |      |      |      |
 | Wicked                                | 5.0  | 4.0  |      | 4.5  | 5.0  | 5.0  | 4.5  | 4.0  | 4.0  |
