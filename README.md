@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2025! <br />
-Last updated on Sun Mar 02 at 10:12 AM <br />
+Last updated on Sun Mar 02 at 06:41 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
 
 ## Leaderboard :trophy:
@@ -7,8 +7,8 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 |:-------|--------:|------------:|-----------:|
 | MF     |      49 |          10 |        100 |
 | BC     |      40 |          10 |         76 |
+| KH     |      37 |          10 |         61 |
 | CA     |      35 |          10 |         76 |
-| KH     |      35 |           9 |         55 |
 | NB     |      35 |          10 |         76 |
 | TA     |      29 |          10 |         58 |
 | RZ     |      21 |           8 |         35 |
@@ -32,9 +32,9 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 ## Unloved Movies :broken_heart:
 | Movie                                                                                                                                                                          |   Ave Rating |   Views |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------:|--------:|
+| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/6/0/8/877608-emilia-perez-0-1000-0-1500-crop.jpg" alt="emilia-perez" style="height: 105px; width:70px;"/>             |         1.71 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/8/0/0/8/5/8/800858-joker-folie-a-deux-0-1000-0-1500-crop.jpg" alt="joker-folie-a-deux" style="height: 105px; width:70px;"/> |         1.83 |       3 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/5/5/1/8/4/955184-queer-0-1000-0-1500-crop.jpg" alt="queer-2024" style="height: 105px; width:70px;"/>                      |         1.83 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/6/0/8/877608-emilia-perez-0-1000-0-1500-crop.jpg" alt="emilia-perez" style="height: 105px; width:70px;"/>             |         1.93 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/2/1/5/7/8/921578-inside-out-2-0-1000-0-1500-crop.jpg" alt="inside-out-2-2024" style="height: 105px; width:70px;"/>        |         2.42 |       6 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/7/7/2/2/3/0/772230-i-saw-the-tv-glow-0-1000-0-1500-crop.jpg" alt="i-saw-the-tv-glow" style="height: 105px; width:70px;"/>   |         2.67 |       3 |
 
@@ -86,8 +86,8 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 
 | Movie                                 | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
 |:--------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| Emilia Pérez                          | 2.0  | 1.5  |      | 2.0  | 2.5  |      | 2.5  | 1.0  | 2.0  |
-| Flow                                  | 3.5  | 4.0  |      |      | 3.5  |      | 4.5  |      | 3.5  |
+| Emilia Pérez                          | 2.0  | 1.5  |      | 2.0  | 2.5  |      | 1.0  | 1.0  | 2.0  |
+| Flow                                  | 3.5  | 4.0  |      | 4.0  | 3.5  |      | 4.5  |      | 3.5  |
 | Furiosa: A Mad Max Saga               | 4.0  | 4.0  |      | 3.5  | 4.0  |      | 4.5  |      | 4.0  |
 | Gladiator II                          | 3.0  | 3.0  | 3.5  | 3.5  | 3.5  |      | 3.5  | 2.5  | 3.0  |
 | Hard Truths                           |      |      |      |      |      |      |      | 3.0  |      |
@@ -102,7 +102,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-20
 | Movie                             | BC   | CA   | DN   | KH   | MF   | MT   | NB   | RZ   | TA   |
 |:----------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
 | I Saw the TV Glow                 | 3.0  |      |      |      | 2.5  |      |      |      | 2.5  |
-| I'm Still Here                    | 4.0  | 3.5  |      |      | 4.5  |      | 3.5  | 4.5  | 4.0  |
+| I'm Still Here                    | 4.0  | 3.5  |      | 3.5  | 4.5  |      | 3.5  | 4.5  | 4.0  |
 | Inside Out 2                      | 3.0  | 1.5  |      | 3.0  | 3.0  |      | 1.5  |      | 2.5  |
 | Joker: Folie à Deux               | 1.5  |      |      |      | 2.0  |      |      |      | 2.0  |
 | Juror #2                          |      | 3.0  | 3.5  | 3.0  |      |      | 3.0  |      | 3.5  |
