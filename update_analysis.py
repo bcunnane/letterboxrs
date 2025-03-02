@@ -99,7 +99,9 @@ def get_harshest_critic(conn):
                 ON r.filmid = m.filmid
             WHERE r.rating > 0
             GROUP BY r.initials
-            ORDER BY Ave ASC, Lowest ASC;'''
+            ORDER BY Ave ASC
+                , Lowest ASC
+                , COUNT(r.rating) DESC;'''
     critics = pd.read_sql(qry, conn)
     return critics.to_markdown(index=False, floatfmt=".1f")
 
