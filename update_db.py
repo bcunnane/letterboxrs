@@ -2,13 +2,14 @@ import os
 import requests
 import sqlite3
 from bs4 import BeautifulSoup
+from time import sleep
 
 # constants
-URLS = {'movies': 'https://letterboxd.com/_branzino/list/movie-szn-2025/',
-        'oscars':'https://letterboxd.com/yurimorgan/list/oscars-2025/'}
-START_DATE = '01-01-2024'
+URLS = {'movies': 'https://letterboxd.com/_branzino/list/oscars-2026/',
+        'oscars':''}
 AWARD_NUM = {'oscars':10}
-USERS = [('BC', '_branzino'),
+USERS = [
+        ('BC', '_branzino'),
          ('CA', 'honeydijon2'),
          ('DN', 'nbditsd'),
          ('KH', 'shewasak8rgrl'),
@@ -16,7 +17,8 @@ USERS = [('BC', '_branzino'),
          ('MT', 'michelletreiber'),
          ('NB', 'NikkiBerry'),
          ('RZ', 'BOBBY_ZEE'),
-         ('TA', 'tarias')]
+         ('TA', 'tarias')
+         ]
 
 
 def initialize_tables(cur):
@@ -39,6 +41,7 @@ def initialize_tables(cur):
                     filmid      integer PRIMARY KEY,
                     slug        varchar(40),
                     title       varchar(40),
+                    poster      varchar(160),
                     record      integer
                 );''')
     
@@ -59,22 +62,18 @@ def scrape(url):
 def scrape_ratings(initials, username, cur):
     '''updates database with user movie ratings'''
 
-    # scrape first page
-    url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large'
-    soup = scrape(url)
-
-    # determine final page to web scrape
-    last_page = soup.find_all('li', {'class': 'paginate-page'}) or 1
-    if last_page != 1: last_page = int(last_page[-1].text)
+    MAX_PAGE = 5
 
     # get ratings data
-    page = 1
-    while page <= last_page:
-        # update user and page progress
-        print(f'Scraping: {username} page {page}')
+    for page in range(1, MAX_PAGE + 1):
 
-        # get rating for all movies in each page
-        movies = soup.find_all('li', {'class': 'poster-container'})
+        # scrape webpage
+        url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large/page/{page}/'
+        soup = scrape(url)
+
+        # get rating for all movies in the page
+        movies = soup.find_all('li', {'class': 'griditem'})
+        print(f'Scraping: {username} page {page} movies {len(movies)}')
         for movie in movies:
 
             # get movie data
@@ -84,15 +83,6 @@ def scrape_ratings(initials, username, cur):
             rating = movie_data.text
             rating = rating.count('★') + 0.5 * rating.count('½')
             cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
-            
-            # check if still within eligibility period
-            if date < START_DATE:
-                 return None
-        
-        # increment page and scrape
-        page += 1
-        url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large/page/{page}/'
-        soup = scrape(url)
 
 
 def scrape_movies(cur, db):
@@ -101,12 +91,13 @@ def scrape_movies(cur, db):
     # scrape full watchlist
     record = 1
     soup = scrape(URLS[db])
-    movies = soup.find_all('li', {'class': 'poster-container'})
+    movies = soup.find_all('li', {'class': 'posteritem'})
     for movie in movies:
         filmid = int(movie.div['data-film-id'])
-        slug = movie.div['data-film-slug']
-        title = movie.find('img')['alt']
-        cur.execute(f'INSERT INTO {db} VALUES {(filmid, slug, title, record)};')
+        slug = movie.div['data-item-slug']
+        title = movie.div['data-item-name']
+        poster = movie.div['data-poster-url']
+        cur.execute(f'INSERT INTO {db} VALUES {(filmid, slug, title, poster, record)};')
         record += 1
     
 
@@ -134,10 +125,12 @@ def main():
     for user in USERS:
         cur.execute(f'INSERT INTO users VALUES {user};')
         scrape_ratings(user[0], user[1], cur)
+        sleep(60) # pause to prevent website blocking requests
     
     # get movie data
     scrape_movies(cur, 'movies')
-    scrape_movies(cur, 'oscars')
+    if URLS['oscars']:
+        scrape_movies(cur, 'oscars')
 
     # commit changes and close database connection
     conn.commit()
