@@ -41,7 +41,6 @@ def initialize_tables(cur):
                     filmid      integer PRIMARY KEY,
                     slug        varchar(40),
                     title       varchar(40),
-                    poster      varchar(160),
                     record      integer
                 );''')
     
@@ -68,7 +67,7 @@ def scrape_ratings(initials, username, cur):
     for page in range(1, MAX_PAGE + 1):
 
         # scrape webpage
-        url = f'https://letterboxd.com/{username}/films/by/rated-date/size/large/page/{page}/'
+        url = f'https://letterboxd.com/{username}/films/by/date/size/large/page/{page}/'
         soup = scrape(url)
 
         # get rating for all movies in the page
@@ -83,6 +82,7 @@ def scrape_ratings(initials, username, cur):
             rating = movie_data.text
             rating = rating.count('★') + 0.5 * rating.count('½')
             cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
+        sleep(3) # slow down scraping to avoid being blocked by letterboxd
 
 
 def scrape_movies(cur, db):
@@ -96,8 +96,8 @@ def scrape_movies(cur, db):
         filmid = int(movie.div['data-film-id'])
         slug = movie.div['data-item-slug']
         title = movie.div['data-item-name']
-        poster = movie.div['data-poster-url']
-        cur.execute(f'INSERT INTO {db} VALUES {(filmid, slug, title, poster, record)};')
+        title = ' '.join([word if '(202' not in word else '' for word in title.split(' ')])[:-1] # remove 2025 from title
+        cur.execute(f'INSERT INTO {db} VALUES {(filmid, slug, title, record)};')
         record += 1
     
 
@@ -125,7 +125,7 @@ def main():
     for user in USERS:
         cur.execute(f'INSERT INTO users VALUES {user};')
         scrape_ratings(user[0], user[1], cur)
-        sleep(60) # pause to prevent website blocking requests
+        sleep(90) # pause to prevent website blocking requests
     
     # get movie data
     scrape_movies(cur, 'movies')

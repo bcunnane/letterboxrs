@@ -8,8 +8,8 @@ def get_leader(conn):
     qry = '''SELECT 
                 r.initials AS 'Name'
                 , COUNT(*) AS 'Total'
-                , COUNT(bp.filmid) AS 'Best Pics'
-                , CAST(100.0 * COUNT(o.filmid) / (SELECT COUNT(*) FROM oscars) AS INT) AS 'Oscars %'
+                --, COUNT(bp.filmid) AS 'Best Pics'
+                --, CAST(100.0 * COUNT(o.filmid) / (SELECT COUNT(*) FROM oscars) AS INT) AS 'Oscars %'
             FROM ratings r
             INNER JOIN movies m
                 ON r.filmid = m.filmid
@@ -35,19 +35,10 @@ def filmids_to_posters(df):
     
     df['filmid'] = df['filmid'].astype(str)
 
-    # film years to delete from slug
-    YEARS = ['20' + str(x) for x in range(20, 30)]
-
     # convert filmid to poster image
     posters = []
     for index,row in df.iterrows():
-        
-        # remove YEAR from slug if present
         slug = row['slug']
-        if slug.split('-')[-1] in YEARS and slug != 'im-still-here-2024':
-            slug = '-'.join(slug.split('-')[:-1])
-        
-        # get movie poster links 
         posters.append(f'''<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['filmid'])}/{row['filmid']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width:70px;"/>''')
     
     df['filmid'] = posters
@@ -142,7 +133,7 @@ def main():
     
     # collect tables
     leader = get_leader(conn)
-    best_movies = get_ave_ratings(conn, 'best', limit=10)
+    best_movies = get_ave_ratings(conn, 'best', limit=7)
     worst_movies  = get_ave_ratings(conn, 'worst', limit=5)
     critics = get_harshest_critic(conn)
     watched = get_watched(conn)
@@ -154,7 +145,7 @@ def main():
     # update README.md
     output = f'''Aggregate Letterboxd movie ratings for 2025! <br />
 Last updated on {datetime.datetime.now().strftime('%a %b %d at %I:%M %p')} <br />
-Watchlist can be found [here](https://letterboxd.com/_branzino/list/movie-szn-2025/)
+Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
 {leader}
