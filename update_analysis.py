@@ -143,7 +143,7 @@ def main():
     conn.close()
 
     # update README.md
-    output = f'''Aggregate Letterboxd movie ratings for 2025! <br />
+    output = f'''Aggregate Letterboxd movie ratings for 2026! <br />
 Last updated on {datetime.datetime.now().strftime('%a %b %d at %I:%M %p')} <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
