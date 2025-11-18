@@ -2,9 +2,10 @@ import os
 import requests
 import sqlite3
 from bs4 import BeautifulSoup
-from time import sleep
+from time import sleep, strptime
 
 # constants
+START_DATE = strptime('2024-12-01','%Y-%m-%d')
 URLS = {'movies': 'https://letterboxd.com/_branzino/list/oscars-2026/',
         'oscars':''}
 AWARD_NUM = {'oscars':10}
@@ -61,10 +62,8 @@ def scrape(url):
 def scrape_ratings(initials, username, cur):
     '''updates database with user movie ratings'''
 
-    MAX_PAGE = 5
-
     # get ratings data
-    for page in range(1, MAX_PAGE + 1):
+    for page in range(1, 26):
 
         # scrape webpage
         url = f'https://letterboxd.com/{username}/films/by/date/size/large/page/{page}/'
@@ -82,6 +81,15 @@ def scrape_ratings(initials, username, cur):
             rating = movie_data.text
             rating = rating.count('★') + 0.5 * rating.count('½')
             cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
+        
+        # check if still within eligibility period
+        if strptime(date, '%Y-%M-%d') < START_DATE:
+            return None
+        
+        # pause every 5th page to prevent website blocking requests
+        if page % 5 == 0:
+            sleep(90) 
+        
         sleep(3) # slow down scraping to avoid being blocked by letterboxd
 
 
