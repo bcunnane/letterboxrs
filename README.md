@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Mon Dec 08 at 10:50 AM <br />
+Last updated on Mon Dec 08 at 11:44 AM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
@@ -31,17 +31,26 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/3/8/6/8/1113868-springsteen-deliver-me-from-nowhere-0-1000-0-1500-crop.jpg" alt="springsteen-deliver-me-from-nowhere" style="height: 105px; width:70px;"/> |         2.67 |       3 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/9/1/9/9/1129199-caught-stealing-0-1000-0-1500-crop.jpg" alt="caught-stealing" style="height: 105px; width:70px;"/>                                         |         2.83 |       3 |
 
+## Controversial Movies :hot_pepper:
+| Movie                                                                                                                                                                        |   StdDev |   Min |   Mean |   Max |   Views |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------:|------:|-------:|------:|--------:|
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/7/5/5/1116755-black-bag-2025-0-1000-0-1500-crop.jpg" alt="black-bag-2025" style="height: 105px; width:70px;"/>    |     0.92 |  2.00 |   3.58 |  4.50 |       6 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/5/3/8/3/1125383-train-dreams-0-1000-0-1500-crop.jpg" alt="train-dreams" style="height: 105px; width:70px;"/>        |     0.91 |  2.00 |   3.20 |  4.00 |       5 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/1/1/4/8/871148-wicked-for-good-0-1000-0-1500-crop.jpg" alt="wicked-for-good" style="height: 105px; width:70px;"/>     |     0.89 |  1.50 |   3.00 |  4.00 |       6 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/4/7/0/1/1124701-warfare-0-1000-0-1500-crop.jpg" alt="warfare" style="height: 105px; width:70px;"/>                  |     0.76 |  2.00 |   3.71 |  4.00 |       7 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/9/5/8/1/0/0/958100-frankenstein-2025-0-1000-0-1500-crop.jpg" alt="frankenstein-2025" style="height: 105px; width:70px;"/> |     0.61 |  2.50 |   3.43 |  4.00 |       7 |
+
 ## Harshest Critic :thumbsdown:
 | Name   |   Ave |   Lowest |
 |:-------|------:|---------:|
-| RZ     |   3.5 |      2.0 |
-| BC     |   3.6 |      2.0 |
-| CA     |   3.7 |      1.5 |
-| MF     |   3.7 |      2.5 |
-| TA     |   3.7 |      3.0 |
-| DN     |   3.7 |      3.5 |
-| NB     |   3.9 |      2.5 |
-| KH     |   5.0 |      5.0 |
+| RZ     |  3.50 |     2.00 |
+| BC     |  3.60 |     2.00 |
+| CA     |  3.70 |     1.50 |
+| MF     |  3.70 |     2.50 |
+| TA     |  3.70 |     3.00 |
+| DN     |  3.70 |     3.50 |
+| NB     |  3.90 |     2.50 |
+| KH     |  5.00 |     5.00 |
 
 ## All Watched :movie_camera:
 <div  style="overflow-x: scroll;">

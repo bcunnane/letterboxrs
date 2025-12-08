@@ -78,6 +78,50 @@ def get_ave_ratings(conn, t, limit=5):
     return ave_ratings[:limit].to_markdown(index=False, floatfmt=".2f")
 
 
+def get_controversial(conn, limit=5):
+    '''Collect best and worst average movie ratings
+    t: scoring type. either "best" or "worst" ratings'''
+    CUT_PT = 3
+
+    ineq = {'best':'>=', 'worst':'<'}
+    ordering = {'best':'DESC', 'worst':'ASC'}
+
+    qry = f'''SELECT
+                r.filmid
+                , m.slug
+                , r.rating
+            FROM movies m
+            JOIN ratings r
+                ON m.filmid = r.filmid
+            JOIN (
+                SELECT FILMID
+                FROM RATINGS
+                WHERE RATING > 0
+                GROUP BY FILMID
+                HAVING COUNT(*)>2
+            ) CNT
+                ON M.FILMID = CNT.FILMID
+            WHERE r.rating > 0'''
+    ratings = pd.read_sql(qry, conn)
+
+    # get aggregate results
+    results = ratings.groupby(['filmid', 'slug'])['rating'].agg(
+        StdDev='std',
+        Min='min',
+        Mean='mean',
+        Max='max',
+        Views='count'
+    ).sort_values(by='StdDev', ascending=False).reset_index()
+
+    # convert filmids to movie posters
+    results = filmids_to_posters(results)
+    
+    # Remove slug from dataframe
+    del results['slug']
+
+    return results[:limit].to_markdown(index=False, floatfmt=".2f")
+
+
 def get_harshest_critic(conn):
     '''Collect users with lowest average ratings'''
 
@@ -94,7 +138,7 @@ def get_harshest_critic(conn):
                 , Lowest ASC
                 , COUNT(r.rating) DESC;'''
     critics = pd.read_sql(qry, conn)
-    return critics.to_markdown(index=False, floatfmt=".1f")
+    return critics.to_markdown(index=False, floatfmt=".2f")
 
 
 def get_watched(conn):
@@ -135,6 +179,7 @@ def main():
     leader = get_leader(conn)
     best_movies = get_ave_ratings(conn, 'best', limit=7)
     worst_movies  = get_ave_ratings(conn, 'worst', limit=5)
+    controversial = get_controversial(conn, limit=5)
     critics = get_harshest_critic(conn)
     watched = get_watched(conn)
 
@@ -155,6 +200,9 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 
 ## Unloved Movies :broken_heart:
 {worst_movies}
+
+## Controversial Movies :hot_pepper:
+{controversial}
 
 ## Harshest Critic :thumbsdown:
 {critics}
