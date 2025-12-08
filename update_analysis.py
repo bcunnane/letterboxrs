@@ -118,8 +118,9 @@ def get_controversial(conn, limit=5):
     
     # Remove slug from dataframe
     del results['slug']
+    del results['StdDev']
 
-    return results[:limit].to_markdown(index=False, floatfmt=".2f")
+    return results[:limit].to_markdown(index=False, floatfmt=".1f")
 
 
 def get_harshest_critic(conn):
