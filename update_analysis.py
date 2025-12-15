@@ -79,12 +79,7 @@ def get_ave_ratings(conn, t, limit=5):
 
 
 def get_controversial(conn, limit=5):
-    '''Collect best and worst average movie ratings
-    t: scoring type. either "best" or "worst" ratings'''
-    CUT_PT = 3
-
-    ineq = {'best':'>=', 'worst':'<'}
-    ordering = {'best':'DESC', 'worst':'ASC'}
+    '''Collects movies with highest std dev'''
 
     qry = f'''SELECT
                 r.filmid
@@ -108,7 +103,7 @@ def get_controversial(conn, limit=5):
     results = ratings.groupby(['filmid', 'slug'])['rating'].agg(
         StdDev='std',
         Min='min',
-        Mean='mean',
+        Ave='mean',
         Max='max',
         Views='count'
     ).sort_values(by='StdDev', ascending=False).reset_index()

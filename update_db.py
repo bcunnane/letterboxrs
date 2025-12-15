@@ -21,6 +21,7 @@ USERS = [
          ('TA', 'tarias')
          ]
 
+scraped = 0
 
 def initialize_tables(cur):
     '''creates database tables if not already existing'''
@@ -62,6 +63,8 @@ def scrape(url):
 def scrape_ratings(initials, username, cur):
     '''updates database with user movie ratings'''
 
+    global scraped
+
     # get ratings data
     for page in range(1, 26):
 
@@ -81,31 +84,42 @@ def scrape_ratings(initials, username, cur):
             rating = movie_data.text
             rating = rating.count('★') + 0.5 * rating.count('½')
             cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
-        
+
+        # pause every 5th page to prevent website blocking requests
+        scraped += 1
+        if scraped > 4:
+            scraped = 0
+            sleep(90)
+
+
         # check if still within eligibility period
         if strptime(date, '%Y-%M-%d') < START_DATE:
             return None
         
-        # pause every 5th page to prevent website blocking requests
-        if page % 5 == 0:
-            sleep(90) 
-        
         sleep(3) # slow down scraping to avoid being blocked by letterboxd
 
 
-def scrape_movies(cur, db):
+def scrape_movies(cur, table):
     '''updates database with movies on watchlist'''
+
+    global scraped
+
+    # slow down scraping to avoid being blocked by letterboxd
+    if scraped > 4:
+        scraped = 0
+        sleep(90)
 
     # scrape full watchlist
     record = 1
-    soup = scrape(URLS[db])
+    soup = scrape(URLS[table])
     movies = soup.find_all('li', {'class': 'posteritem'})
+    print(f'Scraping: {table} movies {len(movies)}')
     for movie in movies:
         filmid = int(movie.div['data-film-id'])
         slug = movie.div['data-item-slug']
         title = movie.div['data-item-name']
         title = ' '.join([word if '(202' not in word else '' for word in title.split(' ')])[:-1] # remove 2025 from title
-        cur.execute(f'INSERT INTO {db} VALUES {(filmid, slug, title, record)};')
+        cur.execute(f'INSERT INTO {table} VALUES {(filmid, slug, title, record)};')
         record += 1
     
 
@@ -133,12 +147,13 @@ def main():
     for user in USERS:
         cur.execute(f'INSERT INTO users VALUES {user};')
         scrape_ratings(user[0], user[1], cur)
-        sleep(90) # pause to prevent website blocking requests
-    
+        sleep(3) # slow down scraping to avoid being blocked by letterboxd
+        
     # get movie data
     scrape_movies(cur, 'movies')
     if URLS['oscars']:
         scrape_movies(cur, 'oscars')
+        sleep(3) # slow down scraping to avoid being blocked by letterboxd
 
     # commit changes and close database connection
     conn.commit()
