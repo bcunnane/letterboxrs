@@ -134,7 +134,7 @@ def get_harshest_critic(conn):
                 , Lowest ASC
                 , COUNT(r.rating) DESC;'''
     critics = pd.read_sql(qry, conn)
-    return critics.to_markdown(index=False, floatfmt=".2f")
+    return critics.to_markdown(index=False, floatfmt=".1f")
 
 
 def get_watched(conn):
