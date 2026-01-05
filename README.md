@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Mon Jan 05 at 01:12 PM <br />
+Last updated on Mon Jan 05 at 01:23 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
@@ -76,7 +76,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | Die My Love              |      | 3.0  |      | X    |      | 3.0  | 3.0  |      |
 | Eddington                | 3.5  | 4.5  |      |      | 3.5  | 4.5  | 4.0  | 3.0  |
 | Eternity                 | 4.0  |      |      | X    | 4.0  |      |      |      |
-| F1                       | 4.0  | 4.0  https://www.linkedin.com/in/melissa-frye-8a964a107/|      | X    | 4.0  | 4.0  |      | 4.0  |
+| F1                       | 4.0  | 4.0  |      | X    | 4.0  | 4.0  |      | 4.0  |
 | Frankenstein             | 3.0  | 3.0  | 4.0  | X    | 4.0  | 4.0  | 2.5  | 3.5  |
 | Friendship               | 4.0  | 4.0  | 3.5  | X    |      | 4.0  | 3.0  | 3.0  |
 | Hamnet                   | 4.0  | 4.5  |      | X    | 4.5  | 4.5  | 4.5  |      |
