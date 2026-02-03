@@ -91,17 +91,55 @@ def scrape(type, label, url):
     return movielist, movies
 
 
-def main():
-    '''
-    Web scrapes letterboxd film ratings for specified users
-    Creates tables with results
+def scrape_watchlist():
+    '''Webscrape yearly watchlist from letterboxd'''
 
-    TABLES
-    users: (initials, user)
-    ratings: (initials, filmid, date, rating)
-    movies: (filmid, title) 
-    awards: (filmid, award)
-    '''
+    # read current data
+    all_watchlist = pd.read_csv('data\\watchlist.csv')
+    all_movies = pd.read_csv('data\\movies.csv')
+
+    # scrape new data
+    year = '2026'
+    url = 'https://letterboxd.com/_branzino/list/oscars-2026/'
+    new_watchlist, new_movies = scrape('list', year, url)
+
+    # combine new and current data
+    all_watchlist = pd.concat([new_watchlist, all_watchlist]).drop_duplicates()
+    all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+
+    # write combined data to csv
+    all_watchlist.to_csv('data\\watchlist.csv', index=False)
+    all_movies.to_csv('data\\movies.csv', index=False)
+
+
+def scrape_oscars():
+    '''Webscrape oscar nomination list from letterboxd'''
+
+    # read current data
+    all_noms = pd.read_csv('data\\noms.csv')
+    all_movies = pd.read_csv('data\\movies.csv')
+
+    # scrape new data
+    year = '2026'
+    url = 'https://letterboxd.com/000_leo/list/oscars-2026-1/'
+    new_noms, new_movies = scrape('list', year, url)
+
+    # set first 10 films to best picture (confirm true on letterboxd)
+    new_noms['best_pic'] = 0
+    new_noms.loc[:9, "best_pic"] = 1
+
+    # combine new and current data
+    all_noms = pd.concat([new_noms, all_noms]).drop_duplicates()
+    all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+
+    # write combined data to csv
+    all_noms.to_csv('data\\noms.csv', index=False)
+    all_movies.to_csv('data\\movies.csv', index=False)
+
+
+
+def main():
+    '''Web scrapes letterboxd film ratings for specified users'''
 
 
     # all_ratings = pd.read_csv('data\\ratings.csv')
@@ -118,18 +156,10 @@ def main():
     # all_ratings.to_csv('data\\ratings.csv', index=False)
     # all_movies.to_csv('data\\movies.csv', index=False)
 
-    URLS = {'movies': 'https://letterboxd.com/_branzino/list/oscars-2026/',
-            'oscars':'https://letterboxd.com/000_leo/list/oscars-2026-1/'}
 
-    # all_noms = pd.read_csv('data\\noms.csv')
-    all_movies = pd.read_csv('data\\movies.csv')
+    scrape_watchlist()
+    # scrape_oscars()
 
-    new_noms, new_movies = scrape('list','2026', 'https://letterboxd.com/000_leo/list/oscars-2026-1/')
-
-    all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
-
-    new_noms.to_csv('data\\noms.csv', index=False)
-    all_movies.to_csv('data\\movies.csv', index=False)
 
 
 if __name__ == '__main__':
