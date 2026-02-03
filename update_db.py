@@ -3,11 +3,21 @@ import requests
 import sqlite3
 from bs4 import BeautifulSoup
 from time import sleep, strptime
+import random
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
+import pandas as pd
+import time
 
 # constants
 START_DATE = strptime('2024-12-01','%Y-%m-%d')
 URLS = {'movies': 'https://letterboxd.com/_branzino/list/oscars-2026/',
-        'oscars':''}
+        'oscars':'https://letterboxd.com/000_leo/list/oscars-2026-1/'}
 AWARD_NUM = {'oscars':10}
 USERS = [
         ('BC', '_branzino'),
@@ -22,6 +32,18 @@ USERS = [
          ]
 
 scraped = 0
+
+
+# Setup Chrome WebDriver
+options = webdriver.ChromeOptions()
+#options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+# Add a User-Agent to mimic a real browser
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=options)
 
 def initialize_tables(cur):
     '''creates database tables if not already existing'''
@@ -55,9 +77,20 @@ def initialize_tables(cur):
 
 
 def scrape(url):
-    '''returns web scraping aka beautifulsoup "soup" '''
-    html = requests.get(url)
-    return BeautifulSoup(html.content, 'html.parser')
+    '''returns web scraping'''
+    driver.get(url)
+
+    try:
+        # Wait for the page content to load
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "film-poster"))
+        )
+    except Exception:
+        print(f"ERROR: {url}")
+        return None
+
+    # Find all movie items
+    return driver.find_elements(By.CLASS_NAME, "griditem")
 
 
 def scrape_ratings(initials, username, cur):
@@ -69,27 +102,26 @@ def scrape_ratings(initials, username, cur):
     for page in range(1, 26):
 
         # scrape webpage
-        url = f'https://letterboxd.com/{username}/films/by/date/size/large/page/{page}/'
-        soup = scrape(url)
+        url = f'https://letterboxd.com/{username}/films/by/date/page/{page}/'
+        movies = scrape(url)
 
         # get rating for all movies in the page
-        movies = soup.find_all('li', {'class': 'griditem'})
         print(f'Scraping: {username} page {page} movies {len(movies)}')
         for movie in movies:
 
             # get movie data
-            filmid = int(movie.div['data-film-id'])
-            movie_data = movie.find('p', {'class': 'poster-viewingdata'})
-            date = movie_data.find('time')['datetime'][0:10]
-            rating = movie_data.text
+            filmid = int(movie.find_element(By.CLASS_NAME, "react-component").get_attribute("data-film-id"))
+            date = movie.find_element(By.TAG_NAME, "time").get_attribute("datetime")[0:10]
+            rating = movie.find_element(By.CLASS_NAME, "rating").text.strip()
             rating = rating.count('★') + 0.5 * rating.count('½')
             cur.execute(f'INSERT INTO ratings VALUES {(initials, filmid, date, rating)};')
 
         # pause every 5th page to prevent website blocking requests
-        scraped += 1
-        if scraped > 4:
-            scraped = 0
-            sleep(90)
+        time.sleep(random.uniform(3, 7))
+        # scraped += 1
+        # if scraped > 4:
+        #     scraped = 0
+        #     sleep(90)
 
 
         # check if still within eligibility period
@@ -111,13 +143,13 @@ def scrape_movies(cur, table):
 
     # scrape full watchlist
     record = 1
-    soup = scrape(URLS[table])
-    movies = soup.find_all('li', {'class': 'posteritem'})
+    movies = scrape(URLS[table])
     print(f'Scraping: {table} movies {len(movies)}')
     for movie in movies:
-        filmid = int(movie.div['data-film-id'])
-        slug = movie.div['data-item-slug']
-        title = movie.div['data-item-name']
+        filmid = int(movie.find_element(By.CLASS_NAME, "react-component").get_attribute("data-film-id"))
+        react_data = movie.find_element(By.CLASS_NAME, "react-component")
+        slug = react_data.get_attribute("data-item-slug")
+        title = react_data.get_attribute("data-item-name")
         title = ' '.join([word if '(202' not in word else '' for word in title.split(' ')])[:-1] # remove 2025 from title
         cur.execute(f'INSERT INTO {table} VALUES {(filmid, slug, title, record)};')
         record += 1
@@ -163,3 +195,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+driver.quit()
