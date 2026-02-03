@@ -91,6 +91,28 @@ def scrape(type, label, url):
     return movielist, movies
 
 
+def scrape_user():
+    '''Webscrape user rating data from letterboxd'''
+
+    # read current data
+    all_ratings = pd.read_csv('data\\ratings.csv')
+    all_movies = pd.read_csv('data\\movies.csv')
+    
+    # scrape new data
+    page = 1
+    user = USERS[7]
+    url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
+    new_ratings, new_movies = scrape('user', user[0], url)
+
+    # combine new and current data
+    all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
+    all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+
+    # write combined data to csv
+    all_ratings.to_csv('data\\ratings.csv', index=False)
+    all_movies.to_csv('data\\movies.csv', index=False)
+
+
 def scrape_watchlist():
     '''Webscrape yearly watchlist from letterboxd'''
 
@@ -141,23 +163,8 @@ def scrape_oscars():
 def main():
     '''Web scrapes letterboxd film ratings for specified users'''
 
-
-    # all_ratings = pd.read_csv('data\\ratings.csv')
-    # all_movies = pd.read_csv('data\\movies.csv')
-    
-    # page = 1
-    # user = USERS[5]
-    # url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
-    
-    # new_ratings, new_movies = scrape('user', user[0], url)
-    # all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
-    # all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
-
-    # all_ratings.to_csv('data\\ratings.csv', index=False)
-    # all_movies.to_csv('data\\movies.csv', index=False)
-
-
-    scrape_watchlist()
+    scrape_user()
+    # scrape_watchlist()
     # scrape_oscars()
 
 
