@@ -5,23 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-
-# constants
-URLS = {'movies': 'https://letterboxd.com/_branzino/list/oscars-2026/',
-        'oscars':'https://letterboxd.com/000_leo/list/oscars-2026-1/'}
-AWARD_NUM = {'oscars':10}
-USERS = [
-        ('BC', '_branzino'),
-         ('CA', 'honeydijon2'),
-         ('DN', 'nbditsd'),
-         ('KH', 'shewasak8rgrl'),
-         ('MF', 'mfrye'),
-         ('MT', 'michelletreiber'),
-         ('NB', 'NikkiBerry'),
-         ('RZ', 'BOBBY_ZEE'),
-         ('TA', 'tarias')
-         ]
-
+from time import sleep
 
 
 def setup_driver():
@@ -42,7 +26,7 @@ def scrape(type, label, url):
     '''webscrape letterboxd film data'''
     #initialize
     movielist = pd.DataFrame(columns=[type,'filmid','rating'])
-    movies = pd.DataFrame(columns=['filmid','title', 'slug'])
+    movies = pd.DataFrame(columns=['filmid','slug'])
 
     # poster scraping per type
     scraping = {'user':"griditem", 'list':"posteritem"}
@@ -69,7 +53,7 @@ def scrape(type, label, url):
         react_data = poster.find_element(By.CLASS_NAME, "react-component")
         filmid = int(react_data.get_attribute("data-film-id"))
         slug = react_data.get_attribute("data-item-slug")
-        title = react_data.get_attribute("data-item-name")
+        # title = react_data.get_attribute("data-item-name")
         # date = movie.find_element(By.TAG_NAME, "time").get_attribute("datetime")[0:10]
         try:
             rating = poster.find_element(By.CLASS_NAME, "rating").text.strip()
@@ -78,7 +62,7 @@ def scrape(type, label, url):
             rating = 0
 
         movielist.loc[len(movielist)] = {type:label, 'filmid':filmid, 'rating':rating}
-        movies.loc[len(movies)] = {'filmid':filmid, 'title':title, 'slug':slug}
+        movies.loc[len(movies)] = {'filmid':filmid, 'slug':slug}
         
     # remove reting from movielist
     if type == 'list':
@@ -94,19 +78,38 @@ def scrape(type, label, url):
 def scrape_user():
     '''Webscrape user rating data from letterboxd'''
 
+    USERS = [
+        ('BC', '_branzino'),
+        ('CA', 'honeydijon2'),
+        ('DN', 'nbditsd'),
+        ('KH', 'shewasak8rgrl'),
+        ('MF', 'mfrye'),
+        ('MT', 'michelletreiber'),
+        ('NB', 'NikkiBerry'),
+        ('RZ', 'BOBBY_ZEE'),
+        ('TA', 'tarias')
+    ]
+
     # read current data
     all_ratings = pd.read_csv('data\\ratings.csv')
     all_movies = pd.read_csv('data\\movies.csv')
     
     # scrape new data
-    page = 1
-    user = USERS[7]
-    url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
-    new_ratings, new_movies = scrape('user', user[0], url)
+    user = USERS[8]
+    max_page = 14
+    for page in range(max_page,0,-1):
+        
+        # scrape movie poster page
+        url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
+        new_ratings, new_movies = scrape('user', user[0], url)
+        print(f'Scraped: {user[1]}    page: {page}    movies: {len(new_ratings)}')
 
-    # combine new and current data
-    all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
-    all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+        # combine new and current data
+        all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
+        all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+
+        # give server a break
+        sleep(10)
 
     # write combined data to csv
     all_ratings.to_csv('data\\ratings.csv', index=False)

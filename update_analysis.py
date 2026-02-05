@@ -1,32 +1,5 @@
-import sqlite3
 import datetime
 import pandas as pd
-
-def get_leader(conn):
-    '''Collect users with most watched movies'''
-
-    qry = '''SELECT 
-                r.initials AS 'Name'
-                , COUNT(*) AS 'Total'
-                --, COUNT(bp.filmid) AS 'Best Pics'
-                --, CAST(100.0 * COUNT(o.filmid) / (SELECT COUNT(*) FROM oscars) AS INT) AS 'Oscars %'
-            FROM ratings r
-            INNER JOIN movies m
-                ON r.filmid = m.filmid
-            LEFT JOIN (
-                SELECT *
-                FROM oscars
-                WHERE record <= 10
-            ) bp
-                ON bp.filmid = m.filmid
-            LEFT JOIN oscars o
-                on r.filmid = o.filmid
-            GROUP BY r.initials
-            ORDER BY Total DESC
-                , 'Best Pics' DESC
-                , 'Oscars %' DESC;'''
-    leader = pd.read_sql(qry, conn)
-    return leader.to_markdown(index=False)
 
 
 def filmids_to_posters(df):
@@ -46,111 +19,81 @@ def filmids_to_posters(df):
     return df
 
 
-def get_ave_ratings(conn, t, limit=5):
-    '''Collect best and worst average movie ratings
-    t: scoring type. either "best" or "worst" ratings'''
-    CUT_PT = 3
+def main():
 
-    ineq = {'best':'>=', 'worst':'<'}
-    ordering = {'best':'DESC', 'worst':'ASC'}
+    # import movie data
+    movies = pd.read_csv('data\\movies.csv')
+    ratings = pd.read_csv('data\\ratings.csv')
+    ratings = movies.merge(ratings, how='inner', on='filmid')
 
-    qry = f'''SELECT
-                r.filmid
-                , m.slug
-                , ROUND(AVG(r.rating),2) AS 'Ave Rating'
-                , COUNT(*) AS 'Views'
-            FROM movies m
-            JOIN ratings r
-                ON m.filmid = r.filmid
-            WHERE r.rating > 0
-            GROUP BY r.filmid
-            HAVING COUNT(*) > 2
-                AND AVG(r.rating) {ineq[t]} {CUT_PT}
-            ORDER BY AVG(r.rating) {ordering[t]}, Views DESC'''
-    ave_ratings = pd.read_sql(qry, conn)
+    # import year-specific data
+    year = 2026
+    noms = pd.read_csv('data\\noms.csv')
+    noms = noms[noms['list'] == year][['filmid', 'best_pic']]
+    watchlist = pd.read_csv('data\\watchlist.csv')
+    watchlist = watchlist[watchlist['list'] == year]
 
-    # convert filmids to movie posters
-    ave_ratings = filmids_to_posters(ave_ratings)
-    
-    # Remove slug from dataframe
-    del ave_ratings['slug']
+    # apply year data to movie data
+    ratings = ratings.merge(watchlist, how='inner', on='filmid')
+    ratings = ratings.merge(noms, how='left', on='filmid')
 
-    return ave_ratings[:limit].to_markdown(index=False, floatfmt=".2f")
+    # get leaderboard data
+    total = ratings.groupby('user')['user'].count()
+    best_pic = ratings[ratings['best_pic']==1].groupby('user')['user'].count()
+    oscar_pct = 100 * ratings[ratings['best_pic'].notna()].groupby('user')['user'].count() / len(noms)
 
+    # rename leaderboard columns
+    total.rename('Total', inplace=True)
+    best_pic.rename('Best Pics', inplace=True)
+    oscar_pct.rename('Oscar %', inplace=True)
 
-def get_controversial(conn, limit=5):
-    '''Collects movies with highest std dev'''
+    # compile leaderboard
+    leader = pd.concat([
+        total
+        , best_pic
+        , oscar_pct.astype(int)
+    ], axis=1)
+    leader = leader.sort_values(by='Total', ascending=False)
+    leader.rename_axis("Name", axis=0, inplace=True)
+    leader = leader.to_markdown()
 
-    qry = f'''SELECT
-                r.filmid
-                , m.slug
-                , r.rating
-            FROM movies m
-            JOIN ratings r
-                ON m.filmid = r.filmid
-            JOIN (
-                SELECT FILMID
-                FROM RATINGS
-                WHERE RATING > 0
-                GROUP BY FILMID
-                HAVING COUNT(*)>2
-            ) CNT
-                ON M.FILMID = CNT.FILMID
-            WHERE r.rating > 0'''
-    ratings = pd.read_sql(qry, conn)
-
-    # get aggregate results
-    results = ratings.groupby(['filmid', 'slug'])['rating'].agg(
-        StdDev='std',
+    # compile aggregate movie data
+    non_zero_ratings = ratings[ratings['rating']>0]
+    agg_movie_data = non_zero_ratings.groupby(['filmid', 'slug'])['rating'].agg(
+        Std='std',
         Min='min',
         Ave='mean',
         Max='max',
         Views='count'
-    ).sort_values(by='StdDev', ascending=False).reset_index()
+    ).reset_index()
+    agg_movie_data = agg_movie_data[agg_movie_data['Views'] > 2] # must have 3 ratings
+    agg_movie_data = filmids_to_posters(agg_movie_data)
 
-    # convert filmids to movie posters
-    results = filmids_to_posters(results)
-    
-    # Remove slug from dataframe
-    del results['slug']
-    del results['StdDev']
+    # get best movies
+    best_movies = agg_movie_data[agg_movie_data['Ave'] >= 3.0]
+    best_movies = best_movies[['Movie', 'Ave', 'Views']].sort_values(by='Ave', ascending=False)[:7]
+    best_movies = best_movies.to_markdown(index=False, floatfmt=".2f")
 
-    return results[:limit].to_markdown(index=False, floatfmt=".1f")
+    # get worst movies
+    worst_movies = agg_movie_data[agg_movie_data['Ave'] < 3.0]
+    worst_movies = worst_movies[['Movie', 'Ave', 'Views']].sort_values(by='Ave', ascending=True)[:5]
+    worst_movies = worst_movies.to_markdown(index=False, floatfmt=".2f")
 
+    # get controversial movies
+    controversial = agg_movie_data.sort_values(by='Std', ascending=False)[:5]
+    controversial = controversial[['Movie','Min', 'Ave', 'Max','Views']].to_markdown(index=False, floatfmt=".1f")
 
-def get_harshest_critic(conn):
-    '''Collect users with lowest average ratings'''
+    # compile harshest critics data
+    critics = non_zero_ratings.groupby('user')['rating'].agg(
+        Ave='mean',
+        Min='min',
+    ).reset_index().sort_values(by=['Ave', 'Min'])
+    critics.rename(columns={'user': 'Name'}, inplace=True)
+    critics = critics.to_markdown(index=False, floatfmt=".2f")
 
-    qry = '''SELECT
-                r.initials AS 'Name'
-                , ROUND(AVG(r.rating), 1) AS 'Ave'
-                , MIN(r.rating) AS 'Lowest'
-            FROM ratings r
-            JOIN movies m
-                ON r.filmid = m.filmid
-            WHERE r.rating > 0
-            GROUP BY r.initials
-            ORDER BY Ave ASC
-                , Lowest ASC
-                , COUNT(r.rating) DESC;'''
-    critics = pd.read_sql(qry, conn)
-    return critics.to_markdown(index=False, floatfmt=".1f")
-
-
-def get_watched(conn):
-    '''Collect all user ratings'''
-
-    qry = '''SELECT
-                r.initials AS 'Name'
-                , m.title AS 'Movie'
-                , r.rating AS 'Rating'
-            FROM movies m
-            JOIN ratings r  
-                ON m.filmid = r.filmid;'''
-    watched = pd.read_sql(qry, conn)
-
-    # convert numerical columns to strings
-    watched['Movie'] = watched['Movie'].astype(str)
+    # get watched
+    watched = ratings[['user', 'slug', 'rating']].copy()
+    watched.rename(columns={'user': 'Name', 'slug':'Movie', 'rating':'Rating'}, inplace=True)
     watched['Rating'] = watched['Rating'].astype(str)
 
     # remove 0 ratings aka "watched" moves
@@ -162,26 +105,7 @@ def get_watched(conn):
     
     # split table into groups of n movies
     n = 8
-    return [watched.iloc[i:i+n].to_markdown(floatfmt=".1f") for i in range(0, watched.shape[0], n)]
-
-
-def main():
-
-    # open database connection and cursor
-    conn = sqlite3.connect('letterboxrs.db')
-    cur = conn.cursor()
-    
-    # collect tables
-    leader = get_leader(conn)
-    best_movies = get_ave_ratings(conn, 'best', limit=7)
-    worst_movies  = get_ave_ratings(conn, 'worst', limit=5)
-    controversial = get_controversial(conn, limit=5)
-    critics = get_harshest_critic(conn)
-    watched = get_watched(conn)
-
-    # close database connection
-    cur.close()
-    conn.close()
+    watched = [watched.iloc[i:i+n].to_markdown(floatfmt=".1f") for i in range(0, watched.shape[0], n)]
 
     # update README.md
     output = f'''Aggregate Letterboxd movie ratings for 2026! <br />
