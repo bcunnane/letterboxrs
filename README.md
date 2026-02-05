@@ -1,11 +1,11 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Wed Feb 04 at 11:51 PM <br />
+Last updated on Thu Feb 05 at 12:33 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
 | Name   |   Total |   Best Pics |   Oscar % |
 |:-------|--------:|------------:|----------:|
-| NB     |      46 |          10 |        42 |
+| NB     |      47 |          10 |        44 |
 | CA     |      42 |          10 |        36 |
 | MF     |      42 |          10 |        38 |
 | BC     |      41 |          10 |        40 |
@@ -50,7 +50,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | BC     |  3.60 |  2.00 |
 | MF     |  3.63 |  2.50 |
 | TA     |  3.70 |  2.00 |
-| NB     |  3.74 |  2.00 |
+| NB     |  3.71 |  2.00 |
 | DN     |  3.80 |  3.50 |
 | KH     |  4.07 |  3.00 |
 
@@ -156,17 +156,18 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | train-dreams              | 2.0  | 2.5  |      |      | 3.5  | 4.0  |      | 4.0  |
 | tron-ares                 |      |      |      | X    |      |      |      |      |
 | twinless                  | 4.5  |      |      | X    | 4.0  |      |      |      |
-| wake-up-dead-man          | 4.0  | 4.0  |      | X    | 4.5  | 4.0  |      | 3.5  |
+| viva-verdi                |      |      |      |      |      | 2.5  |      |      |
 
 </div>
 
 <div  style="overflow-x: scroll;">
 
-| Movie           | BC   | CA   | DN   | KH   | MF   |   NB | RZ   | TA   |
-|:----------------|:-----|:-----|:-----|:-----|:-----|-----:|:-----|:-----|
-| warfare         | 4.0  | 4.0  | 4.0  |      | 4.0  |  4.0 | 2.0  | 4.0  |
-| weapons-2025    |      | X    | 3.5  | X    |      |  4.0 | 4.0  | 4.5  |
-| wicked-for-good | 3.5  | 1.5  |      | X    | 4.0  |  2.5 | 3.5  | 3.0  |
-| zootopia-2      |      | 3.5  |      |      |      |  3.5 |      |      |
+| Movie            | BC   | CA   | DN   | KH   | MF   |   NB | RZ   | TA   |
+|:-----------------|:-----|:-----|:-----|:-----|:-----|-----:|:-----|:-----|
+| wake-up-dead-man | 4.0  | 4.0  |      | X    | 4.5  |  4.0 |      | 3.5  |
+| warfare          | 4.0  | 4.0  | 4.0  |      | 4.0  |  4.0 | 2.0  | 4.0  |
+| weapons-2025     |      | X    | 3.5  | X    |      |  4.0 | 4.0  | 4.5  |
+| wicked-for-good  | 3.5  | 1.5  |      | X    | 4.0  |  2.5 | 3.5  | 3.0  |
+| zootopia-2       |      | 3.5  |      |      |      |  3.5 |      |      |
 
 </div>

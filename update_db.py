@@ -95,21 +95,21 @@ def scrape_user():
     all_movies = pd.read_csv('data\\movies.csv')
     
     # scrape new data
-    user = USERS[8]
-    max_page = 14
-    for page in range(max_page,0,-1):
-        
-        # scrape movie poster page
-        url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
-        new_ratings, new_movies = scrape('user', user[0], url)
-        print(f'Scraped: {user[1]}    page: {page}    movies: {len(new_ratings)}')
+    for user in USERS:
+        max_page = 14
+        for page in [1]:#range(max_page,0,-1):
+            
+            # scrape movie poster page
+            url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
+            new_ratings, new_movies = scrape('user', user[0], url)
+            print(f'Scraped: {user[1]}    page: {page}    movies: {len(new_ratings)}')
 
-        # combine new and current data
-        all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
-        all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+            # combine new and current data
+            all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
+            all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
 
-        # give server a break
-        sleep(10)
+            # give server a break
+            sleep(10)
 
     # write combined data to csv
     all_ratings.to_csv('data\\ratings.csv', index=False)
