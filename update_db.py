@@ -75,23 +75,6 @@ def scrape(type, label, url):
     return movielist, movies
 
 
-def get_new_records(new_values, old_values):
-    """Returns rows in new_values that do not exist in old_values"""
-    # 1. Merge the two dataframes on all common columns
-    # 2. Use indicator=True to track which dataframe the row came from
-    # 3. Use how='left' to keep all rows from new_values
-    merged = new_values.merge(
-        old_values, 
-        how='left', 
-        indicator=True
-    )
-    
-    # Filter for rows that only exist in the 'left' (new_values) dataframe
-    diff = merged[merged['_merge'] == 'left_only'].drop(columns=['_merge'])
-    
-    return diff
-
-
 def drop_outdated_ratings(all_ratings, new_ratings):
     """
     Removes rows from all_ratings that are already present in new_ratings
@@ -109,7 +92,6 @@ def drop_outdated_ratings(all_ratings, new_ratings):
     filtered_df = merged[merged['_merge'] == 'left_only'].drop(columns=['_merge'])
     
     return filtered_df
-
 
 
 def main():
@@ -154,42 +136,38 @@ def main():
             new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
     all_ratings = drop_outdated_ratings(all_ratings, new_ratings) # expunge outdated ratings
-    new_ratings = get_new_records(new_ratings, all_ratings) # only include unsaved ratings
 
     # scrape watchlist
     # watchlist_url = 'https://letterboxd.com/_branzino/list/oscars-2026/'
-    # scraped_watchlist, scraped_movies = scrape('list', YEAR, watchlist_url)
+    # new_watchlist, scraped_movies = scrape('list', YEAR, watchlist_url)
     # new_watchlist = get_new_records(new_watchlist, all_watchlist) # only include unsaved watchlist
     # new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
     # scrape noms
-    # noms_url = 'https://letterboxd.com/000_leo/list/oscars-2026-1/'
-    # new_noms, scraped_movies = scrape('list', YEAR, noms_url)
-    # new_noms['best_pic'] = 0            # assume nom is not best pic
-    # new_noms.loc[:9, "best_pic"] = 1    # set first 10 films in list to best pic
-    # new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
-
-    # only include unsved movies
-    new_movies = get_new_records(new_movies, all_movies) # only include unsaved ratings
+    noms_url = 'https://letterboxd.com/eternalsam/list/oscars-2026/'
+    new_noms, scraped_movies = scrape('list', YEAR, noms_url)
+    new_noms['best_pic'] = 0            # assume nom is not best pic
+    new_noms.loc[:9, "best_pic"] = 1    # set first 10 films in list to best pic
+    new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
     # write new data if present
     if not new_watchlist.empty:
-        all_watchlist = pd.concat([new_watchlist, all_watchlist])
+        all_watchlist = pd.concat([new_watchlist, all_watchlist]).drop_duplicates()
         all_watchlist.to_csv('data\\watchlist.csv', index=False)
         print('\nAdded to watchlist:')
         print(new_watchlist)
-    elif not new_ratings.empty:
-        all_ratings = pd.concat([new_ratings, all_ratings])
+    if not new_ratings.empty:
+        all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
         all_ratings.to_csv('data\\ratings.csv', index=False)
         print('\nAdded to ratings:')
         print(new_ratings)
-    elif not new_movies.empty:
-        all_movies = pd.concat([new_movies, all_movies])
+    if not new_movies.empty:
+        all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
         all_movies.to_csv('data\\movies.csv', index=False)
         print('\nAdded to movies:')
         print(new_movies)
-    elif not all_noms.empty:
-        all_noms = pd.concat([new_noms, all_noms])
+    if not new_noms.empty:
+        all_noms = pd.concat([new_noms, all_noms]).drop_duplicates()
         all_noms.to_csv('data\\noms.csv', index=False)
         print('\nAdded to noms:')
         print(new_noms)
