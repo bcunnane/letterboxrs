@@ -75,9 +75,48 @@ def scrape(type, label, url):
     return movielist, movies
 
 
-def scrape_user():
-    '''Webscrape user rating data from letterboxd'''
+def get_new_records(new_values, old_values):
+    """Returns rows in new_values that do not exist in old_values"""
+    # 1. Merge the two dataframes on all common columns
+    # 2. Use indicator=True to track which dataframe the row came from
+    # 3. Use how='left' to keep all rows from new_values
+    merged = new_values.merge(
+        old_values, 
+        how='left', 
+        indicator=True
+    )
+    
+    # Filter for rows that only exist in the 'left' (new_values) dataframe
+    diff = merged[merged['_merge'] == 'left_only'].drop(columns=['_merge'])
+    
+    return diff
 
+
+def drop_outdated_ratings(all_ratings, new_ratings):
+    """
+    Removes rows from all_ratings that are already present in new_ratings
+    based on 'user' and 'filmid'.
+    """
+    # Merge with an indicator to identify matches
+    merged = all_ratings.merge(
+        new_ratings[['user', 'filmid']], 
+        on=['user', 'filmid'], 
+        how='left', 
+        indicator=True
+    )
+    
+    # Keep only the rows that weren't found in scraped_ratings
+    filtered_df = merged[merged['_merge'] == 'left_only'].drop(columns=['_merge'])
+    
+    return filtered_df
+
+
+
+def main():
+    '''Web scrapes letterboxd film ratings for specified users'''
+
+    # constants
+    YEAR = '2026'
     USERS = [
         ('BC', '_branzino'),
         ('CA', 'honeydijon2'),
@@ -91,85 +130,72 @@ def scrape_user():
     ]
 
     # read current data
+    all_watchlist = pd.read_csv('data\\watchlist.csv')
     all_ratings = pd.read_csv('data\\ratings.csv')
     all_movies = pd.read_csv('data\\movies.csv')
-    
-    # scrape new data
+    all_noms = pd.read_csv('data\\noms.csv')
+
+    # initialize empty dataframes
+    new_watchlist = pd.DataFrame(columns=['list','filmid'])
+    new_ratings = pd.DataFrame(columns=['user','filmid','rating'])
+    new_movies = pd.DataFrame(columns=['filmid', 'slug'])
+    new_noms = pd.DataFrame(columns=['list','filmid','best_pic'])
+
+    # scrape user ratings
     for user in USERS:
-        max_page = 14
-        for page in [1]:#range(max_page,0,-1):
+        for page in [1]:#range(14,0,-1):
             
             # scrape movie poster page
-            url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
-            new_ratings, new_movies = scrape('user', user[0], url)
-            print(f'Scraped: {user[1]}    page: {page}    movies: {len(new_ratings)}')
+            user_url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
+            scraped_ratings, scraped_movies = scrape('user', user[0], user_url)
+            print(f'Scraped: {user[1]}    page: {page}    movies: {len(scraped_ratings)}')
 
-            # combine new and current data
-            all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
-            all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+            new_ratings = pd.concat([scraped_ratings, new_ratings])
+            new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
-            # give server a break
-            sleep(10)
+    all_ratings = drop_outdated_ratings(all_ratings, new_ratings) # expunge outdated ratings
+    new_ratings = get_new_records(new_ratings, all_ratings) # only include unsaved ratings
+
+    # scrape watchlist
+    # watchlist_url = 'https://letterboxd.com/_branzino/list/oscars-2026/'
+    # scraped_watchlist, scraped_movies = scrape('list', YEAR, watchlist_url)
+    # new_watchlist = get_new_records(new_watchlist, all_watchlist) # only include unsaved watchlist
+    # new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
+
+    # scrape noms
+    # noms_url = 'https://letterboxd.com/000_leo/list/oscars-2026-1/'
+    # new_noms, scraped_movies = scrape('list', YEAR, noms_url)
+    # new_noms['best_pic'] = 0            # assume nom is not best pic
+    # new_noms.loc[:9, "best_pic"] = 1    # set first 10 films in list to best pic
+    # new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
+
+    # only include unsved movies
+    new_movies = get_new_records(new_movies, all_movies) # only include unsaved ratings
+
+    # write new data if present
+    if not new_watchlist.empty:
+        all_watchlist = pd.concat([new_watchlist, all_watchlist])
+        all_watchlist.to_csv('data\\watchlist.csv', index=False)
+        print('\nAdded to watchlist:')
+        print(new_watchlist)
+    elif not new_ratings.empty:
+        all_ratings = pd.concat([new_ratings, all_ratings])
+        all_ratings.to_csv('data\\ratings.csv', index=False)
+        print('\nAdded to ratings:')
+        print(new_ratings)
+    elif not new_movies.empty:
+        all_movies = pd.concat([new_movies, all_movies])
+        all_movies.to_csv('data\\movies.csv', index=False)
+        print('\nAdded to movies:')
+        print(new_movies)
+    elif not all_noms.empty:
+        all_noms = pd.concat([new_noms, all_noms])
+        all_noms.to_csv('data\\noms.csv', index=False)
+        print('\nAdded to noms:')
+        print(new_noms)
+
 
     # write combined data to csv
-    all_ratings.to_csv('data\\ratings.csv', index=False)
-    all_movies.to_csv('data\\movies.csv', index=False)
-
-
-def scrape_watchlist():
-    '''Webscrape yearly watchlist from letterboxd'''
-
-    # read current data
-    all_watchlist = pd.read_csv('data\\watchlist.csv')
-    all_movies = pd.read_csv('data\\movies.csv')
-
-    # scrape new data
-    year = '2026'
-    url = 'https://letterboxd.com/_branzino/list/oscars-2026/'
-    new_watchlist, new_movies = scrape('list', year, url)
-
-    # combine new and current data
-    all_watchlist = pd.concat([new_watchlist, all_watchlist]).drop_duplicates()
-    all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
-
-    # write combined data to csv
-    all_watchlist.to_csv('data\\watchlist.csv', index=False)
-    all_movies.to_csv('data\\movies.csv', index=False)
-
-
-def scrape_oscars():
-    '''Webscrape oscar nomination list from letterboxd'''
-
-    # read current data
-    all_noms = pd.read_csv('data\\noms.csv')
-    all_movies = pd.read_csv('data\\movies.csv')
-
-    # scrape new data
-    year = '2026'
-    url = 'https://letterboxd.com/000_leo/list/oscars-2026-1/'
-    new_noms, new_movies = scrape('list', year, url)
-
-    # set first 10 films to best picture (confirm true on letterboxd)
-    new_noms['best_pic'] = 0
-    new_noms.loc[:9, "best_pic"] = 1
-
-    # combine new and current data
-    all_noms = pd.concat([new_noms, all_noms]).drop_duplicates()
-    all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
-
-    # write combined data to csv
-    all_noms.to_csv('data\\noms.csv', index=False)
-    all_movies.to_csv('data\\movies.csv', index=False)
-
-
-
-def main():
-    '''Web scrapes letterboxd film ratings for specified users'''
-
-    scrape_user()
-    # scrape_watchlist()
-    # scrape_oscars()
-
 
 
 if __name__ == '__main__':
