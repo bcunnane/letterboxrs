@@ -144,11 +144,11 @@ def main():
     # new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
     # scrape noms
-    noms_url = 'https://letterboxd.com/eternalsam/list/oscars-2026/'
-    new_noms, scraped_movies = scrape('list', YEAR, noms_url)
-    new_noms['best_pic'] = 0            # assume nom is not best pic
-    new_noms.loc[:9, "best_pic"] = 1    # set first 10 films in list to best pic
-    new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
+    # noms_url = 'https://letterboxd.com/eternalsam/list/oscars-2026/'
+    # new_noms, scraped_movies = scrape('list', YEAR, noms_url)
+    # new_noms['best_pic'] = 0            # assume nom is not best pic
+    # new_noms.loc[:9, "best_pic"] = 1    # set first 10 films in list to best pic
+    # new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
     # write new data if present
     if not new_watchlist.empty:

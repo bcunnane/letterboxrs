@@ -1,29 +1,29 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Mon Feb 16 at 12:00 PM <br />
+Last updated on Mon Feb 23 at 09:25 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
 | Name   |   Total |   Best Pics |   Oscar % |
 |:-------|--------:|------------:|----------:|
 | NB     |      55 |          10 |        82 |
-| MF     |      49 |          10 |        71 |
+| MF     |      53 |          10 |        82 |
+| BC     |      48 |          10 |        74 |
 | CA     |      47 |          10 |        62 |
-| BC     |      45 |          10 |        65 |
+| KH     |      38 |          10 |        42 |
 | TA     |      37 |           9 |        42 |
-| KH     |      35 |           8 |        34 |
 | RZ     |      25 |           6 |        25 |
 | DN     |      10 |           3 |        11 |
 
 ## Loved Movies :heart:
 | Movie                                                                                                                                                                                      |   Ave |   Views |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|--------:|
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/2/9/5/2/0/6/1295206-the-alabama-solution-0-1000-0-1500-crop.jpg" alt="the-alabama-solution" style="height: 105px; width:70px;"/>      |  4.83 |       3 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/5/1/2/7/7/951277-one-battle-after-another-0-1000-0-1500-crop.jpg" alt="one-battle-after-another" style="height: 105px; width:70px;"/> |  4.57 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/7/0/4/3/3/1170433-pillion-2025-0-1000-0-1500-crop.jpg" alt="pillion-2025" style="height: 105px; width:70px;"/>                      |  4.50 |       4 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/6/0/0/1116600-sinners-2025-0-1000-0-1500-crop.jpg" alt="sinners-2025" style="height: 105px; width:70px;"/>                      |  4.44 |       8 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/0/9/0/4/6/4/1090464-sorry-baby-2025-0-1000-0-1500-crop.jpg" alt="sorry-baby-2025" style="height: 105px; width:70px;"/>                |  4.43 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/7/7/2/2/3/2/772232-hamnet-0-1000-0-1500-crop.jpg" alt="hamnet" style="height: 105px; width:70px;"/>                                     |  4.43 |       7 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/0/9/0/4/6/4/1090464-sorry-baby-2025-0-1000-0-1500-crop.jpg" alt="sorry-baby-2025" style="height: 105px; width:70px;"/>                |  4.43 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/7/4/9/9/1197499-marty-supreme-0-1000-0-1500-crop.jpg" alt="marty-supreme" style="height: 105px; width:70px;"/>                    |  4.43 |       7 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/5/6/5/9/5/2/565952-no-other-choice-2025-0-1000-0-1500-crop.jpg" alt="no-other-choice-2025" style="height: 105px; width:70px;"/>         |  4.42 |       6 |
 
 ## Unloved Movies :broken_heart:
 | Movie                                                                                                                                                                                                                  |   Ave |   Views |
@@ -37,7 +37,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 ## Controversial Movies :hot_pepper:
 | Movie                                                                                                                                                                                   |   Min |   Ave |   Max |   Views |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|------:|------:|--------:|
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/0/4/3/4/8/1104348-the-secret-agent-2025-0-1000-0-1500-crop.jpg" alt="the-secret-agent-2025" style="height: 105px; width:70px;"/> |   2.0 |   3.1 |   4.0 |       4 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/0/4/3/4/8/1104348-the-secret-agent-2025-0-1000-0-1500-crop.jpg" alt="the-secret-agent-2025" style="height: 105px; width:70px;"/> |   2.0 |   3.3 |   4.0 |       5 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/7/5/5/1116755-black-bag-2025-0-1000-0-1500-crop.jpg" alt="black-bag-2025" style="height: 105px; width:70px;"/>               |   2.0 |   3.6 |   4.5 |       6 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/5/3/8/3/1125383-train-dreams-0-1000-0-1500-crop.jpg" alt="train-dreams" style="height: 105px; width:70px;"/>                   |   2.0 |   3.2 |   4.0 |       5 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/8/7/1/1/4/8/871148-wicked-for-good-0-1000-0-1500-crop.jpg" alt="wicked-for-good" style="height: 105px; width:70px;"/>                |   1.5 |   3.0 |   4.0 |       6 |
@@ -47,13 +47,13 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | Name   |   Ave |   Min |
 |:-------|------:|------:|
 | RZ     |  3.54 |  2.00 |
-| MF     |  3.54 |  1.50 |
 | CA     |  3.54 |  1.50 |
-| BC     |  3.54 |  2.00 |
+| MF     |  3.55 |  1.50 |
+| BC     |  3.56 |  2.00 |
 | TA     |  3.68 |  2.00 |
 | NB     |  3.69 |  2.00 |
 | DN     |  3.80 |  3.50 |
-| KH     |  4.07 |  3.00 |
+| KH     |  4.06 |  3.00 |
 
 ## All Watched :movie_camera:
 <div  style="overflow-x: scroll;">
@@ -67,7 +67,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | avatar-fire-and-ash | 3.5  | 4.0  |      |      | 3.0  | 3.5  |      | 4.0  |
 | bad-apples-2025     |      |      |      | X    |      |      |      |      |
 | black-bag-2025      | 2.0  | 4.0  |      | X    | 3.0  | 4.0  | 4.5  | 4.0  |
-| blue-moon-2025      | 2.5  | 2.5  |      |      | 2.5  | 2.5  |      |      |
+| blue-moon-2025      | 2.5  | 2.5  |      | X    | 2.5  | 2.5  |      |      |
 
 </div>
 
@@ -78,7 +78,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | bugonia                       | 3.5  | 4.0  |      | X    | 3.5  | 4.5  | 3.0  | 4.0  |
 | caught-stealing               |      | 2.5  |      | X    |      | 3.0  |      | 3.0  |
 | come-see-me-in-the-good-light | 4.0  |      |      |      | 4.0  | 3.5  |      |      |
-| cutting-through-rocks         |      |      |      |      |      | 4.0  |      |      |
+| cutting-through-rocks         | 4.0  |      |      |      | 4.0  | 4.0  |      |      |
 | diane-warren-relentless       |      |      |      |      |      | 3.0  |      |      |
 | die-my-love                   |      | 3.0  |      | X    |      | 3.0  | 3.0  |      |
 | eddington                     | 3.5  | 4.5  |      |      | 3.5  | 4.5  | 4.0  | 3.0  |
@@ -137,7 +137,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 |:------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
 | sentimental-value-2025              | 4.5  | 4.5  |      | 4.5  | 4.0  | 4.5  | 4.0  | 4.5  |
 | sinners-2025                        | 4.5  | 4.5  | 3.5  | 4.0  | 4.5  | 4.5  | 5.0  | 5.0  |
-| sirat-2025                          |      | 2.5  |      |      |      | 3.5  |      |      |
+| sirat-2025                          | 2.5  | 2.5  |      |      | 2.5  | 3.5  |      |      |
 | song-sung-blue-2025                 | 3.5  |      |      |      | 3.0  |      |      |      |
 | sorry-baby-2025                     | 4.0  | 4.5  |      | 5.0  | 4.5  | 5.0  | 3.5  | 4.5  |
 | splitsville                         | 3.0  | 3.0  |      | X    | 3.0  | 3.0  | 4.0  | 4.0  |
@@ -150,14 +150,14 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 
 | Movie                 | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
 |:----------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| the-alabama-solution  |      |      |      |      |      | 4.5  |      |      |
+| the-alabama-solution  | 5.0  |      |      |      | 5.0  | 4.5  |      |      |
 | the-life-of-chuck     |      |      |      |      | 2.5  |      |      |      |
+| the-lost-bus          |      |      |      |      | 3.0  |      |      |      |
 | the-mastermind-2025   |      | 3.5  |      |      |      | 3.5  |      |      |
 | the-naked-gun         | 4.0  | 4.0  | 3.5  | X    | 4.0  | 4.0  | 5.0  | 4.0  |
 | the-perfect-neighbour | 4.0  |      |      |      | 4.5  | 3.5  |      |      |
 | the-phoenician-scheme | 3.5  | 4.0  |      |      | 3.0  | 4.0  |      | 3.5  |
 | the-roses-2025        |      |      |      | X    |      |      |      |      |
-| the-secret-agent-2025 | 2.0  | 4.0  |      |      | 2.5  | 4.0  |      |      |
 
 </div>
 
@@ -165,24 +165,25 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 
 | Movie                     | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
 |:--------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| the-secret-agent-2025     | 2.0  | 4.0  |      | 4.0  | 2.5  | 4.0  |      |      |
 | the-smashing-machine-2025 | 2.0  |      |      |      | 1.5  |      |      | 2.5  |
 | the-testament-of-ann-lee  | 4.0  | 3.0  |      |      | 4.0  | 3.0  |      | 4.0  |
 | the-voice-of-hind-rajab   |      | 2.5  |      |      |      | 3.0  |      |      |
-| train-dreams              | 2.0  | 2.5  |      |      | 3.5  | 4.0  |      | 4.0  |
+| train-dreams              | 2.0  | 2.5  |      | X    | 3.5  | 4.0  |      | 4.0  |
 | tron-ares                 |      |      |      | X    |      |      |      |      |
 | twinless                  | 4.5  |      |      | X    | 4.0  |      |      |      |
 | viva-verdi                | 3.5  |      |      |      | 3.5  | 2.5  |      |      |
-| wake-up-dead-man          | 4.0  | 4.0  |      | X    | 4.5  | 4.0  |      | 3.5  |
 
 </div>
 
 <div  style="overflow-x: scroll;">
 
-| Movie           | BC   | CA   | DN   | KH   | MF   |   NB | RZ   | TA   |
-|:----------------|:-----|:-----|:-----|:-----|:-----|-----:|:-----|:-----|
-| warfare         | 4.0  | 4.0  | 4.0  |      | 4.0  |  4.0 | 2.0  | 4.0  |
-| weapons-2025    |      | X    | 3.5  | X    |      |  4.0 | 4.0  | 4.5  |
-| wicked-for-good | 3.5  | 1.5  |      | X    | 4.0  |  2.5 | 3.5  | 3.0  |
-| zootopia-2      |      | 3.5  |      |      |      |  3.5 |      |      |
+| Movie            | BC   | CA   | DN   | KH   | MF   |   NB | RZ   | TA   |
+|:-----------------|:-----|:-----|:-----|:-----|:-----|-----:|:-----|:-----|
+| wake-up-dead-man | 4.0  | 4.0  |      | X    | 4.5  |  4.0 |      | 3.5  |
+| warfare          | 4.0  | 4.0  | 4.0  |      | 4.0  |  4.0 | 2.0  | 4.0  |
+| weapons-2025     |      | X    | 3.5  | X    |      |  4.0 | 4.0  | 4.5  |
+| wicked-for-good  | 3.5  | 1.5  |      | X    | 4.0  |  2.5 | 3.5  | 3.0  |
+| zootopia-2       |      | 3.5  |      |      |      |  3.5 |      |      |
 
 </div>

@@ -71,12 +71,12 @@ def main():
 
     # get best movies
     best_movies = agg_movie_data[agg_movie_data['Ave'] >= 3.0]
-    best_movies = best_movies[['Movie', 'Ave', 'Views']].sort_values(by='Ave', ascending=False)[:7]
+    best_movies = best_movies[['Movie', 'Ave', 'Views']].sort_values(by=['Ave', 'Views'], ascending=False)[:7]
     best_movies = best_movies.to_markdown(index=False, floatfmt=".2f")
 
     # get worst movies
     worst_movies = agg_movie_data[agg_movie_data['Ave'] < 3.0]
-    worst_movies = worst_movies[['Movie', 'Ave', 'Views']].sort_values(by='Ave', ascending=True)[:5]
+    worst_movies = worst_movies[['Movie', 'Ave', 'Views']].sort_values(by=['Ave', 'Views'], ascending=True)[:5]
     worst_movies = worst_movies.to_markdown(index=False, floatfmt=".2f")
 
     # get controversial movies
