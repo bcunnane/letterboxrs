@@ -53,6 +53,8 @@ def main():
         , best_pic
         , oscar_pct.astype(int)
     ], axis=1)
+    leader.loc['MF','Total'] += 3 # shorts
+    leader.loc['NB','Total'] += 3 # shorts
     leader = leader.sort_values(by='Total', ascending=False)
     leader.rename_axis("Name", axis=0, inplace=True)
     leader = leader.to_markdown()
@@ -71,7 +73,7 @@ def main():
 
     # get best movies
     best_movies = agg_movie_data[agg_movie_data['Ave'] >= 3.0]
-    best_movies = best_movies[['Movie', 'Ave', 'Views']].sort_values(by=['Ave', 'Views'], ascending=False)[:7]
+    best_movies = best_movies[['Movie', 'Ave', 'Views']].sort_values(by=['Ave', 'Views'], ascending=False)[:10]
     best_movies = best_movies.to_markdown(index=False, floatfmt=".2f")
 
     # get worst movies
@@ -92,20 +94,21 @@ def main():
     critics = critics.to_markdown(index=False, floatfmt=".2f")
 
     # get watched
-    watched = ratings[['user', 'slug', 'rating']].copy()
-    watched.rename(columns={'user': 'Name', 'slug':'Movie', 'rating':'Rating'}, inplace=True)
-    watched['Rating'] = watched['Rating'].astype(str)
+    watched = ''
+    # watched = ratings[['user', 'slug', 'rating']].copy()
+    # watched.rename(columns={'user': 'Name', 'slug':'Movie', 'rating':'Rating'}, inplace=True)
+    # watched['Rating'] = watched['Rating'].astype(str)
 
-    # remove 0 ratings aka "watched" moves
-    watched.loc[watched['Rating'] == '0.0', 'Rating'] = 'X'
+    # # remove 0 ratings aka "watched" moves
+    # watched.loc[watched['Rating'] == '0.0', 'Rating'] = 'X'
 
-    # create pivot table
-    watched = watched.pivot(index='Movie', columns='Name', values='Rating')
-    watched[watched.isnull()] = ''
+    # # create pivot table
+    # watched = watched.pivot(index='Movie', columns='Name', values='Rating')
+    # watched[watched.isnull()] = ''
     
-    # split table into groups of n movies
-    n = 8
-    watched = [watched.iloc[i:i+n].to_markdown(floatfmt=".1f") for i in range(0, watched.shape[0], n)]
+    # # split table into groups of n movies
+    # n = 8
+    # watched = [watched.iloc[i:i+n].to_markdown(floatfmt=".1f") for i in range(0, watched.shape[0], n)]
 
     # update README.md
     output = f'''Aggregate Letterboxd movie ratings for 2026! <br />
@@ -127,12 +130,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 ## Harshest Critic :thumbsdown:
 {critics}
 
-## All Watched :movie_camera:
-<div  style="overflow-x: scroll;">
-
-{'\n\n</div>\n\n<div  style="overflow-x: scroll;">\n\n'.join(watched)}
-
-</div>'''
+'''
     
     f = open('README.md', 'w', encoding='utf-8')
     f.write(output)

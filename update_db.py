@@ -11,7 +11,7 @@ from time import sleep
 def setup_driver():
     # Setup Chrome WebDriver
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
@@ -37,7 +37,7 @@ def scrape(type, label, url):
 
     try:
         # Wait for the page content to load
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.CLASS_NAME, "film-poster"))
         )
     except Exception:
@@ -60,9 +60,9 @@ def scrape(type, label, url):
             rating = rating.count('★') + 0.5 * rating.count('½')
         except:
             rating = 0
-
-        movielist.loc[len(movielist)] = {type:label, 'filmid':filmid, 'rating':rating}
-        movies.loc[len(movies)] = {'filmid':filmid, 'slug':slug}
+        if rating > 0:
+            movielist.loc[len(movielist)] = {type:label, 'filmid':filmid, 'rating':rating}
+            movies.loc[len(movies)] = {'filmid':filmid, 'slug':slug}
         
     # remove reting from movielist
     if type == 'list':
@@ -135,7 +135,7 @@ def main():
             new_ratings = pd.concat([scraped_ratings, new_ratings])
             new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
-    all_ratings = drop_outdated_ratings(all_ratings, new_ratings) # expunge outdated ratings
+    # all_ratings = drop_outdated_ratings(all_ratings, new_ratings) # expunge outdated ratings
 
     # scrape watchlist
     # watchlist_url = 'https://letterboxd.com/_branzino/list/oscars-2026/'

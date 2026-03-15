@@ -1,189 +1,60 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Sun Mar 01 at 10:50 AM <br />
+Last updated on Sun Mar 15 at 05:55 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
 | Name   |   Total |   Best Pics |   Oscar % |
 |:-------|--------:|------------:|----------:|
-| NB     |      55 |          10 |        82 |
-| MF     |      54 |          10 |        85 |
-| BC     |      49 |          10 |        77 |
-| CA     |      47 |          10 |        62 |
+| NB     |      64 |          10 |       100 |
+| MF     |      62 |          10 |       100 |
+| CA     |      54 |          10 |        82 |
+| BC     |      51 |          10 |        82 |
+| TA     |      38 |          10 |        45 |
 | KH     |      38 |          10 |        42 |
-| TA     |      37 |           9 |        42 |
-| RZ     |      25 |           6 |        25 |
-| DN     |      10 |           3 |        11 |
+| RZ     |      31 |           9 |        37 |
+| DN     |      16 |           5 |        20 |
 
 ## Loved Movies :heart:
 | Movie                                                                                                                                                                                      |   Ave |   Views |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|--------:|
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/2/9/5/2/0/6/1295206-the-alabama-solution-0-1000-0-1500-crop.jpg" alt="the-alabama-solution" style="height: 105px; width:70px;"/>      |  4.83 |       3 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/5/1/2/7/7/951277-one-battle-after-another-0-1000-0-1500-crop.jpg" alt="one-battle-after-another" style="height: 105px; width:70px;"/> |  4.57 |       7 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/7/0/4/3/3/1170433-pillion-2025-0-1000-0-1500-crop.jpg" alt="pillion-2025" style="height: 105px; width:70px;"/>                      |  4.50 |       4 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/6/0/0/1116600-sinners-2025-0-1000-0-1500-crop.jpg" alt="sinners-2025" style="height: 105px; width:70px;"/>                      |  4.44 |       8 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/7/7/2/2/3/2/772232-hamnet-0-1000-0-1500-crop.jpg" alt="hamnet" style="height: 105px; width:70px;"/>                                     |  4.43 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/9/0/4/6/4/1090464-sorry-baby-2025-0-1000-0-1500-crop.jpg" alt="sorry-baby-2025" style="height: 105px; width:70px;"/>                |  4.43 |       7 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/7/4/9/9/1197499-marty-supreme-0-1000-0-1500-crop.jpg" alt="marty-supreme" style="height: 105px; width:70px;"/>                    |  4.43 |       7 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/5/6/5/9/5/2/565952-no-other-choice-2025-0-1000-0-1500-crop.jpg" alt="no-other-choice-2025" style="height: 105px; width:70px;"/>         |  4.42 |       6 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/7/4/9/9/1197499-marty-supreme-0-1000-0-1500-crop.jpg" alt="marty-supreme" style="height: 105px; width:70px;"/>                    |  4.38 |       8 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/0/1/3/3/5/7/1013357-sentimental-value-2025-0-1000-0-1500-crop.jpg" alt="sentimental-value-2025" style="height: 105px; width:70px;"/>  |  4.36 |       7 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/7/0/4/3/3/1170433-pillion-2025-0-1000-0-1500-crop.jpg" alt="pillion-2025" style="height: 105px; width:70px;"/>                      |  4.20 |       5 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/9/3/3/3/8/1/933381-the-naked-gun-0-1000-0-1500-crop.jpg" alt="the-naked-gun" style="height: 105px; width:70px;"/>                       |  4.07 |       7 |
 
 ## Unloved Movies :broken_heart:
 | Movie                                                                                                                                                                                                                  |   Ave |   Views |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|--------:|
-| <img src="https://a.ltrbxd.com/resized/film-poster/6/8/0/7/3/9/680739-the-smashing-machine-2025-0-1000-0-1500-crop.jpg" alt="the-smashing-machine-2025" style="height: 105px; width:70px;"/>                           |  2.00 |       3 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/6/8/0/7/3/9/680739-the-smashing-machine-2025-0-1000-0-1500-crop.jpg" alt="the-smashing-machine-2025" style="height: 105px; width:70px;"/>                           |  2.00 |       6 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/9/6/4/4/3/8/964438-jay-kelly-0-1000-0-1500-crop.jpg" alt="jay-kelly" style="height: 105px; width:70px;"/>                                                           |  2.12 |       4 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/2/5/7/9/2/3/1257923-song-sung-blue-2025-0-1000-0-1500-crop.jpg" alt="song-sung-blue-2025" style="height: 105px; width:70px;"/>                                    |  2.38 |       4 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/6/0/6/2/9/8/606298-little-amelie-or-the-character-of-rain-0-1000-0-1500-crop.jpg" alt="little-amelie-or-the-character-of-rain" style="height: 105px; width:70px;"/> |  2.50 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/8/1/4/6/3/1181463-blue-moon-2025-0-1000-0-1500-crop.jpg" alt="blue-moon-2025" style="height: 105px; width:70px;"/>                                              |  2.50 |       4 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/3/8/6/8/1113868-springsteen-deliver-me-from-nowhere-0-1000-0-1500-crop.jpg" alt="springsteen-deliver-me-from-nowhere" style="height: 105px; width:70px;"/>    |  2.67 |       3 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/9/2/1/5/7/5/921575-elio-0-1000-0-1500-crop.jpg" alt="elio" style="height: 105px; width:70px;"/>                                                                     |  2.50 |       4 |
 
 ## Controversial Movies :hot_pepper:
 | Movie                                                                                                                                                                                   |   Min |   Ave |   Max |   Views |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|------:|------:|--------:|
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/0/4/3/4/8/1104348-the-secret-agent-2025-0-1000-0-1500-crop.jpg" alt="the-secret-agent-2025" style="height: 105px; width:70px;"/> |   2.0 |   3.3 |   4.0 |       5 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/2/5/7/9/2/3/1257923-song-sung-blue-2025-0-1000-0-1500-crop.jpg" alt="song-sung-blue-2025" style="height: 105px; width:70px;"/>     |   1.5 |   2.4 |   3.5 |       4 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/0/4/3/4/8/1104348-the-secret-agent-2025-0-1000-0-1500-crop.jpg" alt="the-secret-agent-2025" style="height: 105px; width:70px;"/> |   2.0 |   3.6 |   5.0 |       7 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/7/5/5/1116755-black-bag-2025-0-1000-0-1500-crop.jpg" alt="black-bag-2025" style="height: 105px; width:70px;"/>               |   2.0 |   3.6 |   4.5 |       6 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/5/3/8/3/1125383-train-dreams-0-1000-0-1500-crop.jpg" alt="train-dreams" style="height: 105px; width:70px;"/>                   |   2.0 |   3.2 |   4.0 |       5 |
 | <img src="https://a.ltrbxd.com/resized/film-poster/8/7/1/1/4/8/871148-wicked-for-good-0-1000-0-1500-crop.jpg" alt="wicked-for-good" style="height: 105px; width:70px;"/>                |   1.5 |   3.0 |   4.0 |       6 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/4/7/0/1/1124701-warfare-0-1000-0-1500-crop.jpg" alt="warfare" style="height: 105px; width:70px;"/>                             |   2.0 |   3.7 |   4.0 |       7 |
+| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/5/3/8/3/1125383-train-dreams-0-1000-0-1500-crop.jpg" alt="train-dreams" style="height: 105px; width:70px;"/>                   |   2.0 |   3.2 |   4.0 |       6 |
 
 ## Harshest Critic :thumbsdown:
 | Name   |   Ave |   Min |
 |:-------|------:|------:|
-| RZ     |  3.54 |  2.00 |
-| CA     |  3.54 |  1.50 |
-| MF     |  3.56 |  1.50 |
-| BC     |  3.57 |  2.00 |
-| TA     |  3.68 |  2.00 |
-| NB     |  3.69 |  2.00 |
-| DN     |  3.80 |  3.50 |
+| CA     |  3.42 |  1.50 |
+| MF     |  3.49 |  1.50 |
+| BC     |  3.55 |  2.00 |
+| DN     |  3.56 |  1.50 |
+| NB     |  3.58 |  1.50 |
+| RZ     |  3.63 |  2.00 |
+| TA     |  3.69 |  2.00 |
 | KH     |  4.06 |  3.00 |
 
-## All Watched :movie_camera:
-<div  style="overflow-x: scroll;">
-
-| Movie               | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
-|:--------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| 28-years-later      |      | 4.0  |      | X    |      | 4.0  | 3.5  | 4.0  |
-| a-house-of-dynamite | 3.0  | 3.0  |      |      | 3.0  | 3.0  | 3.0  | 3.0  |
-| after-the-hunt-2025 |      |      |      | X    |      |      | 2.5  |      |
-| arco                |      |      |      |      | 4.0  |      |      |      |
-| avatar-fire-and-ash | 3.5  | 4.0  |      |      | 3.0  | 3.5  |      | 4.0  |
-| bad-apples-2025     |      |      |      | X    |      |      |      |      |
-| black-bag-2025      | 2.0  | 4.0  |      | X    | 3.0  | 4.0  | 4.5  | 4.0  |
-| blue-moon-2025      | 2.5  | 2.5  |      | X    | 2.5  | 2.5  |      |      |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie                         | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
-|:------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| bugonia                       | 3.5  | 4.0  |      | X    | 3.5  | 4.5  | 3.0  | 4.0  |
-| caught-stealing               |      | 2.5  |      | X    |      | 3.0  |      | 3.0  |
-| come-see-me-in-the-good-light | 4.0  |      |      |      | 4.0  | 3.5  |      |      |
-| cutting-through-rocks         | 4.0  |      |      |      | 4.0  | 4.0  |      |      |
-| diane-warren-relentless       |      |      |      |      |      | 3.0  |      |      |
-| die-my-love                   |      | 3.0  |      | X    |      | 3.0  | 3.0  |      |
-| eddington                     | 3.5  | 4.5  |      |      | 3.5  | 4.5  | 4.0  | 3.0  |
-| elio                          | 2.0  |      |      |      | 2.0  |      |      |      |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie                         |   BC | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
-|:------------------------------|-----:|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| eternity-2025-1               |  4.0 |      |      | X    | 4.0  |      |      | 3.0  |
-| f1                            |  4.0 | 4.0  |      | X    | 4.0  | 4.0  |      | 4.0  |
-| frankenstein-2025             |  3.0 | 3.0  | 4.0  | 3.0  | 4.0  | 4.0  | 2.5  | 3.5  |
-| friendship-2024               |  4.0 | 4.0  | 3.5  | X    |      | 4.0  | 3.0  | 3.0  |
-| hamnet                        |  4.0 | 4.5  |      | 4.5  | 4.5  | 4.5  | 4.5  | 4.5  |
-| how-to-train-your-dragon-2025 |  3.5 |      |      | X    | 3.5  | 4.0  |      |      |
-| if-i-had-legs-id-kick-you     |  4.0 | 4.0  |      | X    | 3.5  | 4.0  |      | X    |
-| is-this-thing-on-2025         |  4.0 | 4.0  |      |      | 4.5  | 3.5  |      |      |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie                                  | BC   |   CA | DN   | KH   |   MF |   NB | RZ   | TA   |
-|:---------------------------------------|:-----|-----:|:-----|:-----|-----:|-----:|:-----|:-----|
-| it-was-just-an-accident                | 3.5  |  3.5 |      |      |  3.5 |  3.0 | 4.0  | 3.5  |
-| jay-kelly                              |      |  2.0 |      | X    |  2.5 |  2.0 |      | 2.0  |
-| jurassic-world-rebirth                 | 2.5  |  2.5 |      | X    |  2.5 |  3.0 |      | 3.0  |
-| kokuho                                 | 4.0  |  4.0 |      |      |  4.0 |  3.5 |      |      |
-| kpop-demon-hunters                     | 3.5  |  3.0 |      | X    |  3.5 |  3.5 | 4.0  |      |
-| little-amelie-or-the-character-of-rain |      |  2.0 |      |      |  2.5 |  3.0 |      |      |
-| marty-supreme                          | 4.5  |  5.0 | 4.5  | 3.0  |  4.5 |  5.0 |      | 4.5  |
-| materialists                           | 4.5  |  3.5 | 3.5  | X    |  4.0 |  3.0 | 3.0  | 3.0  |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie                                  | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
-|:---------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| mickey-17                              |      | 3.5  |      | X    | 2.5  | 4.0  | 3.0  | 3.5  |
-| mission-impossible-the-final-reckoning |      | 3.0  | 4.0  | X    |      | 3.0  |      | 3.0  |
-| mr-nobody-against-putin                | 3.5  |      |      |      | 3.5  | 3.5  |      |      |
-| no-other-choice-2025                   | 4.0  | 4.5  | 4.0  |      | 4.5  | 5.0  |      | 4.5  |
-| one-battle-after-another               | 4.0  | 5.0  |      | 4.5  | 4.5  | 5.0  | 4.5  | 4.5  |
-| pillion-2025                           | 4.5  | 4.5  |      |      | 4.5  | 4.5  |      |      |
-| rental-family-2025                     | 3.0  |      |      |      | 3.0  |      |      |      |
-| roofman                                | 4.0  |      |      | X    | 4.0  |      |      | 3.5  |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie                               | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
-|:------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| sentimental-value-2025              | 4.5  | 4.5  |      | 4.5  | 4.0  | 4.5  | 4.0  | 4.5  |
-| sinners-2025                        | 4.5  | 4.5  | 3.5  | 4.0  | 4.5  | 4.5  | 5.0  | 5.0  |
-| sirat-2025                          | 2.5  | 2.5  |      |      | 2.5  | 3.5  |      |      |
-| song-sung-blue-2025                 | 3.5  |      |      |      | 3.0  |      |      |      |
-| sorry-baby-2025                     | 4.0  | 4.5  |      | 5.0  | 4.5  | 5.0  | 3.5  | 4.5  |
-| splitsville                         | 3.0  | 3.0  |      | X    | 3.0  | 3.0  | 4.0  | 4.0  |
-| springsteen-deliver-me-from-nowhere |      | 3.0  |      |      |      | 3.0  | 2.0  |      |
-| superman-2025                       | 3.0  | 3.5  |      | X    | 3.0  | 4.0  | 3.5  | 3.5  |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie                 | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
-|:----------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| the-alabama-solution  | 5.0  |      |      |      | 5.0  | 4.5  |      |      |
-| the-life-of-chuck     |      |      |      |      | 2.5  |      |      |      |
-| the-lost-bus          |      |      |      |      | 3.0  |      |      |      |
-| the-mastermind-2025   |      | 3.5  |      |      |      | 3.5  |      |      |
-| the-naked-gun         | 4.0  | 4.0  | 3.5  | X    | 4.0  | 4.0  | 5.0  | 4.0  |
-| the-perfect-neighbour | 4.0  |      |      |      | 4.5  | 3.5  |      |      |
-| the-phoenician-scheme | 3.5  | 4.0  |      |      | 3.0  | 4.0  |      | 3.5  |
-| the-roses-2025        |      |      |      | X    |      |      |      |      |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie                     | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
-|:--------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
-| the-secret-agent-2025     | 2.0  | 4.0  |      | 4.0  | 2.5  | 4.0  |      |      |
-| the-smashing-machine-2025 | 2.0  |      |      |      | 1.5  |      |      | 2.5  |
-| the-testament-of-ann-lee  | 4.0  | 3.0  |      |      | 4.0  | 3.0  |      | 4.0  |
-| the-voice-of-hind-rajab   |      | 2.5  |      |      |      | 3.0  |      |      |
-| train-dreams              | 2.0  | 2.5  |      | X    | 3.5  | 4.0  |      | 4.0  |
-| tron-ares                 |      |      |      | X    |      |      |      |      |
-| twinless                  | 4.5  |      |      | X    | 4.0  |      |      |      |
-| viva-verdi                | 3.5  |      |      |      | 3.5  | 2.5  |      |      |
-
-</div>
-
-<div  style="overflow-x: scroll;">
-
-| Movie            | BC   | CA   | DN   | KH   | MF   |   NB | RZ   | TA   |
-|:-----------------|:-----|:-----|:-----|:-----|:-----|-----:|:-----|:-----|
-| wake-up-dead-man | 4.0  | 4.0  |      | X    | 4.5  |  4.0 |      | 3.5  |
-| warfare          | 4.0  | 4.0  | 4.0  |      | 4.0  |  4.0 | 2.0  | 4.0  |
-| weapons-2025     |      | X    | 3.5  | X    |      |  4.0 | 4.0  | 4.5  |
-| wicked-for-good  | 3.5  | 1.5  |      | X    | 4.0  |  2.5 | 3.5  | 3.0  |
-| zootopia-2       |      | 3.5  |      |      |      |  3.5 |      |      |
-
-</div>
