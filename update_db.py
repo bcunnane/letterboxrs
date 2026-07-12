@@ -37,7 +37,7 @@ def scrape(type, label, url):
 
     try:
         # Wait for the page content to load
-        WebDriverWait(driver, 30).until(
+        WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.CLASS_NAME, "film-poster"))
         )
     except Exception:
@@ -49,9 +49,13 @@ def scrape(type, label, url):
     # get rating for all posters in the page
     for poster in posters:
 
-        # get movie data
+        # film id
+        viewing_p = poster.find_element(By.CLASS_NAME, "poster-viewingdata")
+        uid_string = viewing_p.get_attribute("data-item-uid")  # returns "film:14093"
+        filmid = uid_string.split(":")[-1]
+
+        # slug and rating
         react_data = poster.find_element(By.CLASS_NAME, "react-component")
-        filmid = int(react_data.get_attribute("data-film-id"))
         slug = react_data.get_attribute("data-item-slug")
         # title = react_data.get_attribute("data-item-name")
         # date = movie.find_element(By.TAG_NAME, "time").get_attribute("datetime")[0:10]
@@ -60,9 +64,10 @@ def scrape(type, label, url):
             rating = rating.count('★') + 0.5 * rating.count('½')
         except:
             rating = 0
-        if rating > 0:
-            movielist.loc[len(movielist)] = {type:label, 'filmid':filmid, 'rating':rating}
-            movies.loc[len(movies)] = {'filmid':filmid, 'slug':slug}
+
+        # add movie to lists
+        movielist.loc[len(movielist)] = {type:label, 'filmid':filmid, 'rating':rating}
+        movies.loc[len(movies)] = {'filmid':filmid, 'slug':slug}
         
     # remove reting from movielist
     if type == 'list':
@@ -73,25 +78,6 @@ def scrape(type, label, url):
     driver.quit()
 
     return movielist, movies
-
-
-def drop_outdated_ratings(all_ratings, new_ratings):
-    """
-    Removes rows from all_ratings that are already present in new_ratings
-    based on 'user' and 'filmid'.
-    """
-    # Merge with an indicator to identify matches
-    merged = all_ratings.merge(
-        new_ratings[['user', 'filmid']], 
-        on=['user', 'filmid'], 
-        how='left', 
-        indicator=True
-    )
-    
-    # Keep only the rows that weren't found in scraped_ratings
-    filtered_df = merged[merged['_merge'] == 'left_only'].drop(columns=['_merge'])
-    
-    return filtered_df
 
 
 def main():
@@ -128,14 +114,13 @@ def main():
         for page in [1]:#range(14,0,-1):
             
             # scrape movie poster page
+            sleep(30)
             user_url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
             scraped_ratings, scraped_movies = scrape('user', user[0], user_url)
             print(f'Scraped: {user[1]}    page: {page}    movies: {len(scraped_ratings)}')
 
             new_ratings = pd.concat([scraped_ratings, new_ratings])
             new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
-
-    # all_ratings = drop_outdated_ratings(all_ratings, new_ratings) # expunge outdated ratings
 
     # scrape watchlist
     # watchlist_url = 'https://letterboxd.com/_branzino/list/oscars-2026/'
@@ -152,28 +137,20 @@ def main():
 
     # write new data if present
     if not new_watchlist.empty:
-        all_watchlist = pd.concat([new_watchlist, all_watchlist]).drop_duplicates()
+        all_watchlist = pd.concat([new_watchlist, all_watchlist], ignore_index=True).drop_duplicates()
         all_watchlist.to_csv('data\\watchlist.csv', index=False)
-        print('\nAdded to watchlist:')
-        print(new_watchlist)
+
     if not new_ratings.empty:
-        all_ratings = pd.concat([new_ratings, all_ratings]).drop_duplicates()
+        all_ratings = pd.concat([new_ratings, all_ratings], ignore_index=True).drop_duplicates(subset=["filmid"], keep="first")
         all_ratings.to_csv('data\\ratings.csv', index=False)
-        print('\nAdded to ratings:')
-        print(new_ratings)
+
     if not new_movies.empty:
-        all_movies = pd.concat([new_movies, all_movies]).drop_duplicates()
+        all_movies = pd.concat([new_movies, all_movies], ignore_index=True).drop_duplicates()
         all_movies.to_csv('data\\movies.csv', index=False)
-        print('\nAdded to movies:')
-        print(new_movies)
+
     if not new_noms.empty:
-        all_noms = pd.concat([new_noms, all_noms]).drop_duplicates()
+        all_noms = pd.concat([new_noms, all_noms], ignore_index=True).drop_duplicates()
         all_noms.to_csv('data\\noms.csv', index=False)
-        print('\nAdded to noms:')
-        print(new_noms)
-
-
-    # write combined data to csv
 
 
 if __name__ == '__main__':
