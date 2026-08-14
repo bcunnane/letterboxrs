@@ -85,16 +85,17 @@ def main():
 
     # constants
     YEAR = '2026'
+    max_page = 1
     USERS = [
-        ('BC', '_branzino'),
-        ('CA', 'honeydijon2'),
-        ('DN', 'nbditsd'),
-        ('KH', 'shewasak8rgrl'),
-        ('MF', 'mfrye'),
-        ('MT', 'michelletreiber'),
-        ('NB', 'NikkiBerry'),
-        ('RZ', 'BOBBY_ZEE'),
-        ('TA', 'tarias')
+        ('BC', '_branzino')
+        ,('CA', 'honeydijon2')
+        ,('DN', 'nbditsd')
+        ,('KH', 'shewasak8rgrl')
+        ,('MF', 'mfrye')
+        ,('MT', 'michelletreiber')
+        ,('NB', 'NikkiBerry')
+        ,('RZ', 'BOBBY_ZEE')
+        ,('TA', 'tarias')
     ]
 
     # read current data
@@ -111,16 +112,16 @@ def main():
 
     # scrape user ratings
     for user in USERS:
-        for page in [1]:#range(14,0,-1):
+        for page in range(1, max_page + 1):#range(14,0,-1):
             
             # scrape movie poster page
-            sleep(30)
-            user_url = f'https://letterboxd.com/{user[1]}/films/by/date/page/{page}/'
+            user_url = f'https://letterboxd.com/{user[1]}/films/by/rated-date/page/{page}/'
             scraped_ratings, scraped_movies = scrape('user', user[0], user_url)
             print(f'Scraped: {user[1]}    page: {page}    movies: {len(scraped_ratings)}')
 
             new_ratings = pd.concat([scraped_ratings, new_ratings])
             new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
+            sleep(60)
 
     # scrape watchlist
     # watchlist_url = 'https://letterboxd.com/_branzino/list/oscars-2026/'
@@ -136,17 +137,17 @@ def main():
     # new_movies = pd.concat([scraped_movies, new_movies]).drop_duplicates()
 
     # write new data if present
-    if not new_watchlist.empty:
-        all_watchlist = pd.concat([new_watchlist, all_watchlist], ignore_index=True).drop_duplicates()
-        all_watchlist.to_csv('data\\watchlist.csv', index=False)
-
     if not new_ratings.empty:
-        all_ratings = pd.concat([new_ratings, all_ratings], ignore_index=True).drop_duplicates(subset=["filmid"], keep="first")
+        all_ratings = pd.concat([new_ratings, all_ratings], ignore_index=True).drop_duplicates(subset=["user", "filmid"], keep="first")
         all_ratings.to_csv('data\\ratings.csv', index=False)
 
     if not new_movies.empty:
         all_movies = pd.concat([new_movies, all_movies], ignore_index=True).drop_duplicates()
         all_movies.to_csv('data\\movies.csv', index=False)
+
+    if not new_watchlist.empty:
+        all_watchlist = pd.concat([new_watchlist, all_watchlist], ignore_index=True).drop_duplicates()
+        all_watchlist.to_csv('data\\watchlist.csv', index=False)
 
     if not new_noms.empty:
         all_noms = pd.concat([new_noms, all_noms], ignore_index=True).drop_duplicates()

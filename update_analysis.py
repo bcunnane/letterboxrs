@@ -28,33 +28,33 @@ def main():
 
     # import year-specific data
     year = 2026
-    noms = pd.read_csv('data\\noms.csv')
-    noms = noms[noms['list'] == year][['filmid', 'best_pic']]
-    watchlist = pd.read_csv('data\\watchlist.csv')
-    watchlist = watchlist[watchlist['list'] == year]
+    # noms = pd.read_csv('data\\noms.csv')
+    # noms = noms[noms['list'] == year][['filmid', 'best_pic']]
+    # watchlist = pd.read_csv('data\\watchlist.csv')
+    # watchlist = watchlist[watchlist['list'] == year]
 
     # apply year data to movie data
-    ratings = ratings.merge(watchlist, how='inner', on='filmid')
-    ratings = ratings.merge(noms, how='left', on='filmid')
+    # ratings = ratings.merge(watchlist, how='inner', on='filmid')
+    # ratings = ratings.merge(noms, how='left', on='filmid')
 
     # get leaderboard data
     total = ratings.groupby('user')['user'].count()
-    best_pic = ratings[ratings['best_pic']==1].groupby('user')['user'].count()
-    oscar_pct = 100 * ratings[ratings['best_pic'].notna()].groupby('user')['user'].count() / len(noms)
+    # best_pic = ratings[ratings['best_pic']==1].groupby('user')['user'].count()
+    # oscar_pct = 100 * ratings[ratings['best_pic'].notna()].groupby('user')['user'].count() / len(noms)
 
     # rename leaderboard columns
     total.rename('Total', inplace=True)
-    best_pic.rename('Best Pics', inplace=True)
-    oscar_pct.rename('Oscar %', inplace=True)
+    # best_pic.rename('Best Pics', inplace=True)
+    # oscar_pct.rename('Oscar %', inplace=True)
 
     # compile leaderboard
     leader = pd.concat([
         total
-        , best_pic
-        , oscar_pct.astype(int)
+        # , best_pic
+        # , oscar_pct.astype(int)
     ], axis=1)
-    leader.loc['MF','Total'] += 3 # shorts
-    leader.loc['NB','Total'] += 3 # shorts
+    # leader.loc['MF','Total'] += 3 # shorts
+    # leader.loc['NB','Total'] += 3 # shorts
     leader = leader.sort_values(by='Total', ascending=False)
     leader.rename_axis("Name", axis=0, inplace=True)
     leader = leader.to_markdown()
@@ -111,7 +111,7 @@ def main():
     # watched = [watched.iloc[i:i+n].to_markdown(floatfmt=".1f") for i in range(0, watched.shape[0], n)]
 
     # update README.md
-    output = f'''Aggregate Letterboxd movie ratings for 2026! <br />
+    output = f'''Aggregate Letterboxd movie ratings for {year}! <br />
 Last updated on {datetime.datetime.now().strftime('%a %b %d at %I:%M %p')} <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
