@@ -22,10 +22,16 @@ def main():
 
     # import data
     ratings = pd.read_csv('data\\ratings.csv')
-    watchlist = pd.read_csv('data\\watchlist.csv')
     noms = pd.read_csv('data\\noms.csv')
+    watchlist = pd.read_csv('data\\watchlist.csv')
 
-    # apply year data to movie data
+    # get filmid for poster
+    watchlist['filmid'] = watchlist['data-postered-identifier'].str.extract(
+        r'"uid"\s*:\s*"film:([^"]+)"'
+    )[0]
+    watchlist = watchlist[['slug', 'filmid']]
+
+    # apply watchlist and nom data to ratings
     ratings = ratings.merge(watchlist, how='inner', on='slug')
     ratings = ratings.merge(noms, how='left', on='slug')
 
@@ -51,7 +57,7 @@ def main():
 
     # compile aggregate movie data
     non_zero_ratings = ratings[ratings['rating']>0]
-    agg_movie_data = non_zero_ratings.groupby(['slug'])['rating'].agg(
+    agg_movie_data = non_zero_ratings.groupby(['slug', 'filmid'])['rating'].agg(
         Std='std',
         Min='min',
         Ave='mean',
@@ -59,8 +65,8 @@ def main():
         Views='count'
     ).reset_index()
     agg_movie_data = agg_movie_data[agg_movie_data['Views'] > 2] # must have 3 ratings
-    # agg_movie_data = filmids_to_posters(agg_movie_data)
-    agg_movie_data.rename(columns={"slug": "Movie"}, inplace=True)
+    agg_movie_data = filmids_to_posters(agg_movie_data)
+    agg_movie_data.rename(columns={"filmid": "Movie"}, inplace=True)
 
     # get best movies
     best_movies = agg_movie_data[agg_movie_data['Ave'] >= 3.0]
