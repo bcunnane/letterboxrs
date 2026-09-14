@@ -8,17 +8,15 @@ import pandas as pd
 
 USERS = [
     ('BC', '_branzino'),
-    ('CA', 'honeydijon2'),
-    ('DN', 'nbditsd'),
-    ('KH', 'shewasak8rgrl'),
-    ('MF', 'mfrye'),
-    ('MT', 'michelletreiber'),
-    ('NB', 'NikkiBerry'),
+    # ('CA', 'honeydijon2'),
+    # ('DN', 'nbditsd'),
+    # ('KH', 'shewasak8rgrl'),
+    # ('MF', 'mfrye'),
+    # ('MT', 'michelletreiber'),
+    # ('NB', 'NikkiBerry'),
     ('RZ', 'BOBBY_ZEE'),
-    ('TA', 'tarias'),
+    # ('TA', 'tarias'),
 ]
-
-WATCHLIST_URL = 'https://letterboxd.com/_branzino/list/oscars-2026/'
 
 
 def extract_rating(poster):
@@ -69,9 +67,8 @@ def extract_slug(poster):
 
 
 def _fetch_and_parse_page(url):
-  '''Core helper function shared between user ratings and watchlist scrapers.
+  '''Fetches an HTML page using curl_cffi and extracts all (poster, slug, title)
 
-  Fetches an HTML page using curl_cffi and extracts all (poster, slug, title)
   tuples.
   '''
   response = requests.get(url, impersonate='chrome')
@@ -134,50 +131,9 @@ def scrape_user_ratings(label, username, max_pages=None, is_full_run=False):
   return pd.DataFrame(scraped_data)
 
 
-def update_watchlist(list_base_url):
-  '''Scrapes the target Letterboxd list using shared page parser.'''
-  watchlist_file = 'data/watchlist.csv'
-  watchlist_data = []
-  page = 1
-
-  print(f'\n=== Fetching Watchlist: {list_base_url} ===')
-
-  while True:
-    url = f'{list_base_url.rstrip("/")}/page/{page}/'
-    status_code, items = _fetch_and_parse_page(url)
-
-    if status_code != 200:
-      if status_code == 404:
-        print(f'Reached end of watchlist pages at page {page - 1}.')
-      else:
-        print(f'ERROR: Received status {status_code} for {url}')
-      break
-
-    if not items:
-      print(f'No items found on watchlist page {page}. Ending pagination.')
-      break
-
-    for _, slug, title in items:
-      watchlist_data.append({'slug': slug, 'title': title})
-
-    print(f'Scraped Watchlist Page: {page} | Movies parsed: {len(items)}')
-    page += 1
-    sleep(random.uniform(1.5, 3.0))
-
-  if watchlist_data:
-    watchlist_df = pd.DataFrame(watchlist_data).drop_duplicates(subset=['slug'])
-    watchlist_df.to_csv(watchlist_file, index=False)
-    print(
-        f'Successfully updated {watchlist_file}. Total movies in list:'
-        f' {len(watchlist_df)}'
-    )
-  else:
-    print('Failed to parse any items for the watchlist.')
-
-
 def main():
   parser = argparse.ArgumentParser(
-      description='Scrape Letterboxd user ratings and watchlist.'
+      description='Scrape Letterboxd user ratings.'
   )
   parser.add_argument(
       '--full',
@@ -195,10 +151,7 @@ def main():
   )
   args = parser.parse_args()
 
-  # 1. Update Watchlist (oscars-2026)
-  update_watchlist(WATCHLIST_URL)
-
-  # 2. Update Ratings CSV
+  # Update Ratings CSV
   max_pages = None if args.full else args.pages
   ratings_file = 'data/ratings.csv'
 
