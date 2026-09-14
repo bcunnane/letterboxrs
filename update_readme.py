@@ -69,18 +69,47 @@ def main():
     agg_movie_data.rename(columns={"filmid": "Movie"}, inplace=True)
 
     # get best movies
-    best_movies = agg_movie_data[agg_movie_data['Ave'] >= 3.0]
-    best_movies = best_movies[['Movie', 'Ave', 'Views']].sort_values(by=['Ave', 'Views'], ascending=False)[:10]
-    best_movies = best_movies.to_markdown(index=False, floatfmt=".2f")
+    best_movies = (
+        agg_movie_data[agg_movie_data['Ave'] >= 3.0]
+        .sort_values(by=['Ave', 'Views'], ascending=False)
+        .head(10)
+        .assign(
+            Ave=lambda x: x['Ave'].map('{:.2f}'.format),
+            Views=lambda x: x['Views'].astype(int)
+        )[['Movie', 'Ave', 'Views']]
+        .T
+    )
+    best_movies.columns = [''] * len(best_movies.columns)
+    best_movies = best_movies.to_markdown()
 
     # get worst movies
-    worst_movies = agg_movie_data[agg_movie_data['Ave'] < 3.0]
-    worst_movies = worst_movies[['Movie', 'Ave', 'Views']].sort_values(by=['Ave', 'Views'], ascending=True)[:5]
-    worst_movies = worst_movies.to_markdown(index=False, floatfmt=".2f")
+    worst_movies = (
+        agg_movie_data[agg_movie_data['Ave'] < 3.0]
+        .sort_values(by=['Ave', 'Views'], ascending=True)
+        .head(10)
+        .assign(
+            Ave=lambda x: x['Ave'].map('{:.2f}'.format),
+            Views=lambda x: x['Views'].astype(int)
+        )[['Movie', 'Ave', 'Views']]
+        .T
+    )
+    worst_movies.columns = [''] * len(worst_movies.columns)
+    worst_movies = worst_movies.to_markdown()
 
     # get controversial movies
-    controversial = agg_movie_data.sort_values(by='Std', ascending=False)[:5]
-    controversial = controversial[['Movie','Min', 'Ave', 'Max','Views']].to_markdown(index=False, floatfmt=".1f")
+    controversial = (
+        agg_movie_data.sort_values(by='Std', ascending=False)
+        .head(10)
+        .assign(
+            Min=lambda x: x['Min'].map('{:.1f}'.format),
+            Ave=lambda x: x['Ave'].map('{:.1f}'.format),
+            Max=lambda x: x['Max'].map('{:.1f}'.format),
+            Views=lambda x: x['Views'].astype(int)
+        )[['Movie', 'Min', 'Ave', 'Max', 'Views']]
+        .T
+    )
+    controversial.columns = [''] * len(controversial.columns)
+    controversial = controversial.to_markdown()
 
     # compile harshest critics data
     critics = non_zero_ratings.groupby('user')['rating'].agg(
@@ -116,16 +145,35 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 {leader}
 
 ## Loved Movies :heart:
+<div style="overflow-x: auto;">
+
 {best_movies}
 
+</div>
+
 ## Unloved Movies :broken_heart:
+<div style="overflow-x: auto;">
+
 {worst_movies}
 
+</div>
+
 ## Controversial Movies :hot_pepper:
+<div style="overflow-x: auto;">
+
 {controversial}
+
+</div>
 
 ## Harshest Critic :thumbsdown:
 {critics}
+
+## All Watched :movie_camera:
+<div  style="overflow-x: scroll;">
+
+{'\n\n</div>\n\n<div  style="overflow-x: scroll;">\n\n'.join(watched)}
+
+</div>
 
 '''
     

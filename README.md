@@ -1,62 +1,197 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Fri Aug 14 at 12:26 PM <br />
+Last updated on Mon Sep 14 at 03:42 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
-| Name   |   Total |
-|:-------|--------:|
-| NB     |    2030 |
-| TA     |     983 |
-| KH     |     807 |
-| CA     |     667 |
-| MF     |     505 |
-| BC     |     443 |
-| RZ     |      65 |
-| DN     |      59 |
-| MT     |      13 |
+| Name   |   Total |   Best Pics |   Oscar % |
+|:-------|--------:|------------:|----------:|
+| NB     |      62 |           9 |       100 |
+| MF     |      59 |           9 |       100 |
+| CA     |      53 |           8 |        79 |
+| BC     |      51 |           9 |        85 |
+| KH     |      39 |           8 |        44 |
+| TA     |      38 |           7 |        47 |
+| RZ     |      31 |           7 |        38 |
+| DN     |      16 |           4 |        20 |
 
 ## Loved Movies :heart:
-| Movie                                                                                                                                                                                                                                   |   Ave |   Views |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|--------:|
-| <img src="https://a.ltrbxd.com/resized/film-poster/5/1/9/5/2/51952-gladiator-2000-0-1000-0-1500-crop.jpg" alt="gladiator-2000" style="height: 105px; width:70px;"/>                                                                     |  5.00 |       5 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/5/1/9/3/0/51930-the-lord-of-the-rings-the-fellowship-of-the-ring-0-1000-0-1500-crop.jpg" alt="the-lord-of-the-rings-the-fellowship-of-the-ring" style="height: 105px; width:70px;"/> |  5.00 |       4 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/5/1/5/2/4/51524-titanic-1997-0-1000-0-1500-crop.jpg" alt="titanic-1997" style="height: 105px; width:70px;"/>                                                                         |  5.00 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/5/1/7/8/2/51782-the-silence-of-the-lambs-0-1000-0-1500-crop.jpg" alt="the-silence-of-the-lambs" style="height: 105px; width:70px;"/>                                                 |  5.00 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/3/7/1/3/7/8/371378-dune-2021-0-1000-0-1500-crop.jpg" alt="dune-2021" style="height: 105px; width:70px;"/>                                                                            |  4.92 |       6 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/2/6/9/0/2690-apocalypse-now-0-1000-0-1500-crop.jpg" alt="apocalypse-now" style="height: 105px; width:70px;"/>                                                                        |  4.90 |       5 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/6/1/7/4/4/3/617443-dune-part-two-0-1000-0-1500-crop.jpg" alt="dune-part-two" style="height: 105px; width:70px;"/>                                                                    |  4.86 |       7 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/4/6/9/1/1/46911-children-of-men-0-1000-0-1500-crop.jpg" alt="children-of-men" style="height: 105px; width:70px;"/>                                                                   |  4.83 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/9/6/5/5/7/96557-about-time-0-1000-0-1500-crop.jpg" alt="about-time" style="height: 105px; width:70px;"/>                                                                             |  4.83 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/2/9/5/2/0/6/1295206-the-alabama-solution-0-1000-0-1500-crop.jpg" alt="the-alabama-solution" style="height: 105px; width:70px;"/>                                                   |  4.83 |       3 |
+<div style="overflow-x: auto;">
+
+|       |                                                                                                                                                                                       |                                                                                                                                                                                            |                                                                                                                                                                       |                                                                                                                                                        |                                                                                                                                                                             |                                                                                                                                                                                    |                                                                                                                                                                         |                                                                                                                                                                                           |                                                                                                                                                                       |                                                                                                                                                                      |
+|:------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Movie | <img src="https://a.ltrbxd.com/resized/film-poster/1/2/9/5/2/0/6/1295206-the-alabama-solution-0-1000-0-1500-crop.jpg" alt="the-alabama-solution" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/9/5/1/2/7/7/951277-one-battle-after-another-0-1000-0-1500-crop.jpg" alt="one-battle-after-another" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/6/0/0/1116600-sinners-2025-0-1000-0-1500-crop.jpg" alt="sinners-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/7/7/2/2/3/2/772232-hamnet-0-1000-0-1500-crop.jpg" alt="hamnet" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/9/0/4/6/4/1090464-sorry-baby-2025-0-1000-0-1500-crop.jpg" alt="sorry-baby-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/5/6/5/9/5/2/565952-no-other-choice-2025-0-1000-0-1500-crop.jpg" alt="no-other-choice-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/7/4/9/9/1197499-marty-supreme-0-1000-0-1500-crop.jpg" alt="marty-supreme" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/1/3/3/5/7/1013357-sentimental-value-2025-0-1000-0-1500-crop.jpg" alt="sentimental-value-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/7/0/4/3/3/1170433-pillion-2025-0-1000-0-1500-crop.jpg" alt="pillion-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/9/3/3/3/8/1/933381-the-naked-gun-0-1000-0-1500-crop.jpg" alt="the-naked-gun" style="height: 105px; width:70px;"/> |
+| Ave   | 4.83                                                                                                                                                                                  | 4.57                                                                                                                                                                                       | 4.44                                                                                                                                                                  | 4.43                                                                                                                                                   | 4.43                                                                                                                                                                        | 4.42                                                                                                                                                                               | 4.38                                                                                                                                                                    | 4.36                                                                                                                                                                                      | 4.20                                                                                                                                                                  | 4.07                                                                                                                                                                 |
+| Views | 3                                                                                                                                                                                     | 7                                                                                                                                                                                          | 8                                                                                                                                                                     | 7                                                                                                                                                      | 7                                                                                                                                                                           | 6                                                                                                                                                                                  | 8                                                                                                                                                                       | 7                                                                                                                                                                                         | 5                                                                                                                                                                     | 7                                                                                                                                                                    |
+
+</div>
 
 ## Unloved Movies :broken_heart:
-| Movie                                                                                                                                                                                     |   Ave |   Views |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|--------:|
-| <img src="https://a.ltrbxd.com/resized/film-poster/9/0/5/8/7/6/905876-carry-on-2024-0-1000-0-1500-crop.jpg" alt="carry-on-2024" style="height: 105px; width:70px;"/>                      |  1.67 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/6/9/1/1/1196911-wuthering-heights-2026-0-1000-0-1500-crop.jpg" alt="wuthering-heights-2026" style="height: 105px; width:70px;"/> |  1.70 |       5 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/7/7/6/0/8/877608-emilia-perez-0-1000-0-1500-crop.jpg" alt="emilia-perez" style="height: 105px; width:70px;"/>                        |  1.71 |       7 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/8/0/0/8/5/8/800858-joker-folie-a-deux-0-1000-0-1500-crop.jpg" alt="joker-folie-a-deux" style="height: 105px; width:70px;"/>            |  1.83 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/9/5/5/1/8/4/955184-queer-2024-0-1000-0-1500-crop.jpg" alt="queer-2024" style="height: 105px; width:70px;"/>                            |  1.88 |       4 |
+<div style="overflow-x: auto;">
+
+|       |                                                                                                                                                                                              |                                                                                                                                                              |                                                                                                                                                                                     |                                                                                                                                                                                                                        |                                                                                                                                                    |                                                                                                                                                                                                                     |                                                                                                                                                                                     |                                                                                                                                                                                           |                                                                                                                                                                   |                                                                                                                                                                           |
+|:------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Movie | <img src="https://a.ltrbxd.com/resized/film-poster/6/8/0/7/3/9/680739-the-smashing-machine-2025-0-1000-0-1500-crop.jpg" alt="the-smashing-machine-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/9/6/4/4/3/8/964438-jay-kelly-0-1000-0-1500-crop.jpg" alt="jay-kelly" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/2/5/7/9/2/3/1257923-song-sung-blue-2025-0-1000-0-1500-crop.jpg" alt="song-sung-blue-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/6/0/6/2/9/8/606298-little-amelie-or-the-character-of-rain-0-1000-0-1500-crop.jpg" alt="little-amelie-or-the-character-of-rain" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/9/2/1/5/7/5/921575-elio-0-1000-0-1500-crop.jpg" alt="elio" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/3/8/6/8/1113868-springsteen-deliver-me-from-nowhere-0-1000-0-1500-crop.jpg" alt="springsteen-deliver-me-from-nowhere" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/6/7/6/5/7/1167657-the-ugly-stepsister-0-1000-0-1500-crop.jpg" alt="the-ugly-stepsister" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/7/9/2/6/1117926-jurassic-world-rebirth-0-1000-0-1500-crop.jpg" alt="jurassic-world-rebirth" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/3/7/7/7/7/1037777-sirat-2025-0-1000-0-1500-crop.jpg" alt="sirat-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/8/1/4/6/3/1181463-blue-moon-2025-0-1000-0-1500-crop.jpg" alt="blue-moon-2025" style="height: 105px; width:70px;"/> |
+| Ave   | 2.00                                                                                                                                                                                         | 2.12                                                                                                                                                         | 2.38                                                                                                                                                                                | 2.50                                                                                                                                                                                                                   | 2.50                                                                                                                                               | 2.67                                                                                                                                                                                                                | 2.67                                                                                                                                                                                | 2.70                                                                                                                                                                                      | 2.75                                                                                                                                                              | 2.80                                                                                                                                                                      |
+| Views | 6                                                                                                                                                                                            | 4                                                                                                                                                            | 4                                                                                                                                                                                   | 3                                                                                                                                                                                                                      | 4                                                                                                                                                  | 3                                                                                                                                                                                                                   | 3                                                                                                                                                                                   | 5                                                                                                                                                                                         | 4                                                                                                                                                                 | 5                                                                                                                                                                         |
+
+</div>
 
 ## Controversial Movies :hot_pepper:
-| Movie                                                                                                                                                                                                          |   Min |   Ave |   Max |   Views |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|------:|------:|--------:|
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/3/2/1/1116321-the-girl-with-the-needle-0-1000-0-1500-crop.jpg" alt="the-girl-with-the-needle" style="height: 105px; width:70px;"/>                  |   1.0 |   3.0 |   4.0 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/2/6/8/3/2683-eternal-sunshine-of-the-spotless-mind-0-1000-0-1500-crop.jpg" alt="eternal-sunshine-of-the-spotless-mind" style="height: 105px; width:70px;"/> |   2.0 |   3.2 |   5.0 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/4/2/7/9/7/0/427970-triangle-of-sadness-0-1000-0-1500-crop.jpg" alt="triangle-of-sadness" style="height: 105px; width:70px;"/>                               |   1.0 |   2.3 |   4.0 |       3 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/9/5/9/8/2/9/959829-memoir-of-a-snail-0-1000-0-1500-crop.jpg" alt="memoir-of-a-snail" style="height: 105px; width:70px;"/>                                   |   1.0 |   2.9 |   4.0 |       5 |
-| <img src="https://a.ltrbxd.com/resized/film-poster/1/1/5/6/4/0/9/1156409-28-years-later-the-bone-temple-0-1000-0-1500-crop.jpg" alt="28-years-later-the-bone-temple" style="height: 105px; width:70px;"/>      |   2.0 |   3.8 |   4.5 |       4 |
+<div style="overflow-x: auto;">
+
+|       |                                                                                                                                                                                     |                                                                                                                                                                                         |                                                                                                                                                                           |                                                                                                                                                                          |                                                                                                                                                                       |                                                                                                                                                             |                                                                                                                                                                           |                                                                                                                                                                       |                                                                                                                                                                         |                                                                                                                                                                    |
+|:------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Movie | <img src="https://a.ltrbxd.com/resized/film-poster/1/2/5/7/9/2/3/1257923-song-sung-blue-2025-0-1000-0-1500-crop.jpg" alt="song-sung-blue-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/0/4/3/4/8/1104348-the-secret-agent-2025-0-1000-0-1500-crop.jpg" alt="the-secret-agent-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/1/6/7/5/5/1116755-black-bag-2025-0-1000-0-1500-crop.jpg" alt="black-bag-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/8/7/1/1/4/8/871148-wicked-for-good-0-1000-0-1500-crop.jpg" alt="wicked-for-good" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/5/3/8/3/1125383-train-dreams-0-1000-0-1500-crop.jpg" alt="train-dreams" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/2/4/7/0/1/1124701-warfare-0-1000-0-1500-crop.jpg" alt="warfare" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/8/1/4/6/3/1181463-blue-moon-2025-0-1000-0-1500-crop.jpg" alt="blue-moon-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/7/0/4/3/3/1170433-pillion-2025-0-1000-0-1500-crop.jpg" alt="pillion-2025" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/7/4/9/9/1197499-marty-supreme-0-1000-0-1500-crop.jpg" alt="marty-supreme" style="height: 105px; width:70px;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/9/7/2/1/0/9/972109-weapons-2025-0-1000-0-1500-crop.jpg" alt="weapons-2025" style="height: 105px; width:70px;"/> |
+| Min   | 1.5                                                                                                                                                                                 | 2.0                                                                                                                                                                                     | 2.0                                                                                                                                                                       | 1.5                                                                                                                                                                      | 2.0                                                                                                                                                                   | 2.0                                                                                                                                                         | 2.5                                                                                                                                                                       | 3.0                                                                                                                                                                   | 3.0                                                                                                                                                                     | 2.5                                                                                                                                                                |
+| Ave   | 2.4                                                                                                                                                                                 | 3.6                                                                                                                                                                                     | 3.6                                                                                                                                                                       | 3.0                                                                                                                                                                      | 3.2                                                                                                                                                                   | 3.7                                                                                                                                                         | 2.8                                                                                                                                                                       | 4.2                                                                                                                                                                   | 4.4                                                                                                                                                                     | 3.7                                                                                                                                                                |
+| Max   | 3.5                                                                                                                                                                                 | 5.0                                                                                                                                                                                     | 4.5                                                                                                                                                                       | 4.0                                                                                                                                                                      | 4.0                                                                                                                                                                   | 4.0                                                                                                                                                         | 4.0                                                                                                                                                                       | 4.5                                                                                                                                                                   | 5.0                                                                                                                                                                     | 4.5                                                                                                                                                                |
+| Views | 4                                                                                                                                                                                   | 7                                                                                                                                                                                       | 6                                                                                                                                                                         | 6                                                                                                                                                                        | 6                                                                                                                                                                     | 7                                                                                                                                                           | 5                                                                                                                                                                         | 5                                                                                                                                                                     | 8                                                                                                                                                                       | 7                                                                                                                                                                  |
+
+</div>
 
 ## Harshest Critic :thumbsdown:
 | Name   |   Ave |   Min |
 |:-------|------:|------:|
-| KH     |  3.38 |  0.50 |
-| MF     |  3.51 |  1.00 |
-| DN     |  3.53 |  1.50 |
-| RZ     |  3.55 |  1.00 |
-| MT     |  3.58 |  1.00 |
-| TA     |  3.60 |  0.50 |
-| CA     |  3.64 |  0.50 |
-| NB     |  3.66 |  0.50 |
-| BC     |  3.80 |  1.00 |
+| CA     |  3.43 |  1.50 |
+| MF     |  3.48 |  1.50 |
+| BC     |  3.55 |  2.00 |
+| DN     |  3.56 |  1.50 |
+| NB     |  3.59 |  1.50 |
+| RZ     |  3.63 |  2.00 |
+| TA     |  3.69 |  2.00 |
+| KH     |  4.06 |  3.00 |
+
+## All Watched :movie_camera:
+<div  style="overflow-x: scroll;">
+
+| Movie               | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
+|:--------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| 28-years-later      |      | 4.0  |      | X    |      | 4.0  | 3.5  | 4.0  |
+| a-house-of-dynamite | 3.0  | 3.0  |      |      | 3.0  | 3.0  | 3.0  | 3.0  |
+| after-the-hunt-2025 |      |      |      | X    |      |      | 2.5  |      |
+| arco                |      | 3.0  |      |      | 4.0  | 3.5  |      |      |
+| avatar-fire-and-ash | 3.5  | 4.0  |      |      | 3.0  | 3.5  |      | 4.0  |
+| bad-apples-2025     |      |      |      | X    |      |      |      |      |
+| black-bag-2025      | 2.0  | 4.0  |      | X    | 3.0  | 4.0  | 4.5  | 4.0  |
+| blue-moon-2025      | 2.5  | 2.5  |      | X    | 2.5  | 2.5  | 4.0  |      |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie                         | BC   | CA   | DN   | KH   | MF   |   NB | RZ   | TA   |
+|:------------------------------|:-----|:-----|:-----|:-----|:-----|-----:|:-----|:-----|
+| bugonia                       | 3.5  | 4.0  | 4.0  | X    | 3.5  |  4.5 | 3.0  | 4.0  |
+| caught-stealing               |      | 2.5  |      | X    |      |  3.0 |      | 3.0  |
+| come-see-me-in-the-good-light | 4.0  |      |      |      | 4.0  |  3.5 |      |      |
+| cutting-through-rocks         | 4.0  |      |      |      | 4.0  |  4.0 |      |      |
+| diane-warren-relentless       |      |      |      |      | 3.0  |  3.0 |      |      |
+| die-my-love                   |      | 3.0  |      | X    |      |  3.0 | 3.0  |      |
+| eddington                     | 3.5  | 4.5  |      |      | 3.5  |  4.5 | 4.0  | 3.0  |
+| elio                          | 2.0  | 3.0  |      |      | 2.0  |  3.0 |      |      |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie                         |   BC | CA   | DN   | KH   | MF   |   NB | RZ   | TA   |
+|:------------------------------|-----:|:-----|:-----|:-----|:-----|-----:|:-----|:-----|
+| eternity-2025-1               |  4.0 |      |      | X    | 4.0  |  4.0 |      | 3.0  |
+| f1                            |  4.0 | 4.0  | 4.0  | X    | 4.0  |  4.0 |      | 4.0  |
+| frankenstein-2025             |  3.0 | 3.0  | 4.0  | 3.0  | 4.0  |  4.0 | 2.5  | 3.5  |
+| friendship-2024               |  4.0 | 4.0  | 3.5  | X    |      |  4.0 | 3.0  | 3.0  |
+| hamnet                        |  4.0 | 4.5  |      | 4.5  | 4.5  |  4.5 | 4.5  | 4.5  |
+| how-to-train-your-dragon-2025 |  3.5 |      | 3.5  | X    | 3.5  |  4.0 |      |      |
+| if-i-had-legs-id-kick-you     |  4.0 | 4.0  |      | X    | 3.5  |  4.0 |      | X    |
+| is-this-thing-on-2025         |  4.0 | 4.0  |      |      | 4.0  |  3.5 |      |      |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie                                  | BC   |   CA | DN   | KH   |   MF |   NB | RZ   | TA   |
+|:---------------------------------------|:-----|-----:|:-----|:-----|-----:|-----:|:-----|:-----|
+| it-was-just-an-accident                | 3.5  |  3.5 |      |      |  3.5 |  3.0 | 4.0  | 3.5  |
+| jay-kelly                              |      |  2.0 |      | X    |  2.5 |  2.0 |      | 2.0  |
+| jurassic-world-rebirth                 | 2.5  |  2.5 |      | X    |  2.5 |  3.0 |      | 3.0  |
+| kokuho                                 | 4.0  |  4.0 |      |      |  4.0 |  3.5 |      |      |
+| kpop-demon-hunters                     | 3.5  |  3.0 |      | X    |  3.5 |  3.5 | 4.0  |      |
+| little-amelie-or-the-character-of-rain |      |  2.0 |      |      |  2.5 |  3.0 |      |      |
+| marty-supreme                          | 4.5  |  5.0 | 4.5  | 3.0  |  4.5 |  5.0 | 4.0  | 4.5  |
+| materialists                           | 4.5  |  3.5 | 3.5  | X    |  4.0 |  3.0 | 3.0  | 3.0  |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie                                  | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
+|:---------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| mickey-17                              |      | 3.5  |      | X    | 2.5  | 4.0  | 3.0  | 3.5  |
+| mission-impossible-the-final-reckoning |      | 3.0  | 4.0  | X    |      | 3.0  |      | 3.0  |
+| mr-nobody-against-putin                | 3.5  |      |      |      | 3.5  | 3.5  |      |      |
+| no-other-choice-2025                   | 4.0  | 4.5  | 4.0  |      | 4.5  | 5.0  |      | 4.5  |
+| one-battle-after-another               | 4.0  | 5.0  |      | 4.5  | 4.5  | 5.0  | 4.5  | 4.5  |
+| pillion-2025                           | 4.5  | 4.5  |      |      | 4.5  | 4.5  | 3.0  |      |
+| rental-family-2025                     | 3.0  |      |      |      | 3.0  |      |      |      |
+| roofman                                | 4.0  |      | 3.5  | X    | 4.0  |      |      | 3.5  |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie                               | BC   |   CA | DN   | KH   | MF   |   NB | RZ   | TA   |
+|:------------------------------------|:-----|-----:|:-----|:-----|:-----|-----:|:-----|:-----|
+| sentimental-value-2025              | 4.5  |  4.5 |      | 4.5  | 4.0  |  4.5 | 4.0  | 4.5  |
+| sinners-2025                        | 4.5  |  4.5 | 3.5  | 4.0  | 4.5  |  4.5 | 5.0  | 5.0  |
+| sirat-2025                          | 2.5  |  2.5 |      |      | 2.5  |  3.5 |      |      |
+| song-sung-blue-2025                 | 3.5  |  1.5 |      |      | 3.0  |  1.5 |      |      |
+| sorry-baby-2025                     | 4.0  |  4.5 |      | 5.0  | 4.5  |  5.0 | 3.5  | 4.5  |
+| splitsville                         | 3.0  |  3.0 |      | X    | 3.0  |  3.0 | 4.0  | 4.0  |
+| springsteen-deliver-me-from-nowhere |      |  3.0 |      |      |      |  3.0 | 2.0  |      |
+| superman-2025                       | 3.0  |  3.5 |      | X    | 3.0  |  4.0 | 3.5  | 3.5  |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie                 | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
+|:----------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| the-alabama-solution  | 5.0  |      |      |      | 5.0  | 4.5  |      |      |
+| the-life-of-chuck     |      |      |      |      | 2.5  |      |      |      |
+| the-lost-bus          |      | 3.0  |      |      | 3.0  | 3.0  |      |      |
+| the-mastermind-2025   |      | 3.5  |      |      |      | 3.5  |      |      |
+| the-naked-gun         | 4.0  | 4.0  | 3.5  | X    | 4.0  | 4.0  | 5.0  | 4.0  |
+| the-perfect-neighbour | 4.0  |      |      |      | 4.5  | 3.5  |      |      |
+| the-phoenician-scheme | 3.5  | 4.0  |      |      | 3.0  | 4.0  |      | 3.5  |
+| the-roses-2025        |      |      |      | X    |      |      |      |      |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie                     | BC   | CA   | DN   | KH   | MF   | NB   | RZ   | TA   |
+|:--------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
+| the-secret-agent-2025     | 2.0  | 4.0  |      | 4.0  | 2.5  | 4.0  | 5.0  | 4.0  |
+| the-smashing-machine-2025 | 2.0  | 2.0  | 2.5  |      | 1.5  | 1.5  |      | 2.5  |
+| the-testament-of-ann-lee  | 4.0  | 3.0  |      | X    | 4.0  | 3.0  | 4.5  | 4.0  |
+| the-ugly-stepsister       |      | 3.0  |      |      | 2.0  | 3.0  |      |      |
+| the-voice-of-hind-rajab   |      | 2.5  |      |      | 3.5  | 3.0  |      |      |
+| train-dreams              | 2.0  | 2.5  |      | X    | 3.5  | 4.0  | 3.5  | 4.0  |
+| tron-ares                 |      |      | 1.5  | X    |      |      |      |      |
+| twinless                  | 4.5  |      |      | X    | 4.0  |      |      |      |
+
+</div>
+
+<div  style="overflow-x: scroll;">
+
+| Movie            |   BC | CA   | DN   | KH   |   MF |   NB | RZ   | TA   |
+|:-----------------|-----:|:-----|:-----|:-----|-----:|-----:|:-----|:-----|
+| viva-verdi       |  3.5 |      |      |      |  3.5 |  2.5 |      |      |
+| wake-up-dead-man |  4.0 | 4.0  |      | X    |  4.5 |  4.0 |      | 3.5  |
+| warfare          |  4.0 | 4.0  | 4.0  |      |  4.0 |  4.0 | 2.0  | 4.0  |
+| weapons-2025     |  3.5 | 4.0  | 3.5  | X    |  2.5 |  4.0 | 4.0  | 4.5  |
+| wicked-for-good  |  3.5 | 1.5  |      | X    |  4.0 |  2.5 | 3.5  | 3.0  |
+| zootopia-2       |  2.5 | 3.0  |      |      |  3.0 |  3.5 |      |      |
+
+</div>
 
