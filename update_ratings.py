@@ -8,14 +8,14 @@ import pandas as pd
 
 USERS = [
     ('BC', '_branzino'),
-    # ('CA', 'honeydijon2'),
-    # ('DN', 'nbditsd'),
-    # ('KH', 'shewasak8rgrl'),
-    # ('MF', 'mfrye'),
-    # ('MT', 'michelletreiber'),
-    # ('NB', 'NikkiBerry'),
+    ('CA', 'honeydijon2'),
+    ('DN', 'nbditsd'),
+    ('KH', 'shewasak8rgrl'),
+    ('MF', 'mfrye'),
+    ('MT', 'michelletreiber'),
+    ('NB', 'NikkiBerry'),
     ('RZ', 'BOBBY_ZEE'),
-    # ('TA', 'tarias'),
+    ('TA', 'tarias'),
 ]
 
 

@@ -5,14 +5,15 @@ import pandas as pd
 def filmids_to_posters(df):
     """convert film ids to movie posters
     expects dataframe with columns filmid and slug"""
-    
+
     df['filmid'] = df['filmid'].astype(str)
 
-    # convert filmid to poster image
+    # convert filmid to poster image with explicit CSS overrides for GitHub markdown
     posters = []
-    for index,row in df.iterrows():
+    for index, row in df.iterrows():
         slug = row['slug']
-        posters.append(f'''<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['filmid'])}/{row['filmid']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width:70px;"/>''')
+        posters.append(
+            f'''<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['filmid'])}/{row['filmid']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width: auto !important; max-width: none !important;"/>''')
 
     df['filmid'] = posters
     return df
