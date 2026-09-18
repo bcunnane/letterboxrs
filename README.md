@@ -1,6 +1,28 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Thu Sep 17 at 10:16 PM <br />
+Last updated on Thu Sep 17 at 10:32 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
+
+<style>
+/* Custom styling to make horizontal scrollbars always visible and clean */
+.scrollable-table {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+.scrollable-table::-webkit-scrollbar {
+    height: 8px;
+}
+.scrollable-table::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+.scrollable-table::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+.scrollable-table::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+</style>
 
 ## Leaderboard :trophy:
 | Name   |   Total |   Best Pics |   Oscar % |
