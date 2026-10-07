@@ -28,9 +28,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run scraper script
+      - name: Run webscraper script
         run: |
-          python scrape_ratings.py --full
+          python update_ratings.py --full
 
       - name: Run README generator script
         run: |
