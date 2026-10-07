@@ -146,6 +146,8 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 {leader}
 
 ## Loved Movies :heart:
+*Swipe to see more →*
+
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
 {best_movies}
@@ -153,6 +155,8 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 </div>
 
 ## Unloved Movies :broken_heart:
+*Swipe to see more →*
+
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
 {worst_movies}
@@ -160,6 +164,8 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 </div>
 
 ## Controversial Movies :hot_pepper:
+*Swipe to see more →*
+
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
 {controversial}

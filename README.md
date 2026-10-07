@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Thu Sep 17 at 11:00 PM <br />
+Last updated on Thu Sep 17 at 11:05 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
@@ -15,6 +15,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | DN     |      16 |           4 |        20 |
 
 ## Loved Movies :heart:
+*Swipe to see more →*
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
 |       |                                                                                                                                                                                                                               |                                                                                                                                                                                                                                    |                                                                                                                                                                                                               |                                                                                                                                                                                                |                                                                                                                                                                                                                     |                                                                                                                                                                                                                            |                                                                                                                                                                                                                 |                                                                                                                                                                                                                                   |                                                                                                                                                                                                               |                                                                                                                                                                                                              |
