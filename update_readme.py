@@ -3,142 +3,153 @@ import pandas as pd
 
 
 def filmids_to_posters(df):
-    """convert film ids to movie posters
-    expects dataframe with columns filmid and slug"""
+  """Convert film ids to movie posters.
 
-    df['filmid'] = df['filmid'].astype(str)
+  Expects dataframe with columns filmid and slug.
+  """
+  df['filmid'] = df['filmid'].astype(str)
 
-    # convert filmid to poster image with explicit CSS overrides for GitHub markdown
-    posters = []
-    for index, row in df.iterrows():
-        slug = row['slug']
-        posters.append(
-            f'''<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['filmid'])}/{row['filmid']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width: auto !important; max-width: none !important;"/>''')
+  # Convert filmid to poster image with explicit CSS overrides for GitHub markdown
+  posters = []
+  for index, row in df.iterrows():
+    slug = row['slug']
+    posters.append(
+        f"""<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['filmid'])}/{row['filmid']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width: auto !important; max-width: none !important;"/>"""
+    )
 
-    df['filmid'] = posters
-    return df
+  df['filmid'] = posters
+  return df
 
 
 def main():
+  # Import data (using forward slashes for cross-platform/GitHub Actions compatibility)
+  ratings = pd.read_csv('data/ratings.csv')
+  noms = pd.read_csv('data/noms.csv')
+  watchlist = pd.read_csv('data/watchlist.csv')
 
-    # import data
-    ratings = pd.read_csv('data\\ratings.csv')
-    noms = pd.read_csv('data\\noms.csv')
-    watchlist = pd.read_csv('data\\watchlist.csv')
+  # Get filmid for poster
+  watchlist['filmid'] = watchlist['data-postered-identifier'].str.extract(
+      r'"uid"\s*:\s*"film:([^"]+)"'
+  )[0]
+  watchlist = watchlist[['slug', 'filmid']]
 
-    # get filmid for poster
-    watchlist['filmid'] = watchlist['data-postered-identifier'].str.extract(
-        r'"uid"\s*:\s*"film:([^"]+)"'
-    )[0]
-    watchlist = watchlist[['slug', 'filmid']]
+  # Apply watchlist and nom data to ratings
+  ratings = ratings.merge(watchlist, how='inner', on='slug')
+  ratings = ratings.merge(noms, how='left', on='slug')
 
-    # apply watchlist and nom data to ratings
-    ratings = ratings.merge(watchlist, how='inner', on='slug')
-    ratings = ratings.merge(noms, how='left', on='slug')
+  # Get leaderboard data
+  total = ratings.groupby('user')['user'].count()
+  best_pic = ratings[ratings['best_pic'] == 1].groupby('user')['user'].count()
+  oscar_pct = (
+      100
+      * ratings[ratings['best_pic'].notna()].groupby('user')['user'].count()
+      / len(noms)
+  )
 
-    # get leaderboard data
-    total = ratings.groupby('user')['user'].count()
-    best_pic = ratings[ratings['best_pic']==1].groupby('user')['user'].count()
-    oscar_pct = 100 * ratings[ratings['best_pic'].notna()].groupby('user')['user'].count() / len(noms)
+  # Rename leaderboard columns
+  total.rename('Total', inplace=True)
+  best_pic.rename('Best Pics', inplace=True)
+  oscar_pct.rename('Oscar %', inplace=True)
 
-    # rename leaderboard columns
-    total.rename('Total', inplace=True)
-    best_pic.rename('Best Pics', inplace=True)
-    oscar_pct.rename('Oscar %', inplace=True)
+  # Compile leaderboard
+  leader = pd.concat([total, best_pic, oscar_pct.astype(int)], axis=1)
+  leader = leader.sort_values(by='Total', ascending=False)
+  leader.rename_axis('Name', axis=0, inplace=True)
+  leader = leader.to_markdown()
 
-    # compile leaderboard
-    leader = pd.concat([
-        total
-        , best_pic
-        , oscar_pct.astype(int)
-    ], axis=1)
-    leader = leader.sort_values(by='Total', ascending=False)
-    leader.rename_axis("Name", axis=0, inplace=True)
-    leader = leader.to_markdown()
+  # Compile aggregate movie data
+  non_zero_ratings = ratings[ratings['rating'] > 0]
+  agg_movie_data = (
+      non_zero_ratings.groupby(['slug', 'filmid'])['rating']
+      .agg(Std='std', Min='min', Ave='mean', Max='max', Views='count')
+      .reset_index()
+  )
+  agg_movie_data = agg_movie_data[
+      agg_movie_data['Views'] > 2
+  ]  # must have 3 ratings
+  agg_movie_data = filmids_to_posters(agg_movie_data)
+  agg_movie_data.rename(columns={'filmid': 'Movie'}, inplace=True)
 
-    # compile aggregate movie data
-    non_zero_ratings = ratings[ratings['rating']>0]
-    agg_movie_data = non_zero_ratings.groupby(['slug', 'filmid'])['rating'].agg(
-        Std='std',
-        Min='min',
-        Ave='mean',
-        Max='max',
-        Views='count'
-    ).reset_index()
-    agg_movie_data = agg_movie_data[agg_movie_data['Views'] > 2] # must have 3 ratings
-    agg_movie_data = filmids_to_posters(agg_movie_data)
-    agg_movie_data.rename(columns={"filmid": "Movie"}, inplace=True)
+  # Get best movies
+  best_movies = (
+      agg_movie_data[agg_movie_data['Ave'] >= 3.0]
+      .sort_values(by=['Ave', 'Views'], ascending=False)
+      .head(10)
+      .assign(
+          Ave=lambda x: x['Ave'].map('{:.2f}'.format),
+          Views=lambda x: x['Views'].astype(int),
+      )[['Movie', 'Ave', 'Views']]
+      .T
+  )
+  best_movies.columns = [''] * len(best_movies.columns)
+  best_movies = best_movies.to_markdown()
 
-    # get best movies
-    best_movies = (
-        agg_movie_data[agg_movie_data['Ave'] >= 3.0]
-        .sort_values(by=['Ave', 'Views'], ascending=False)
-        .head(10)
-        .assign(
-            Ave=lambda x: x['Ave'].map('{:.2f}'.format),
-            Views=lambda x: x['Views'].astype(int)
-        )[['Movie', 'Ave', 'Views']]
-        .T
-    )
-    best_movies.columns = [''] * len(best_movies.columns)
-    best_movies = best_movies.to_markdown()
+  # Get worst movies
+  worst_movies = (
+      agg_movie_data[agg_movie_data['Ave'] < 3.0]
+      .sort_values(by=['Ave', 'Views'], ascending=True)
+      .head(10)
+      .assign(
+          Ave=lambda x: x['Ave'].map('{:.2f}'.format),
+          Views=lambda x: x['Views'].astype(int),
+      )[['Movie', 'Ave', 'Views']]
+      .T
+  )
+  worst_movies.columns = [''] * len(worst_movies.columns)
+  worst_movies = worst_movies.to_markdown()
 
-    # get worst movies
-    worst_movies = (
-        agg_movie_data[agg_movie_data['Ave'] < 3.0]
-        .sort_values(by=['Ave', 'Views'], ascending=True)
-        .head(10)
-        .assign(
-            Ave=lambda x: x['Ave'].map('{:.2f}'.format),
-            Views=lambda x: x['Views'].astype(int)
-        )[['Movie', 'Ave', 'Views']]
-        .T
-    )
-    worst_movies.columns = [''] * len(worst_movies.columns)
-    worst_movies = worst_movies.to_markdown()
+  # Get controversial movies
+  controversial = (
+      agg_movie_data.sort_values(by='Std', ascending=False)
+      .head(10)
+      .assign(
+          Min=lambda x: x['Min'].map('{:.1f}'.format),
+          Ave=lambda x: x['Ave'].map('{:.1f}'.format),
+          Max=lambda x: x['Max'].map('{:.1f}'.format),
+          Views=lambda x: x['Views'].astype(int),
+      )[['Movie', 'Min', 'Ave', 'Max', 'Views']]
+      .T
+  )
+  controversial.columns = [''] * len(controversial.columns)
+  controversial = controversial.to_markdown()
 
-    # get controversial movies
-    controversial = (
-        agg_movie_data.sort_values(by='Std', ascending=False)
-        .head(10)
-        .assign(
-            Min=lambda x: x['Min'].map('{:.1f}'.format),
-            Ave=lambda x: x['Ave'].map('{:.1f}'.format),
-            Max=lambda x: x['Max'].map('{:.1f}'.format),
-            Views=lambda x: x['Views'].astype(int)
-        )[['Movie', 'Min', 'Ave', 'Max', 'Views']]
-        .T
-    )
-    controversial.columns = [''] * len(controversial.columns)
-    controversial = controversial.to_markdown()
+  # Compile harshest critics data
+  critics = (
+      non_zero_ratings.groupby('user')['rating']
+      .agg(
+          Ave='mean',
+          Min='min',
+      )
+      .reset_index()
+      .sort_values(by=['Ave', 'Min'])
+  )
+  critics.rename(columns={'user': 'Name'}, inplace=True)
+  critics = critics.to_markdown(index=False, floatfmt='.2f')
 
-    # compile harshest critics data
-    critics = non_zero_ratings.groupby('user')['rating'].agg(
-        Ave='mean',
-        Min='min',
-    ).reset_index().sort_values(by=['Ave', 'Min'])
-    critics.rename(columns={'user': 'Name'}, inplace=True)
-    critics = critics.to_markdown(index=False, floatfmt=".2f")
+  # Get watched
+  watched = ''
+  watched = ratings[['user', 'slug', 'rating']].copy()
+  watched.rename(
+      columns={'user': 'Name', 'slug': 'Movie', 'rating': 'Rating'}, inplace=True
+  )
+  watched['Rating'] = watched['Rating'].astype(str)
 
-    # get watched
-    watched = ''
-    watched = ratings[['user', 'slug', 'rating']].copy()
-    watched.rename(columns={'user': 'Name', 'slug':'Movie', 'rating':'Rating'}, inplace=True)
-    watched['Rating'] = watched['Rating'].astype(str)
+  # Remove 0 ratings aka "watched" moves
+  watched.loc[watched['Rating'] == '0.0', 'Rating'] = 'X'
 
-    # remove 0 ratings aka "watched" moves
-    watched.loc[watched['Rating'] == '0.0', 'Rating'] = 'X'
+  # Create pivot table
+  watched = watched.pivot(index='Movie', columns='Name', values='Rating')
+  watched = watched.fillna('')
 
-    # create pivot table
-    watched = watched.pivot(index='Movie', columns='Name', values='Rating')
-    watched[watched.isnull()] = ''
-    
-    # split table into groups of n movies
-    n = 8
-    watched = [watched.iloc[i:i+n].to_markdown(floatfmt=".1f") for i in range(0, watched.shape[0], n)]
+  # Split table into groups of n movies
+  n = 8
+  watched = [
+      watched.iloc[i : i + n].to_markdown(floatfmt='.1f')
+      for i in range(0, watched.shape[0], n)
+  ]
 
-    # update README.md
-    output = f'''Aggregate Letterboxd movie ratings for 2026! <br />
+  # Update README.md
+  output = f"""Aggregate Letterboxd movie ratings for 2026! <br />
 Last updated on {datetime.datetime.now().strftime('%a %b %d at %I:%M %p')} <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
@@ -182,12 +193,11 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 
 </div>
 
-'''
-    
-    f = open('README.md', 'w', encoding='utf-8')
+"""
+
+  with open('README.md', 'w', encoding='utf-8') as f:
     f.write(output)
-    f.close()
 
 
 if __name__ == '__main__':
-    main()
+  main()
