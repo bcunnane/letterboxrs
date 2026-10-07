@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Tue Oct 06 at 08:57 PM <br />
+Last updated on Tue Oct 06 at 09:19 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:

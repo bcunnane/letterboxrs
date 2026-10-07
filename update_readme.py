@@ -144,9 +144,14 @@ def main():
   # Split table into groups of n movies
   n = 8
   watched = [
-      watched.iloc[i : i + n].to_markdown(floatfmt='.1f')
+      watched.iloc[i: i + n].to_markdown(floatfmt='.1f')
       for i in range(0, watched.shape[0], n)
   ]
+
+  # Join the watched tables
+  watched_html = '\n\n</div>\n\n<div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">\n\n'.join(
+      watched
+  )
 
   # Update README.md
   output = f"""Aggregate Letterboxd movie ratings for 2026! <br />
@@ -189,7 +194,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 ## All Watched :movie_camera:
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
-{'\n\n</div>\n\n<div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">\n\n'.join(watched)}
+{watched_html}
 
 </div>
 

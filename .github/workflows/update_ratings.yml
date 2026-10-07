@@ -26,11 +26,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas curl_cffi beautifulsoup4 tabulate
+          pip install -r requirements.txt
 
       - name: Run scraper script
         run: |
-          python update_ratings.py --full
+          python scrape_ratings.py --full
 
       - name: Run README generator script
         run: |
