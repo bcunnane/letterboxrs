@@ -30,7 +30,7 @@ jobs:
 
       - name: Run webscraper script
         run: |
-          python update_ratings.py --full
+          python update_ratings.py
 
       - name: Run README generator script
         run: |

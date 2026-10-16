@@ -5,7 +5,7 @@ import pandas as pd
 # Replace with the curated Letterboxd Oscars list URL once nominations drop
 NOMINATIONS_URL = 'https://letterboxd.com/yurimorgan/list/oscars-2026/'
 
-WATCHLIST_URL = 'https://letterboxd.com/_branzino/list/oscars-2026/'
+WATCHLIST_URL = 'https://letterboxd.com/_branzino/list/movie-szn-2027/'
 
 
 def build_nominations_csv(output_file='data/noms.csv'):
