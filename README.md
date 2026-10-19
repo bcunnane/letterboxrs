@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2026! <br />
-Last updated on Fri Oct 16 at 02:33 PM <br />
+Last updated on Mon Oct 19 at 06:42 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
@@ -65,28 +65,28 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 ## All Watched :movie_camera:
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
-| Movie                    | BC   | CA   | KH   | MF   |   NB | TA   |
-|:-------------------------|:-----|:-----|:-----|:-----|-----:|:-----|
-| digger-2026              |      | 4.5  |      |      |  4.0 |      |
-| fjord-2026               |      | 2.5  |      |      |  3.5 |      |
+| Movie                    |   BC |   CA | KH   |   MF |   NB |   TA |
+|:-------------------------|-----:|-----:|:-----|-----:|-----:|-----:|
+| digger-2026              |      |  4.5 |      |      |  4.0 |      |
+| fjord-2026               |      |  2.5 |      |      |  3.5 |      |
 | michael-2026             |      |      |      |      |  2.0 |      |
-| naza                     | 4.5  | 4.5  |      | 5.0  |  5.0 |      |
-| obsession-2025           | 4.0  | 3.5  | X    | 4.0  |  4.5 | 4.5  |
-| primetime-2026           | 4.0  | 4.0  |      | 4.0  |  4.0 | 4.0  |
-| project-hail-mary        | 3.5  | 3.5  | 5.0  | 3.5  |  4.5 | 3.5  |
-| spider-man-brand-new-day |      | 3.0  | X    |      |  3.5 | 4.0  |
+| naza                     |  4.5 |  4.5 |      |  5.0 |  5.0 |      |
+| obsession-2025           |  4.0 |  3.5 | X    |  4.0 |  4.5 |  4.5 |
+| primetime-2026           |  4.0 |  4.0 |      |  4.0 |  4.0 |  4.0 |
+| project-hail-mary        |  3.5 |  3.5 | 5.0  |  3.5 |  4.5 |  3.5 |
+| spider-man-brand-new-day |      |  3.0 | X    |      |  3.5 |  4.0 |
 
 </div>
 
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
-| Movie                  | BC   | CA   | KH   | MF   | NB   | TA   |
-|:-----------------------|:-----|:-----|:-----|:-----|:-----|:-----|
-| the-invite-2026        |      | 4.0  |      |      | 4.0  | 4.0  |
-| the-odyssey-2026       | 5.0  | 5.0  | X    | 5.0  | 5.0  | 4.5  |
+| Movie                  |   BC |   CA | KH   |   MF |   NB |   TA |
+|:-----------------------|-----:|-----:|:-----|-----:|-----:|-----:|
+| the-invite-2026        |      |  4.0 |      |      |  4.0 |  4.0 |
+| the-odyssey-2026       |  5.0 |  5.0 | X    |  5.0 |  5.0 |  4.5 |
 | toy-story-5            |      |      | X    |      |      |      |
 | wicker                 |      |      | X    |      |      |      |
-| you-can-see-everything |      | 5.0  |      |      | 5.0  |      |
+| you-can-see-everything |      |  5.0 |      |      |  5.0 |      |
 
 </div>
 
