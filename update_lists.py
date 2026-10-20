@@ -122,5 +122,5 @@ def build_watchlist_csv(output_file='data/watchlist.csv'):
 
 
 if __name__ == '__main__':
-  build_nominations_csv()
+  # build_nominations_csv()
   build_watchlist_csv()

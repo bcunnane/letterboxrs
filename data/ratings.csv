@@ -1,4 +1,6 @@
 user,slug,rating
+BC,you-can-see-everything,4.5
+BC,the-twilight-saga-new-moon,3.0
 BC,the-history-of-concrete,2.5
 BC,predators-2025,2.0
 BC,naza,4.5
@@ -69,8 +71,7 @@ BC,pillion-2025,4.5
 BC,mr-nobody-against-putin,3.5
 BC,elio,2.0
 BC,the-smashing-machine-2025,2.0
-BC,the-testament-of-ann-lee,4.0
-BC,jurassic-world-rebirth,2.5
+CA,stoker,3.5
 CA,you-can-see-everything,5.0
 CA,naza,4.5
 CA,resident-evil-2026,4.0
@@ -142,7 +143,6 @@ CA,the-fantastic-4-first-steps,3.5
 CA,song-sung-blue-2025,1.5
 CA,zootopia-2,3.0
 CA,arco,3.0
-CA,elio,3.0
 DN,freakier-friday,3.0
 DN,how-to-train-your-dragon-2025,3.5
 DN,killers-of-the-flower-moon,4.0
@@ -274,6 +274,9 @@ KH,abigail-2024,2.5
 KH,if-2024,2.0
 KH,how-to-date-billy-walsh,1.0
 KH,snack-shack,3.0
+MF,you-can-see-everything,5.0
+MF,the-twilight-saga-new-moon,3.0
+MF,nirvanna-the-band-the-show-the-movie,4.0
 MF,the-history-of-concrete,2.0
 MF,primetime-2026,4.0
 MF,naza,5.0
@@ -343,9 +346,6 @@ MF,obvious-child,4.0
 MF,weathering-with-you,3.5
 MF,perfect-blue,3.0
 MF,songs-my-brothers-taught-me,3.5
-MF,blue-valentine,3.5
-MF,your-name,5.0
-MF,is-this-thing-on-2025,4.0
 MT,carry-on-2024,1.0
 MT,wicked-2024,5.0
 MT,interstellar,4.0
@@ -359,6 +359,7 @@ MT,knives-out-2019,3.5
 MT,dune-2021,5.0
 MT,oppenheimer-2023,4.5
 MT,barbie,5.0
+NB,stoker,3.5
 NB,you-can-see-everything,5.0
 NB,naza,5.0
 NB,digger-2026,4.0
@@ -430,7 +431,6 @@ NB,jackass-45,3.5
 NB,the-fall-2019,3.5
 NB,birth-2004,4.5
 NB,janet-planet,2.5
-NB,the-christophers,4.5
 RZ,blue-moon-2025,4.0
 RZ,train-dreams,3.5
 RZ,the-secret-agent-2025,5.0
@@ -496,6 +496,9 @@ RZ,longlegs,3.5
 RZ,sing-sing-2023,4.0
 RZ,kinds-of-kindness,3.0
 RZ,challengers,4.0
+TA,digger-2026,4.0
+TA,knocked-up,3.0
+TA,you-can-see-everything,5.0
 TA,coyote-vs-acme,3.0
 TA,the-social-network,4.5
 TA,the-hunger-games,5.0
@@ -565,6 +568,13 @@ TA,splitsville,4.0
 TA,marty-supreme,4.5
 TA,roofman,3.5
 TA,some-like-it-hot,4.5
+BC,the-testament-of-ann-lee,4.0
+BC,jurassic-world-rebirth,2.5
+CA,elio,3.0
+MF,blue-valentine,3.5
+MF,your-name,5.0
+MF,is-this-thing-on-2025,4.0
+NB,the-christophers,4.5
 TA,anaconda-2025,2.5
 TA,wake-up-dead-man,3.5
 TA,relay-2024,3.5
@@ -2535,7 +2545,6 @@ MF,mad-max-2,2.5
 MF,the-twilight-saga-breaking-dawn-part-1,2.0
 MF,the-twilight-saga-breaking-dawn-part-2,2.0
 MF,the-twilight-saga-eclipse,2.0
-MF,the-twilight-saga-new-moon,4.0
 MF,silver-linings-playbook,4.0
 MF,kikis-delivery-service,3.0
 MF,the-little-mermaid-2023,3.0
@@ -5489,7 +5498,6 @@ TA,friday-the-13th,0.0
 TA,enchanted,0.0
 TA,the-machinist,0.0
 TA,hot-fuzz,0.0
-TA,knocked-up,0.0
 TA,rush-hour-3,0.0
 TA,rush-hour-2,0.0
 TA,the-polar-express,0.0

@@ -2,19 +2,47 @@ import datetime
 import pandas as pd
 
 
+import requests
+
+
 def filmids_to_posters(df):
-  """Convert film ids to movie posters.
+  """Convert film ids to movie posters with automatic URL fallback checking.
 
   Expects dataframe with columns filmid and slug.
   """
   df['filmid'] = df['filmid'].astype(str)
 
-  # Convert filmid to poster image with explicit CSS overrides for GitHub markdown
   posters = []
   for index, row in df.iterrows():
+    filmid = row['filmid']
     slug = row['slug']
+    id_path = '/'.join(list(filmid))
+
+    # Define common Letterboxd CDN URL variations to test
+    potential_urls = [
+        # Standard pattern
+        f'https://a.ltrbxd.com/resized/film-poster/{id_path}/{filmid}-{slug}-0-1000-0-1500-crop.jpg',
+        # Variant with version suffix (e.g., -2) and higher res crop
+        f'https://a.ltrbxd.com/resized/film-poster/{id_path}/{filmid}-{slug}-2-0-2000-0-3000-crop.jpg',
+        # Variant with high res crop only
+        f'https://a.ltrbxd.com/resized/film-poster/{id_path}/{filmid}-{slug}-0-2000-0-3000-crop.jpg',
+    ]
+
+    # Find the first working URL
+    working_url = potential_urls[0]  # default fallback
+    for url in potential_urls:
+      try:
+        # Use a quick HEAD request to verify the image exists
+        response = requests.head(url, timeout=2)
+        if response.status_code == 200:
+          working_url = url
+          break
+      except requests.RequestException:
+        continue
+
+    # Build the final image tag
     posters.append(
-        f"""<img src="https://a.ltrbxd.com/resized/film-poster/{'/'.join(row['filmid'])}/{row['filmid']}-{slug}-0-1000-0-1500-crop.jpg" alt="{row['slug']}" style="height: 105px; width: auto !important; max-width: none !important;"/>"""
+        f"""<img src="{working_url}" alt="{slug}" style="height: 105px; width: auto !important; max-width: none !important;"/>"""
     )
 
   df['filmid'] = posters
@@ -76,11 +104,13 @@ def main():
   best_movies = (
       agg_movie_data[agg_movie_data['Ave'] >= 3.0]
       .sort_values(by=['Ave', 'Views'], ascending=False)
-      .head(10)
+      .head(20)
       .assign(
-          Ave=lambda x: x['Ave'].map('{:.2f}'.format),
+          Max=lambda x: x['Max'].map('{:.1f}'.format),
+          Ave=lambda x: x['Ave'].map('{:.1f}'.format),
+          Min=lambda x: x['Min'].map('{:.1f}'.format),
           Views=lambda x: x['Views'].astype(int),
-      )[['Movie', 'Ave', 'Views']]
+      )[['Movie', 'Max', 'Ave', 'Min', 'Views']]
       .T
   )
   best_movies.columns = [''] * len(best_movies.columns)
@@ -90,11 +120,13 @@ def main():
   worst_movies = (
       agg_movie_data[agg_movie_data['Ave'] < 3.0]
       .sort_values(by=['Ave', 'Views'], ascending=True)
-      .head(10)
+      .head(20)
       .assign(
-          Ave=lambda x: x['Ave'].map('{:.2f}'.format),
+          Max=lambda x: x['Max'].map('{:.1f}'.format),
+          Ave=lambda x: x['Ave'].map('{:.1f}'.format),
+          Min=lambda x: x['Min'].map('{:.1f}'.format),
           Views=lambda x: x['Views'].astype(int),
-      )[['Movie', 'Ave', 'Views']]
+      )[['Movie', 'Max', 'Ave', 'Min', 'Views']]
       .T
   )
   worst_movies.columns = [''] * len(worst_movies.columns)
@@ -102,14 +134,15 @@ def main():
 
   # Get controversial movies
   controversial = (
-      agg_movie_data.sort_values(by='Std', ascending=False)
-      .head(10)
+      agg_movie_data[agg_movie_data['Std'] >= 0.75]
+      .sort_values(by='Std', ascending=False)
+      .head(20)
       .assign(
-          Min=lambda x: x['Min'].map('{:.1f}'.format),
-          Ave=lambda x: x['Ave'].map('{:.1f}'.format),
           Max=lambda x: x['Max'].map('{:.1f}'.format),
+          Ave=lambda x: x['Ave'].map('{:.1f}'.format),
+          Min=lambda x: x['Min'].map('{:.1f}'.format),
           Views=lambda x: x['Views'].astype(int),
-      )[['Movie', 'Min', 'Ave', 'Max', 'Views']]
+      )[['Movie', 'Max', 'Ave', 'Min', 'Views']]
       .T
   )
   controversial.columns = [''] * len(controversial.columns)
@@ -156,7 +189,7 @@ def main():
   )
 
   # Update README.md
-  output = f"""Aggregate Letterboxd movie ratings for 2026! <br />
+  output = f"""Aggregate Letterboxd movie ratings for 2027! <br />
 Last updated on {datetime.datetime.now().strftime('%a %b %d at %I:%M %p')} <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
