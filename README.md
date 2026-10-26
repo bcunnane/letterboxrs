@@ -1,5 +1,5 @@
 Aggregate Letterboxd movie ratings for 2027! <br />
-Last updated on Tue Oct 20 at 03:50 PM <br />
+Last updated on Mon Oct 26 at 07:45 PM <br />
 Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/)
 
 ## Leaderboard :trophy:
@@ -8,8 +8,8 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | NB     |      23 |
 | CA     |      21 |
 | TA     |      16 |
-| MF     |      14 |
-| BC     |      13 |
+| MF     |      15 |
+| BC     |      14 |
 | KH     |      10 |
 | RZ     |       2 |
 
@@ -33,13 +33,13 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 
 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
 
-|       |                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                   |
-|:------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Movie | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/5/5/8/6/1195586-the-devil-wears-prada-2-0-1000-0-1500-crop.jpg" alt="the-devil-wears-prada-2" style="height: 105px; width: auto !important; max-width: none !important;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/6/9/1/1/1196911-wuthering-heights-2026-0-1000-0-1500-crop.jpg" alt="wuthering-heights-2026" style="height: 105px; width: auto !important; max-width: none !important;"/> |
-| Max   | 2.5                                                                                                                                                                                                                                 | 2.5                                                                                                                                                                                                                               |
-| Ave   | 1.5                                                                                                                                                                                                                                 | 1.7                                                                                                                                                                                                                               |
-| Min   | 1.0                                                                                                                                                                                                                                 | 1.0                                                                                                                                                                                                                               |
-| Views | 3                                                                                                                                                                                                                                   | 5                                                                                                                                                                                                                                 |
+|       |                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                   |                                                                                                                                                                                                                   |
+|:------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Movie | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/5/5/8/6/1195586-the-devil-wears-prada-2-0-1000-0-1500-crop.jpg" alt="the-devil-wears-prada-2" style="height: 105px; width: auto !important; max-width: none !important;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/1/9/6/9/1/1/1196911-wuthering-heights-2026-0-1000-0-1500-crop.jpg" alt="wuthering-heights-2026" style="height: 105px; width: auto !important; max-width: none !important;"/> | <img src="https://a.ltrbxd.com/resized/film-poster/1/0/8/9/0/8/8/1089088-coyote-vs-acme-0-1000-0-1500-crop.jpg" alt="coyote-vs-acme" style="height: 105px; width: auto !important; max-width: none !important;"/> |
+| Max   | 2.5                                                                                                                                                                                                                                 | 2.5                                                                                                                                                                                                                               | 3.0                                                                                                                                                                                                               |
+| Ave   | 1.5                                                                                                                                                                                                                                 | 1.7                                                                                                                                                                                                                               | 2.7                                                                                                                                                                                                               |
+| Min   | 1.0                                                                                                                                                                                                                                 | 1.0                                                                                                                                                                                                                               | 2.0                                                                                                                                                                                                               |
+| Views | 3                                                                                                                                                                                                                                   | 5                                                                                                                                                                                                                                 | 3                                                                                                                                                                                                                 |
 
 </div>
 
@@ -62,11 +62,11 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | Name   |   Ave |   Min |
 |:-------|------:|------:|
 | RZ     |  2.00 |  1.00 |
-| MF     |  3.71 |  2.00 |
+| MF     |  3.67 |  2.00 |
 | CA     |  3.74 |  1.00 |
+| BC     |  3.75 |  2.00 |
 | TA     |  3.81 |  1.50 |
 | NB     |  3.85 |  1.00 |
-| BC     |  3.88 |  2.50 |
 | KH     |  5.00 |  5.00 |
 
 ## All Watched :movie_camera:
@@ -75,7 +75,7 @@ Watchlist can be found [here](https://letterboxd.com/_branzino/list/oscars-2026/
 | Movie                                | BC   | CA   | KH   | MF   | NB   | RZ   | TA   |
 |:-------------------------------------|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
 | backrooms-2026                       | 4.0  | 4.0  |      | 3.5  | 4.0  |      | 3.5  |
-| coyote-vs-acme                       |      |      |      |      |      |      | 3.0  |
+| coyote-vs-acme                       | 2.0  |      |      | 3.0  |      |      | 3.0  |
 | digger-2026                          |      | 4.5  |      |      | 4.0  |      | 4.0  |
 | fjord-2026                           |      | 2.5  |      |      | 3.5  |      |      |
 | hope-2026                            |      | 4.0  |      |      | 4.0  |      | 3.5  |

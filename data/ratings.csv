@@ -1,4 +1,5 @@
 user,slug,rating
+BC,coyote-vs-acme,2.0
 BC,you-can-see-everything,4.5
 BC,the-twilight-saga-new-moon,3.0
 BC,the-history-of-concrete,2.5
@@ -70,7 +71,8 @@ BC,blue-moon-2025,2.5
 BC,pillion-2025,4.5
 BC,mr-nobody-against-putin,3.5
 BC,elio,2.0
-BC,the-smashing-machine-2025,2.0
+CA,rosemarys-baby,4.5
+CA,the-exorcist,5.0
 CA,stoker,3.5
 CA,you-can-see-everything,5.0
 CA,naza,4.5
@@ -141,8 +143,6 @@ CA,eephus,3.5
 CA,the-lost-bus,3.0
 CA,the-fantastic-4-first-steps,3.5
 CA,song-sung-blue-2025,1.5
-CA,zootopia-2,3.0
-CA,arco,3.0
 DN,freakier-friday,3.0
 DN,how-to-train-your-dragon-2025,3.5
 DN,killers-of-the-flower-moon,4.0
@@ -274,6 +274,7 @@ KH,abigail-2024,2.5
 KH,if-2024,2.0
 KH,how-to-date-billy-walsh,1.0
 KH,snack-shack,3.0
+MF,coyote-vs-acme,3.0
 MF,you-can-see-everything,5.0
 MF,the-twilight-saga-new-moon,3.0
 MF,nirvanna-the-band-the-show-the-movie,4.0
@@ -345,7 +346,6 @@ MF,the-drama,3.5
 MF,obvious-child,4.0
 MF,weathering-with-you,3.5
 MF,perfect-blue,3.0
-MF,songs-my-brothers-taught-me,3.5
 MT,carry-on-2024,1.0
 MT,wicked-2024,5.0
 MT,interstellar,4.0
@@ -359,7 +359,10 @@ MT,knives-out-2019,3.5
 MT,dune-2021,5.0
 MT,oppenheimer-2023,4.5
 MT,barbie,5.0
-NB,stoker,3.5
+NB,the-exorcist,5.0
+NB,the-cremator,4.0
+NB,stoker,3.0
+NB,rosemarys-baby,5.0
 NB,you-can-see-everything,5.0
 NB,naza,5.0
 NB,digger-2026,4.0
@@ -428,9 +431,6 @@ NB,roman-holiday,4.0
 NB,fantastic-mr-fox,4.5
 NB,jaws,5.0
 NB,jackass-45,3.5
-NB,the-fall-2019,3.5
-NB,birth-2004,4.5
-NB,janet-planet,2.5
 RZ,blue-moon-2025,4.0
 RZ,train-dreams,3.5
 RZ,the-secret-agent-2025,5.0
@@ -568,6 +568,13 @@ TA,splitsville,4.0
 TA,marty-supreme,4.5
 TA,roofman,3.5
 TA,some-like-it-hot,4.5
+BC,the-smashing-machine-2025,2.0
+CA,zootopia-2,3.0
+CA,arco,3.0
+MF,songs-my-brothers-taught-me,3.5
+NB,the-fall-2019,3.5
+NB,birth-2004,4.5
+NB,janet-planet,2.5
 BC,the-testament-of-ann-lee,4.0
 BC,jurassic-world-rebirth,2.5
 CA,elio,3.0
@@ -1221,7 +1228,6 @@ CA,night-of-the-living-dead,3.5
 CA,bottoms,3.5
 CA,knock-at-the-cabin,3.5
 CA,extraction-2,2.0
-CA,the-exorcist,4.5
 CA,wind-river-2017,4.5
 CA,gonjiam-haunted-asylum,3.0
 CA,pearl-2022,3.5
@@ -4211,7 +4217,6 @@ NB,anger-management,0.0
 NB,man-on-fire-2004,0.0
 NB,wedding-crashers,0.0
 NB,red-dragon,0.0
-NB,the-exorcist,0.0
 NB,flubber,0.0
 NB,little-women-1994,0.0
 NB,babe,0.0
